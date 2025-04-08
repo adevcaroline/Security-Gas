@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f0f4f8; /* Cor de fundo do site */
+    display: flex; /* Ativa um sistema chamado "flexbox" */
+    justify-content: center; /* Joga as coisas para o meio na horizontal */
+    align-items: center; /* Joga as coisas para o meio na vertical */
+    height: 100vh; /* Faz o fundo ocupar a tela toda */
+    flex-direction: column; /* Deixa os elementos um abaixo do outro */
+}
+
+.emblema {
+    position: absolute;  /* Permite colocar em qualquer lugar da tela */
+    top: 60px;          /* Distância do topo */
+    left: 40px;         /* Distância da esquerda */
+    display: flex;      /* Deixa o logo e o texto um do lado do outro */
+    align-items: center; /* Alinha os itens na vertical */
+    gap: 10px;          /* Espaço entre a logo e o nome */
+}
+
+
+.emblema img {
+    width: 50px; /* Ajusta o tamanho da logo */
+}
+
+.emblema h1 {
+    font-size: 26px; /* Tamanho do texto */
+    color: #123a63; /* Cor azul escuro */
+    font-weight: bold; /* Deixa o texto mais grosso */
+}
+
+/* Centralizar a container inteira na tela */
+.container {
+    height: 100vh; /* 100% da altura da tela */
+    display: flex;
+    justify-content: center; /* centraliza na horizontal */
+    align-items: center;     /* centraliza na vertical */
+  }
+  
+  .frase {
+    position: absolute;
+    top: 30%; /* Move a frase um pouco mais para cima da tela */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza a frase na horizontal */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .frase img {
+    width: 80px; /* Tamanho da logo */
+    margin-bottom: 20px; /* Espaço depois da logo */
+  }
+  
+  .frase h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #123a63;
+  }
+  
+  .frase p {
+    margin-top: 10px; /* Espaço acima do parágrafo */
+    font-size: 23px;
+    color: #123a63;
+  }
+
+  .formulario {
+    margin-top: 20px; /* Espaço acima do formulário */
+    position: absolute;
+    top: 45%; /* Posição vertical do formulário */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza horizontalmente */
+    
+    display: flex; /* Ativa o modo flexbox */
+    flex-direction: column; /* Coloca os itens um abaixo do outro */
+    align-items: center; /* Centraliza os itens no meio */
+    
+    padding: 30px;
+    gap: 18px; /* Espaço entre os itens */
+  }
+
+  .formulario input {
+    width: 340px; /* Largura do campo de texto */
+    padding: 15px; /* Espaço dentro do campo de texto */
+    border: 1px solid #123a63; /* Borda azul escura */
+    background-color: #123a63;
+    color: #f0f4f8;
+    border-radius: 8px; /* Cantos arredondados */
+    font-size: 16px; /* Tamanho da fonte */
+  }
+  
+  .formulario input::placeholder {
+    color: #f0f4f8; /* Cor do texto de exemplo */
+  }
+  
+  .formulario a {
+    align-self: flex-start; /* Alinha só o link à esquerda */
+    text-decoration: none;
+    color: #123a63d3;
+    font-size: 16px;
+    margin-left: 10px; /* Opcional: ajusta a distância da borda */
+  }
+
+  .formulario a:hover {
+    color: #0e2a4b; /* Cor mais escura ao passar o mouse */
+  }
+  
+.formulario button {
+    margin-top: 20px;
+    width: 100%; /* Largura do botão */
+    height: 50px;
+    padding: 10px; /* Espaço dentro do botão */
+    background-color: #123a63; /* Cor de fundo azul escuro */
+    color: #f0f4f8; /* Cor do texto branco */
+    border: none; /* Sem borda */
+    border-radius: 10px; /* Cantos arredondados */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Muda o cursor para mãozinha ao passar em cima */
+  }
+  
+  .formulario button:hover {
+    background-color: #0e2a4b; /* Cor mais escura ao passar o mouse */
+  }
+
