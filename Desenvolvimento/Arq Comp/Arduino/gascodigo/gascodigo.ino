@@ -20,7 +20,7 @@ void loop() {
     porcentagem = 100;
   }
   // Serial.print("Porcentagem:");
-  Serial.print(porcentagem);      
+  Serial.println(porcentagem);      
   // Serial.println(" ");    
   // Serial.print("maximo:");         
   // Serial.print(maximo);        
