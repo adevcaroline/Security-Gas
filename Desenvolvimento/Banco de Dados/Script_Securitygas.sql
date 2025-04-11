@@ -1,3 +1,4 @@
+create database securitygas;
 use securitygas;
 
 -- Tabela Empresa
@@ -42,6 +43,7 @@ CREATE TABLE Sensores (
     statusAtivacao VARCHAR(15)
 );
 
+
 -- Tabela Leituras_sensor
 CREATE TABLE Leituras_sensor (
     idLeitura INT PRIMARY KEY AUTO_INCREMENT,
@@ -60,3 +62,4 @@ CREATE TABLE Local_Instalacao (
     FOREIGN KEY (Unidade_idUnidade) REFERENCES Unidade(idUnidade),
     FOREIGN KEY (Sensores_idSensor) REFERENCES Sensores(idSensor)
 );
+
