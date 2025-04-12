@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Security Gas</title>
-    <link rel="stylesheet" href="./style/login.css">
+    <title>Cadastro - Security Gas</title>
+    <link rel="stylesheet" href="./style/cadastro.css">
 </head>
 
 <body>
 
-    <div class="login">
+    <div class="cadastro">
         <div class="logo">
             <img src="../assets- Security gas/Frame 1.png" alt="">
         </div>
@@ -23,9 +23,19 @@
 
         <div class="inputs">
 
+            <h2>Selecione como deseja cadastrar</h2>
+           <select name="" id="slct_tipo_usuario">
+            <option value=""></option>
+            <option value="">Empresa</option>
+            <option value="">Unidade</option>
+            <option value="">Colaborador</option>
+           </select>
+
             <h2>CNPJ</h2>
             <input type="text" id="inp_cnpj">
 
+            <h2>Telefone</h2>
+            <input type="text" id="inp_telefone">
 
             <h2>Email</h2>
             <input type="text" id="inp_email">
@@ -36,14 +46,20 @@
             <!-- <h2 id="h2_msg">msg</h2>
             <input type="text" id="inp_msg"> -->
 
+            <p id="p_msg">
+
+            </p>
+                
+            </p>
+
 
         </div>
 
-        <button class="btn_logar">Logar</button>
+        <button class="btn_logar">Cadastrar</button>
 
         <p>
 
-            Não tem uma conta? <a href="./cadastro.html" >Cadastrar</a>
+            Já tem uma conta? <a href="./login.html">Logar</a>
 
         </p>
 

@@ -18,34 +18,33 @@ body{
   color: var(--cor-texto-mdclaro);
 }
 
-.login{
+.cadastro{
 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
-  gap: 50px;
+  gap: 40px;
 
 }
 
-.login .logo{
+.cadastro .logo{
   display: flex;
   align-items: center;
   justify-content: center;
   padding-right: 15px;
-  padding-bottom: 50px;
+  padding-bottom: 30px;
 }
 
-.login .inputs{
+.cadastro .inputs{
   display: flex;
   flex-direction: column;
-  gap: 10px;
   color: var(--cor-texto-azul-mdClaro);
   width: 500px;
 }
 
-.login .inputs h2{ 
+.cadastro .inputs h2{ 
   
   font-size: 16px;
   font-weight: 500;
@@ -53,26 +52,26 @@ body{
 
 }
 
-.login .inputs input{
+.cadastro .inputs input{
   width: auto;
   height: 50px;
   border-radius: 5px;
   border: 1px solid var(--cor-texto-azul-mdClaro);
   padding-left: 10px;
   font-size: 16px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 
   transition: 0.1s;
 }
 
-.login .inputs input:focus{
+.cadastro .inputs input:focus{
   outline: none;
   border: 2px solid var(--cor-texto-azul-mdClaro);
   box-shadow: 0 2px 5px var(--cor-texto-azul-mdClaro);
   
 }
 
-.login h1{
+.cadastro h1{
   color: var(--cor-texto-azul-mdClaro);
   text-align: center;
   font-size: 40px;
@@ -81,7 +80,7 @@ body{
   letter-spacing: 4.4px;
 }
 
-.login .btn_logar {
+.cadastro .btn_logar {
   width: 250px;
   height: 40px;
   background-color: var(--cor-texto-azul-mdClaro);
@@ -100,7 +99,7 @@ body{
   transition: 0.5s;
 }
 
-.login .btn_logar:hover{
+.cadastro .btn_logar:hover{
   background-color: var(--cor-fundo-mdClaro);
   color: var(--cor-texto-azul-mdClaro);
   cursor: pointer;
@@ -109,7 +108,7 @@ body{
   
 }
 
-.login p{
+.cadastro p{
 
   font-size: 14px;
   font-weight: 500;
@@ -118,7 +117,7 @@ body{
 
 }
 
-.login a{
+.cadastro a{
   text-decoration: none;
   color: var(--cor-texto-azul-mdClaro);
   font-weight: 600;
@@ -126,7 +125,7 @@ body{
 }
 
 
-.login a:hover{
+.cadastro a:hover{
   text-decoration: underline;
   color: var(--cor-texto-azul-mdClaro);
   font-weight: 600;
@@ -147,4 +146,27 @@ body{
   align-items: center;
   justify-content: center;
 } */
+
+
+
+
+.cadastro .inputs select{
+  width: auto;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid var(--cor-texto-azul-mdClaro);
+  padding-left: 10px;
+  font-size: 16px;
+  margin-bottom: 30px;
+
+  transition: 0.1s;
+}
+
+.cadastro .inputs select:focus{
+  outline: none;
+  border: 2px solid var(--cor-texto-azul-mdClaro);
+  box-shadow: 0 2px 5px var(--cor-texto-azul-mdClaro);
+  
+}
+
 

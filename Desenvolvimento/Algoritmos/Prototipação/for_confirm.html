@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contar()">Contar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  function contar() {
+    var resposta = confirm("Deseja iniciar a contagem?");
+    
+    if (resposta == false) {
+      div_mensagem.innerHTML += "Contagem não iniciada<br>";
+    } else {
+      div_mensagem.innerHTML += `INICIANDO CONTAGEM!<br>`;
+
+      for (var contador = 1; resposta && contador <= 10; contador++) {
+        div_mensagem.innerHTML += `${contador} <br>`;
+        resposta = confirm(`${contador} - Deseja continuar?`);
+      }
+
+      div_mensagem.innerHTML += `Contagem encerrada <br>`;
+    }
+  }
+</script>
