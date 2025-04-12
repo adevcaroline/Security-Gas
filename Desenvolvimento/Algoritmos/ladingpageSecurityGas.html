@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Gas</title>
+    <link rel="shortcut icon" href="./img/icons8-chama-16 (1).png" type="image/x-icon">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="cabecalho__logo">
+            <img src="./img/Home.png" alt="Logo da Security Gas" />
+        </div>
+        <nav class="cabecalho__menu">
+            <a href="#inicio">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="#servicos">Serviços</a>
+            <a href="#contato">Contato</a>
+            <button onclick="logar()" class="botao botao-login">Entrar</button>
+            <button onclick="cadastrar()" class="botao botao-cadastro">Cadastrar</button>
+        </nav>
+    </header>
+
+
+    <section id="home" class="home">
+        <div class="home__titulo">
+            <h1>SEGURANÇA & CONFIABILIDADE</h1>
+        </div>
+        <div class="home__imagens">
+            <img src="./img/backgroundHome.png" alt="Fundo da página inicial" />
+            <img src="./img/change1_1 (1).png" alt="Imagem complementar" />
+        </div>
+    </section>
+
+    </div>
+
+    <section id="sobre" class="sobre">
+        <div class="sobre__boas-vindas">
+            <h2>Bem-vindos!</h2>
+        </div>
+        <div class="sobre__descricao">
+            <p>
+                Somos a Security Gas, uma empresa envolvida com tecnologia e inovação em sensores e softwares para
+                monitoramento de redes de gás GLP em diversas empresas ao redor do mundo. Nossos principais valores são:
+            </p>
+        </div>
+        <div class="sobre__valores">
+            <div class="valor valor--seguranca">
+                <h3>Segurança</h3>
+                <img src="./img/vectorSeguranca.svg" alt="Ícone de segurança" />
+                <p>Atuamos com foco na segurança dos nossos clientes em todas as atividades.</p>
+            </div>
+            <div class="valor valor--eficiencia">
+                <h3>Eficiência</h3>
+                <img src="./img/vectorEficiencia.svg" alt="Ícone de eficiência" />
+                <p>Dispositivos e softwares que realizam tarefas com agilidade e precisão.</p>
+            </div>
+            <div class="valor valor--qualidade">
+                <h3>Qualidade</h3>
+                <img src="./img/vectorQualidade.svg" alt="Ícone de qualidade" />
+                <p>Priorizamos serviços de alta qualidade, com precisão e utilidade ao cliente.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="servicos">
+        <div class="servicos__introducao">
+            <h3>Nossos Serviços</h3>
+            <p>
+                A Security Gas realiza o monitoramento de <span>redes de gás GLP (Gás Liquefeito de Petróleo)</span>
+                em <span>restaurantes</span> por meio de sensores que detectam vazamentos. O sistema envia alertas
+                diretamente a um software integrado. Os principais benefícios são:
+            </p>
+        </div>
+        <div class="servicos__lista">
+            <div class="servico servico-prevencao">
+                <h3>Prevenção de Riscos</h3>
+                <p>Segurança garantida com práticas corretas de instalação e monitoramento.</p>
+            </div>
+            <div class="servico servico-confiabilidade">
+                <h3>Maior Confiabilidade</h3>
+                <p>Soluções seguras e eficientes para fortalecer a sua confiança.</p>
+            </div>
+            <div class="servico servico-manutencao">
+                <h3>Custos de Manutenção Reduzidos</h3>
+                <p>Reduza gastos e aumente a eficiência com nossa tecnologia.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="contato" class="contato">
+        <h2>Contate-nos</h2>
+        <div class="contato__conteudo">
+            <div class="contato__formulario">
+                <form>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required />
+
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="4" required></textarea>
+
+                    <button type="submit" class="botao botao-enviar">Enviar</button>
+                </form>
+            </div>
+            <div class="contato__info">
+                <h3>Fale Conosco</h3>
+                <p>
+                    Nossa equipe está pronta para atender com agilidade e eficiência. Preencha o formulário para
+                    dúvidas, suporte ou informações. Sua mensagem será recebida com atenção.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="rodape">
+        <p>&copy; 2025 Security Gas. Todos os direitos reservados.</p>
+    </footer>
+
+
+</body>
+
+</html>
