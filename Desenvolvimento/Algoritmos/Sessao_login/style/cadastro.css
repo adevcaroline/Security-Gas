@@ -80,10 +80,12 @@ body{
   letter-spacing: 4.4px;
 }
 
-.cadastro .btn_logar {
+.cadastro .btn_logar{
   width: 250px;
   height: 40px;
   background-color: var(--cor-texto-azul-mdClaro);
+
+  text-decoration: none;
   
   border-radius: 15px;
   border: none;
@@ -105,6 +107,7 @@ body{
   cursor: pointer;
   box-shadow: 0 2px 10px var(--cor-texto-mdclaro);
   transform: scale(1.00);
+  text-decoration: none;
   
 }
 
