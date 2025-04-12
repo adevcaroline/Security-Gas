@@ -111,7 +111,7 @@ body {
   }
   
 .formulario button {
-    margin-top: 20px;
+    margin: 40px;
     width: 100%; /* Largura do botão */
     height: 50px;
     padding: 10px; /* Espaço dentro do botão */

@@ -1,0 +1,81 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: white;
+  }
+  
+  .Navbar {
+    background-color: #00547A;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 30px;
+    margin: 20px;
+  }
+  
+  .Logo {
+    height: 40px;
+  }
+  
+  .Menu {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .Menu a,
+  .Autenticacao p {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  
+  .Autenticacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-left: 1px solid white;
+    padding-left: 15px;
+  }
+  
+  .btn-cadastro {
+    background-color: white;
+    color: #00547A;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .Slogan {
+    height: calc(100vh - 60px); /* altura total da tela menos a navbar */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #00547A;
+    font-family: Arial, Helvetica, sans-serif
+  }
+  
+  .Slogan p {
+    margin: 0;
+    font-size: 36px;
+    font-weight: bold;
+  }
+  
+  .Waves{
+    background-image: url('./ondas.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 400px;   /* ajuste conforme o tamanho da imagem */
+    height: 300px;
+  
+    position: fixed;   /* Fica fixo mesmo rolando */
+    bottom: 0;
+    left: 0;
+  
+    z-index: 10; /* opcional, garante que fique visível */
+  }

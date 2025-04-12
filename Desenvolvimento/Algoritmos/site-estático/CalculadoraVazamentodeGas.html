@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Financeira - Security Gas</title>
+</head>
+<body>
+        <h1>Calculadora Financeira - Security Gas</h1>
+        Diga o nome da sua empresa:
+            <input type="text" id="input_nome"><br><br>
+        <select id="select_calculadora">
+            <option value="preju" >Calculadora focada no prejuízo do restaurante</option>
+            <option value="esta" >Calculadora focada em estatísticas de gás</option>
+        </select><br><br>
+        <button onclick="Escolher()">Ver Calculadora</button>
+<br><br>
+        <hr>
+        <p id="tela"></p><br>
+</body>
+</html>
+
+<script>    
+    var calculadora_esta=`<h3>Calculadora focada em estatísticas de gás GLP:</h3>
+        
+            O quanto você compra de gás em KG:
+            <input type="number" id="input_compra"><br><br>
+            O quanto você paga R$:
+            <input type="number" id="input_gasprecog"><br><br>
+
+            
+            Quanto gás vazou em KG:
+            <input type="number" id="input_vazou"><br><br>
+            
+           
+            Qual foi o tempo do vazamento?
+            <input type="number" id="input_tempo"> 
+            <select id="select_smhd">
+                <option value="segundos">segundos</option>
+                <option value="minutos">minutos</option>
+                <option value="horas">horas</option>
+                <option value="dias">dias</option>
+            </select> <br><br>
+            <button onclick="Estatistica()">Estátistica</button> 
+            <p id="resp"></p>`
+
+    var calculadora_preju=`<h3>Calculadora focada no prejuízo do restaurante:</h3>
+        
+        Valor da renda diária do restaurante:
+        <input type="number" id="input_renda_diaria"><br><br>
+
+        Qual foi custo total da manutenção da rede de gás:
+        <input type="number" id="input_manutencao"><br><br>
+
+        Quantos dias úteis o estabelecimento ficou fechado por causa do vazamento?
+        <input type="number" id="input_diautil"><br>
+
+        Já recebeu alguma multa por vazamento de gás?
+        <select id="select_multa">
+            <option>Não</option>
+            <option>Sim</option>
+        </select><br><br>
+        <p>UFM=R$226,68</p>
+        <button onclick="Calcular()">Calcular despesas</button>
+        <p id="resp1"></p>`
+
+    var empresa
+
+    function Escolher(){
+        tela.innerHTML=""
+        empresa = input_nome.value;
+        var calculadora = select_calculadora.value;
+        if(calculadora=="esta"){
+            tela.innerHTML=calculadora_esta
+        }
+        if(calculadora=="preju"){
+            tela.innerHTML=calculadora_preju
+        }
+    }
+
+
+    function Calcular(){
+    empresa = input_nome.value;
+    // fornecido pelo usuário
+    var renda_diaria = Number(input_renda_diaria.value);
+    // fornecido pelo usuário
+    var custo_manutencao = Number(input_manutencao.value);
+    // fornecido pelo usuário
+    var diasuteis_fechados= Number(input_diautil.value);
+    // fornecido pelo usuário
+    var multa = select_multa.value
+    var multa_valor= 226.68*5
+    var prejuizo_dias_fechados = (renda_diaria * diasuteis_fechados);
+    // o calculo do prejuízo total é feito multiplicando a renda diária pelo 
+    // número de dias fechados + a somatória de todas as inputs
+    
+    var manutencao_valor_min_pagar=custo_manutencao*0.80
+    var manutencao_valor_max_pagar=custo_manutencao*0.25
+    var valor_desconto_min=custo_manutencao*0.20
+    var valor_desconto_max=custo_manutencao*0.75
+    
+        if(multa=="Sim"){
+        var prejuizo = prejuizo_dias_fechados + multa_valor*2 + custo_manutencao;
+        resp1.innerHTML = `
+        Olá ${empresa}.<br>
+        A sua empresa ficou fechada por <b>${diasuteis_fechados}</b> dias, e cada dia custou <b>R$${renda_diaria}</b> o que acarretou em um prejuízo de R$ ${prejuizo_dias_fechados}.<br>
+        O valor da multa em São Paulo por falta de sensor de gás(LEI Nº 11.352 DE 22 DE ABRIL DE 1993) é de 5 UFM (R$${multa_valor}), pela recorrência de vazamentos o valor dobra ficando: R$${multa_valor*2}.<br>
+        <b style="color: red">O prejuízo total contando manutenção, dias fechados e multas é de: R$ ${prejuizo}</b>.<br>
+        <b style="color: red">Sem a Security Gas, o valor da manutenção foi de R$ ${custo_manutencao};</b> <b style="color: blue;"> <br>
+        Com a Segurity Gas pode ser reduzida em no mínimo 20%(resultando em R$${manutencao_valor_min_pagar} de manutenção),<br>
+        e usando de uma maneira estrátegica e efetiva é possível uma reducão de 75% o valor da manutenção,com um desconto de R$${valor_desconto_max} resultando em R$${manutencao_valor_max_pagar} de valor da manutenção.</b></b>`;
+        }
+        else{
+        var prejuizo = prejuizo_dias_fechados + multa_valor + custo_manutencao;
+        resp1.innerHTML = `
+        Olá ${empresa}.<br>
+        A sua empresa ficou fechada por <b>${diasuteis_fechados}</b> dias, e cada dia custou <b>R$${renda_diaria}</b> o que acarretou em um prejuízo de R$ ${prejuizo_dias_fechados}.<br>
+        O valor da multa em São Paulo por falta de sensor de gás(LEI Nº 11.352 DE 22 DE ABRIL DE 1993) é de 5 UFM (R$${multa_valor}).<br>
+        <b style="color: red">O prejuízo total contando manutenção, dias fechados e multas é de: R$ ${prejuizo}</b>.<br>
+        <b style="color: red">Sem a Security Gas, o valor da manutenção foi de R$ ${custo_manutencao}; <br>
+       </b><b style= "color: blue"> Com a Segurity Gas pode ser reduzida em no mínimo 20% o valor da manutenção,com um desconto de R$${valor_desconto_min} resultando em R$${manutencao_valor_min_pagar} de valor da manutenção,<br>
+         e usando de uma maneira estrátegica e efetiva é possível uma reducão de 75% o valor da manutenção,com um desconto de R$${valor_desconto_max} resultando em R$${manutencao_valor_max_pagar} de valor da manutenção.</b>`;
+        }
+    }
+
+
+// Calcular estatísticas
+
+    function Estatistica() {
+        empresa = input_nome.value;
+        //declarando inputs
+        var smhd=select_smhd.value
+        var nome = input_nome.value;
+        var qtdkg = Number(input_compra.value);
+        var precog = Number(input_gasprecog.value);
+        var quantidadeg = Number(input_vazou.value);
+        var tempo = Number(input_tempo.value);
+        //calculando o preço
+        var precogas= precog/qtdkg
+        precogas = precogas*quantidadeg;
+
+        //apresentando a mensagem básica de quantidade vazada e custo do vazamento
+        resp.innerHTML=`Olá ${nome}, essas são as estatísticas do prejuízo causado pelo vazamento da sua empresa:<br>
+            A sua empresa teve um vazamento de ${quantidadeg}KG de gás;<br>
+            Isso teve um valor de R$${precogas} em despesas;<br>`;
+        //estatísticas se foram vazados segundos de gás
+        if(smhd=="segundos"){
+            var perdidos = precogas/tempo;
+            resp.innerHTML+=`<b style="color:blue;"> O gás ficou vazando por ${tempo} ${smhd}<br>
+            Com isso a cada segundo deste vazamento a sua empresa perdia R$${perdidos}.<br>`;
+           }
+        //estaticas se foram vazados minutos de gás
+        if(smhd=="minutos"){
+            var perdidos = precogas/(60*tempo);
+            var perdidosm = precogas/tempo;
+            resp.innerHTML+=`<b style="color:blue;"> O gás ficou vazando por ${tempo} ${smhd}<br>
+            Com isso a cada segundo deste vazamento a sua empresa perdia R$${perdidos};<br>
+            Com isso a cada minuto deste vazamento a sua empresa perdia R$${perdidosm}.</b><br></b>`;
+        }
+        //estatísticas se foram vazados horas de gás
+        if(smhd=="horas"){
+            var perdidos = precogas/(tempo*3600);
+            var perdidosm = precogas/(60*tempo);
+            var perdidosh = precogas/tempo;
+            resp.innerHTML+=`<b style="color:blue;"> O gás ficou vazando por ${tempo} ${smhd}<br>
+            Com isso a cada segundo deste vazamento a sua empresa perdia R$${perdidos};<br>
+            Com isso a cada minuto deste vazamento a sua empresa perdia R$${perdidosm};<br>
+            Com isso a cada hora deste vazamento a sua empresa perdia R$${perdidosh}</b>.<br>`;
+        }
+        //estatísticas se foram vazados dias de gás
+        if(smhd=="dias"){
+            var perdidos = precogas/(tempo*86400);
+            var perdidosm = precogas/(tempo*1440);
+            var perdidosh = precogas/(tempo*24);
+            var perdidosd = precogas/tempo;
+            resp.innerHTML+=`<b style="color:blue;">O gás ficou vazando por ${tempo} ${smhd}<br>
+            Com isso a cada segundo deste vazamento a sua empresa perdia R$${perdidos};<br>
+            Com isso a cada minuto deste vazamento a sua empresa perdia R$${perdidosm};<br>
+            Com isso a cada hora deste vazamento a sua empresa perdia R$${perdidosh};<br>
+            Com isso a cada dia deste vazamento a sua empresa perdia R$${perdidosd}.</b>`;
+        }
+    
+    }
+
+</script>
