@@ -1,6 +1,123 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500&display=swap');
 
 * {
-    font-family: "Barlow", 'Courier New', Courier, monospace;
+    font-family: "Poppins", sans-serif;
 }
 
+.contatenos {
+    background-color: white;
+    width: 100%;
+    padding: 20px 0;
+  }
+  
+  .contatenos h2 {
+    color: #0B5884;
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px;
+  }
+
+.contato {
+    background-color: #f5f5f5;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.card-contato {
+    display: flex;
+    align-items: flex-start;
+}
+
+.formulario-contato {
+    color: #0B5884;
+    display: flex;
+    flex-direction: column;
+}
+
+.formulario-contato span {
+    font-size: 15px;
+    margin: 30px;
+}
+
+.formulario-contato input {
+    color: #0B5884;
+    padding: 10px;
+    margin-left: 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#input_mensagem {
+    height: 200px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 400px;
+    padding: 15px;
+    font-size: 20px;
+    background-color: #0B5884;
+    color: white;
+    font-weight: bold;
+    border: none;
+    margin-left: 90px;
+}
+
+.informacoes-contato {
+    color: #0B5884;
+    font-size: 32px;
+    margin-left: 60px;
+    margin-bottom: 50px;
+}
+
+.informacoes-contato h3 {
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.informacoes-contato p {
+    text-align: justify;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.contatos {
+    font-size: 24px;
+    color: #0B5884;
+}
+
+.contatos p {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.contatos .icone {
+    width: 60px;
+    height: 60px;
+}
+
+.footer {
+    text-align: center;
+    padding: 10px;
+    background: #0B5884;
+    font-size: 10px;
+    color: white;
+    font-family: "Inter", sans-serif;
+}

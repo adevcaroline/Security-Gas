@@ -1,46 +1,69 @@
-<div class="contato">
-  <div class="container">
-    <div class="card card-contato">
-      <h2>Contate-nos</h2>
-      <p>Sinta-se livre para nos contatar em qualquer hora <br>
-        caso deseje nos <span>contratar ou tirar dúvidas.</span><br>
-        Nós retornaremos assim que possível!</p>
-
-      <div class="formulario-contato">
-        <div class="campo-formulario">
-          <span>Nome</span>
-          <input id="input_nome" type="text">
-        </div>
-        <div class="campo-formulario">
-          <span>Email</span>
-          <input id="input_email" type="email">
-        </div>
-        <div class="campo-formulario">
-          <span>Telefone</span>
-          <input id="input_telefone" type="text">
-        </div>
-        <div class="campo-formulario">
-          <span>Mensagem</span>
-          <input id="input_mensagem" type="text">
-        </div>
-        <button class="botao">Enviar</button>
-      </div>
-
-      <div class="informacoes-contato">
-        <h3>Informações</h3>
-        <img src="/assets/imgs/email.png">
-        <p>securitygas@gmail.com</p>
-        <img src="/assets/imgs/Call.png">
-        <p>11 99602-2304</p>
-        <img src="/assets/imgs/email.png">
-        <p>Rua Haddock Lobo, 595</p>
-      </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/style.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class = "contatenos">
+    <h2>Contate-nos</h2>
   </div>
-</div>
-
-
-
-
-
-
+<section id="contato" class="contato">
+    <div class="card-contato">
+        <div class="formulario-contato">
+          <div>
+            <span>Nome</span>
+            <br>
+            <input id="input_nome" type="text">
+            <br><br>
+          </div>
+          <div>
+            <span>Email</span>
+            <br>
+            <input id="input_email" type="email">
+            <br><br>
+          </div>
+          <div>
+            <span>Telefone</span>
+            <br>
+            <input id="input_telefone" type="text">
+            <br><br>
+            <span id = "mensagem">Mensagem</span>
+            <br>
+            <input id="input_mensagem" type="text" ></input>
+          </div>
+          <div>
+            <br><br>
+          </div>
+          <button class="botao" onclick="funcao()">Enviar</button>
+        </div>
+        <div class="informacoes-contato">
+          <h3>Informações</h3>
+          <p>A equipe da Security Gas está pronta para
+             atender você com agilidade e eficiência.
+             Se precisar de mais informações sobre 
+             nossos serviços, esclarecer dúvidas ou
+             solicitar suporte, basta preencher o 
+             formulário ao lado. Sua mensagem será 
+             recebida com toda atenção. Entre em
+             contato e conte com a Security Gas
+             e tenha mais segurança no seu restaurante.</p>
+          <div class = "contatos">
+            <p><img src="./assets/imgs/email.jpeg" class="icone"> contato@securitygas.com</p>
+          <p><img src="./assets/imgs/telefone.jpeg" class="icone"> 11 99602-2304</p>
+          <p><img src="./assets/imgs/telefone.jpeg"> Rua Haddock Lobo, 595</p>
+          </div>
+        </div>
+      </div>
+</section>
+  </div> 
+     <!--footer inicio-->
+     <div class="footer">
+        <span>Copyright ©2025 by SecurityGas</span>
+  </div>
+  <!--footer fim--> 
+</footer>
+</body>
+</html>
