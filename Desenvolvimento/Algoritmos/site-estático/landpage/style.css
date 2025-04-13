@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  ;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  line-height: 1.6;
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+.home {
+  background-color: #f4f4f4;
+
+  background-image: url('./img/backgroundHomeV2.png');
+  background-repeat: no-repeat;
+  height: 900px;
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+  /* Para garantir legibilidade se o fundo for escuro */
+}
+
+
+/* === NAVBAR === */
+.Navbar {
+  background-color: #00547A;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 20px;
+  margin: 20px;
+  border-radius: 25px;
+}
+
+/* Logo */
+.Logo {
+  width: 200px;
+  height: 40px;
+  margin-left: 20px;
+}
+
+/* Menu de Navegação */
+.Menu {
+  display: flex;
+  color: white;
+  text-decoration: none;
+}
+
+.Menu a {
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 30px;
+  text-decoration: none;
+  color: white;
+}
+
+.Menu a:hover {
+  color: #ffffffe0;
+  text-decoration: underline;
+}
+
+/* Autenticação (Login e Cadastro) */
+.Autenticacao {
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-left: 1px solid white;
+}
+
+.Autenticacao p {
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  margin: 0 20px 0px 10px;
+}
+
+.Autenticacao p:hover {
+  color: #ffffffe0;
+  text-decoration: underline;
+}
+
+/* === CONTEÚDO DA HOME === */
+.Slogan {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* Necessário para posicionar a onda dentro */
+  height: 887px;
+  /* Altura total da tela */
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  color: #00547A;
+}
+
+.Slogan p {
+  margin: 5px;
+  font-size: 36px;
+  font-weight: bold;
+}
+
+.Slogan #seguranca {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 60px;
+  font-weight: bold;
+  margin-right: 350px;
+}
+
+.Slogan #confiabilidade {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  font-size: 60px;
+  font-weight: bold;
+  margin-left: 250px;
+}
+
+
+/* === ONDA DECORATIVA === */
+.Waves {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 380px;
+  background-image: url('./img/waves_ofc.png');
+  background-repeat: no-repeat;
+  /* background-size: contain; */
+  justify-content: flex-start;
+
+}
+
+/* === SOBRE === */
+.sobre {
+  background-color: #0B5884;
+  color: #FFFF;
+  height: 700px;
+  padding: 40px 20px;
+  /*aq*/
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 05px;
+}
+
+/*Caixa de texto "O que nos diferencia?*/
+.sobre__boas-vindas {
+  background-color: #0B5884;
+  color: #FFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+  height: 80px;
+  border-radius: 15px;
+  font-size: 20px;
+  text-align: center;
+  width: 60%;
+  top: 50%;
+  left: 50%;
+  transform: translate(30%, 50%);
+}
+
+.sobre__descricao {
+  text-align: center;
+  line-height: 1.6;
+  /* Aumenta o espaçamento entre as linhas */
+  max-width: 800px;
+  /* Limita a largura do texto para não esticar muito */
+  margin: 0 auto;
+  margin-top: 10%;
+  font-size: 15px;
+}
+
+.seguranca {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.eficiencia {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.qualidade {
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.sobre__valores {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+/* .bloco{
+    background-color: #FFFF;
+} */
+
+.valor {
+  color: #0B5884;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFF;
+  width: 280px;
+  height: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  gap: 5px;
+  font-size: 15px;
+  font-weight: 600%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+.valor:hover {
+  transform: translateY(-5px);
+}
+
+.servicos {
+  /* padding: 40px 20px;
+    max-width: 1000px; */
+  margin: 0 auto;
+  background-color: #0B5884;
+  color: #f4f4f4;
+  height: 500px;
+}
+
+#titulo {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#texto {
+  text-align: center;
+  font-size: 16px;
+  max-width: 800px;
+  margin: 0 auto 40px auto;
+}
+
+.servicos__lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.servico {
+  background-color: white;
+  color: #084E74;
+  border-radius: 10px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contato {
+  background-color: #f5f5f5;
+  padding: 60px 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  width: 100%;
+  align-items: flex-start;
+}
+
+
+.card_titulo {
+  font-weight: bold;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.card-contato {
+  display: flex;
+  align-items: flex-start;
+}
+
+.contatenos  {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #0B5884;
+  width: 500px;
+  height: 80px;
+  font-size: 30px;
+  border-radius: 15px;
+  font-size: 20px;
+  width: 60%;
+  top: 30%;
+  left: 50%;
+  transform: translate(30%, 50%);
+  background-color: #f5f5f5;
+}
+
+.formulario-contato {
+  color: #0B5884;
+  display: flex;
+  flex-direction: column;
+
+
+}
+
+.formulario-contato span {
+  font-size: 15px;
+  margin: 30px;
+
+}
+
+.formulario-contato input,
+.formulario-contato textarea {
+  width: 500px;
+  color: #0B5884;
+  box-sizing: border-box;
+  padding: 10px;
+  margin-left: 30px;
+  border: 2px solid #0B5884;
+  border-radius: 8px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 16px;
+  resize: none;
+  /* evita que o usuário estique o campo */
+}
+
+.formulario-contato textarea {
+  height: 120px;
+  /* altura padrão para parecer com os outros campos */
+}
+
+
+.botao {
+  display: flex;
+  border-radius: 15px;
+  width: 400px;
+  padding: 15px;
+  font-size: 20px;
+  background-color: #0B5884;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-left: 90px;
+  justify-content: center;
+  align-items: center;
+}
+
+#input_mensagem {
+  height: 200px;
+}
+
+.informacoes-contato {
+  color: #0B5884;
+  font-size: 32px;
+  margin-left: 60px;
+  margin-bottom: 50px;
+
+}
+
+.informacoes-contato h3 {
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 0;
+  margin-bottom: 8px;
+
+}
+
+.informacoes-contato p {
+  margin-top: 0;
+  text-align: justify;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.contatos {
+  font-size: 24px;
+  color: #0B5884;
+}
+
+.contatos p {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  /* Mais espaçamento entre ícone e texto */
+  margin: 20px 0;
+}
+
+.contatos .icone {
+  width: 60px;
+  height: 60px;
+}
+
+
+
+.footer {
+  justify-content: center;
+  padding: 10px 10px;
+  background: #0B5884;
+  font-size: 24px;
+  color: white;
+  font-family: "Inter", sans-serif;
+  text-align: center;
+  font-size: 10px;
+}
