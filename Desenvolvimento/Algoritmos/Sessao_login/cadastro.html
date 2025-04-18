@@ -17,7 +17,7 @@
 
         <div class="bemvindo">
 
-            <h1>BEM VINDOS!</h1>
+            <h1>CADASTRE-SE!</h1>
 
         </div>
 
@@ -41,21 +41,26 @@
             <input type="text" id="inp_email">
 
             <h2>Senha</h2>
-            <input type="text" id="inp_senha">
+            <input type="text" id="inp_senha" oninput="verificaSenha()">
 
-            <!-- <h2 id="h2_msg">msg</h2>
-            <input type="text" id="inp_msg"> -->
+            <div id="div_msg">
+                <p style="color: rgb(255, 0, 0);" id="p_msg_qtdC"></p>
+                <p style="color: rgb(255, 0, 0);" id="p_msg_aro"></p>
+                <p style="color: rgb(255, 0, 0);" id="p_msg_num"></p>
+                <p style="color: rgb(255, 0, 0);" id="p_msg_maiusculo"></p>
 
-            <p id="p_msg">
 
-            </p>
-                
-            </p>
+
+            </div>
 
 
         </div>
 
-        <button class="btn_logar">Cadastrar</button>
+        <div id="div_btn">
+
+            <button class="btn_logar">Logar</button>
+
+        </div>
 
         <p>
 
@@ -70,5 +75,39 @@
 </html>
 
 <script>
+
+    function verificaSenha() {
+        var senha = inp_senha.value;
+
+        p_msg_aro.innerHTML = ``;
+
+        // const msg = ;
+
+        if (senha.length < 6) {
+            p_msg_qtdC.innerHTML = `A senha deve ter pelo menos 6 caracteres.`;
+            p_msg_aro.innerHTML = ``;
+            p_msg_num.innerHTML = ``;
+            p_msg_maiusculo.innerHTML = ``;
+        } else if ((senha.indexOf("@") || senha.indexOf("#")) == -1) {
+            p_msg_aro.innerHTML = `Teve ter algum caractere especial.`;
+            p_msg_qtdC.innerHTML = ``;
+            p_msg_num.innerHTML = ``;
+            p_msg_maiusculo.innerHTML = ``;
+        } else if (senha.search(/[0-9]/) == -1) {
+            p_msg_num.innerHTML = `A senha deve ter pelo menos um número.`;
+            p_msg_qtdC.innerHTML = ``;
+            p_msg_aro.innerHTML = ``;
+            p_msg_maiusculo.innerHTML = ``;
+        } else if (senha.search(/[A-Z]/) == -1) {
+            p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
+            p_msg_qtdC.innerHTML = ``;
+            p_msg_aro.innerHTML = ``;
+            p_msg_num.innerHTML = ``;
+        } else {
+            div_msg.innerHTML = `<p style="color: green;" id="p_msg_aro">ok</p>`;
+            div_btn.innerHTML = `<a href="../Sessao_home/home.html"><button class="btn_logar">Logar</button></a>`
+        }
+
+    }
 
 </script>

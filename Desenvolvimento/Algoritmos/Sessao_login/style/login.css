@@ -78,7 +78,7 @@ body{
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
-  letter-spacing: 4.4px;
+  letter-spacing: 2px;
 }
 
 .login .btn_logar {
@@ -136,6 +136,35 @@ body{
   text-decoration: underline;
   color: var(--cor-texto-azul-mdClaro);
   font-weight: 600;
+}
+
+
+.login .div_senha .inpt_senha{
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid var(--cor-texto-azul-mdClaro);
+  padding-left: 10px;
+  font-size: 16px;
+  margin-bottom: 30px;
+  transition: 0.1s;
+}
+
+.login .div_senha .inpt_senha input:focus{
+  outline: none;
+  border: 2px solid var(--cor-texto-azul-mdClaro);
+  box-shadow: 0 2px 5px var(--cor-texto-azul-mdClaro);
+}
+
+.login .div_senha .btn_senha{
+
+  position: relative;
+  left: 470px;
+  bottom: 67px;
+  background: none;
+  border: none;
+
+
 }
 
 
