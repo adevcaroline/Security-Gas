@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard de Vazamentos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"> // arrumar o gráfico, coloquei apenas para deixar como base
+    </script>
+    <link rel="stylesheet" href="style-dashboard.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="dashboard">
+            <div class="kpi">
+                <div>Área mais crítica:</div>
+                <h1>Cozinha 2</h1>
+            </div>
+
+            <div class="kpi">
+                <div>Ocorrências graves no mês:</div>
+                <br>
+                <h1>9</h1>
+            </div>
+
+            <div class="alerta">
+                <div>
+                    Situação Atual:
+                </div> <br>
+                <span>Alerta: Cozinha 1</span>
+            </div>
+
+            <div class="select-card">
+                <div class="select-ambiente">Ambientes</div>
+                <select class="ambientes">
+                    <option>Cozinha 1 - Perigo alto</option>
+                    <option>Cozinha 2 - Perigo moderado</option>
+                    <option>Área Externa - Normal</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="graficos">
+            <div class="grafico-card">
+                <h4>Concentração de GLP</h4>
+                <canvas id="glpChart"></canvas>
+            </div>
+            <div class="grafico-card">
+                <h4>Vazamentos Críticos por Área</h4>
+                <canvas id="vazamentoChart"></canvas>
+            </div>
+        </div>
+
+    
+        <div class="status-card">
+            <h4>Status por Sensor</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Local da Instalação</th>
+                        <th>Sensor</th>
+                        <th>Status do Vazamento</th>
+                        <th>Última Atualização</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Piso - A</td>
+                        <td>Sensor - 1</td>
+                        <td class="status-alerta">Alerta</td>
+                        <td>18/04/2025 20:40</td>
+                    </tr>
+                    <tr>
+                        <td>Piso - A</td>
+                        <td>Sensor - 2</td>
+                        <td class="status-alerta">Alerta</td>
+                        <td>18/04/2025 20:40</td>
+                    </tr>
+                    <tr>
+                        <td>Piso - B</td>
+                        <td>Sensor - 1</td>
+                        <td class="status-normal">Normal</td>
+                        <td>18/04/2025 20:40</td>
+                    </tr>
+                    <tr>
+                        <td>Piso - B</td>
+                        <td>Sensor - 2</td>
+                        <td class="status-normal">Normal</td>
+                        <td>18/04/2025 20:40</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const securitygasChart = new Chart(document.getElementById('glpChart'), {
+            type: 'line',
+            data: {
+                labels: ['307', '308', '309', '310', '311', '312', '313', '314', '315', '316'],
+                datasets: [{
+                    label: 'GLP',
+                    data: [12, 18, 19, 25, 22, 27, 28, 23, 19, 17],
+                    borderColor: 'rgb(54, 162, 235)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 30
+                    }
+                }
+            }
+        });
+
+        const vazamentoChart = new Chart(document.getElementById('vazamentoChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Cozinha 1', 'Cozinha 2', 'Área Externa'],
+                datasets: [{
+                    label: 'Ocorrências',
+                    data: [12, 14, 5],
+                    backgroundColor: [
+                        'rgba(54, 99, 132, 0.7)',
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(54, 192, 192, 0.7)'
+                    ],
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 16
+                    }
+                }
+            }
+        });
+    </script>
+
+</body>
+
+</html>
+<!-- Tem que arrumar o select que fiz, se quiser tirar também e colocar como antes pode, foi uma ideia que minha mina deu-->
