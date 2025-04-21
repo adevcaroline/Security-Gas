@@ -1,0 +1,121 @@
+
+
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #0B5884;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+  
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    max-width:200px;
+    z-index: 999;
+  }
+
+  .container {
+    margin: 40px;
+    width: 800px;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  h2 {
+    text-align: center;
+    color: #0B5884;
+    margin-bottom: 30px;
+    font-size: 35px;
+  }
+  
+  h3 {
+    color: #000000;
+  }
+  
+  .info {
+    background-color: #eaf2ff; 
+    border: 2px solid #0B5884; 
+    padding: 30px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    color: #003366; 
+    font-size: 17px;
+    line-height: 1.6;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .info h3 {
+    color: #002b5c; 
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+  
+  .info ul {
+    margin-top: 10px;
+    padding-left: 20px;
+  }
+  
+  label {
+    font-size: 17px;
+    font-weight: bold;
+    color: #181818;
+  }
+  
+  input, select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    border: 1px solid #002857;
+    border-radius: 6px;
+    font-size: 17px;
+  }
+  
+  button {
+    background-color: #0B5884;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    font-size: 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #004f9e;
+  }
+  
+  #resultado {
+    margin-top: 30px;
+    font-size: 17px;
+    background-color: #cddeff;
+    padding: 25px;
+    border-radius: 8px;
+    border: 2px solid #002857;
+  }
+  
+  .alerta {
+    color: red;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  .rodape{
+    color: white;
+    width: 100%;
+    text-align: center;
+    margin-top: 40px;
+    padding: 20px;
+  }
+  
