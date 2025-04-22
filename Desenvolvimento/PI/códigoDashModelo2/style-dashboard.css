@@ -89,7 +89,7 @@ select {
 
 .graficos {
     display: flex;
-    height: 50%;
+    /* height: 50%; */
     width: 100%;
 }
 
@@ -154,17 +154,17 @@ th {
 
 .conteiner_graficos {
     display: flex;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .graficos-listas{
     width: 80% ;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .select-card{
     background-color: white;
-    height: 90%;
+    /* height: 90%; */
     margin: 10px;
     border-radius: 8px;
 }
@@ -179,7 +179,7 @@ th {
 button {
     background: var(--cor-normal);
     border: none;
-    height: 100px;
+    /* height: 100px; */
 }
 
 .select-ambiente h2{
