@@ -1,5 +1,4 @@
   int PINO_SENSOR_MQ2 = A5;// cria a variavel e seta o pino A0 do sensor
-
   int VALOR_MINIMO = 300;//cria uma variavel com a valor mínimo do sensor
   int VALOR_MAXIMO = 1000;//cria uma variavel com a valor máximo do sensor
   
@@ -9,7 +8,7 @@
 
 void loop() {
   int valorSensor = analogRead(PINO_SENSOR_MQ2) ;//adiciona a uma variável o valor do sensor que está sendo recebida pelo pino A-
-  float porcentagem = ((float)(valorSensor - VALOR_MINIMO) / (VALOR_MAXIMO - VALOR_MINIMO)) * 100;//calcula o percentual da variacão
+  float porcentagem = (((float)(valorSensor - VALOR_MINIMO) / (VALOR_MAXIMO - VALOR_MINIMO)) * 100) - 70;//calcula o percentual da variacão
   int maximo=100;//variável sobre o maximo
   int perigo = 2;//variável avisando perigo de passar a porcentagen
   int minimo = 0;
