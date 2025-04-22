@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/calc.css">
+    <title>Calculadora de Risco de Explosão</title>
+
+</head>
+
+<body>
+    <div class="container">
+        <img src="assets/imgs/Frame_1.png" alt="logo da empresa" class="logo">
+        <h2>🧯 Calculadora de Risco de Explosão</h2>
+
+        <div class="info">
+            <h3>📘 Entenda o risco de explosão</h3>
+            <p>
+                Um ambiente com gás vazando pode explodir se a concentração estiver entre <strong>1,8%</strong> (LEL) e
+                <strong>9,5%</strong> (UEL).
+                Abaixo de 1,8%, a mistura é fraca demais. Acima de 9,5%, há gás demais para explosão.
+            </p>
+            <p>
+                Riscos de uma explosão:
+            </p>
+            <ul>
+                <li>💣 Danos estruturais severos</li>
+                <li>🔥 Incêndios e queimaduras</li>
+                <li>⚠️ Risco de morte</li>
+                <li>💸 Prejuízos que podem ultrapassar <strong>R$ 50.000</strong></li>
+            </ul>
+            <p><strong style="color: #0B5884;">A prevenção é o melhor caminho. Use sensores e mantenha o ambiente
+                    ventilado.</strong></p>
+        </div>
+
+        <label for="input_gas">Quantidade de gás vazado (em gramas):</label>
+        <input type="number" id="input_gas">
+
+        <label for="input_volume">Volume do ambiente (em m³):</label>
+        <input type="number" id="input_volume">
+
+        <label for="input_ventilado">Ambiente ventilado?</label>
+        <select id="input_ventilado">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select>
+
+        <label for="input_monitorado">Monitoramento por sensor de gás?</label>
+        <select id="input_monitorado">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select>
+
+        <button onclick="calcularRisco()">Calcular Risco</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularRisco() {
+            var massaGas = Number(input_gas.value);
+            var volume_m3 = Number(input_volume.value);
+            var ventilado = input_ventilado.value;
+            var monitorado = input_monitorado.value;
+
+            if (massaGas <= 0 || volume_m3 <= 0 ) {
+                resultado.innerHTML = `<b style="color:red">Por favor, insira valores válidos.</b>`;
+            } else {
+
+            var volumeEmLitros = volume_m3 * 1000;
+            var densidadeAr = 1.2;
+            var concentracao = (massaGas / (densidadeAr * volumeEmLitros)) * 100;
+
+            var LEL = 1.8;
+            var UEL = 9.5;
+
+            var risco = 0;
+            var mensagem = "";
+            var mensagemVentilado = "";
+            var mensagemMonitorado = "";
+            var alerta = "";
+            var cor = "";
+
+            if (concentracao >= LEL && concentracao <= UEL) {
+                risco = 80;
+                mensagem = "⚠️ Concentração de gás está DENTRO da faixa de explosividade.";
+            } else if (concentracao > UEL) {
+                risco = 50;
+                mensagem = "⚠️ Concentração ALTA demais para explosão imediata, mas ainda perigosa.";
+            } else {
+                risco = 20;
+                mensagem = "✅ Concentração abaixo da faixa de explosividade.";
+            }
+
+            if (ventilado == "nao") {
+                risco = risco + 10;
+                mensagemVentilado = "❌ Ambiente SEM ventilação.";
+            } else {
+                mensagemVentilado = "✅ Boa ventilação detectada.";
+            }
+
+            if (monitorado == "nao") {
+                risco = risco + 10;
+                mensagemMonitorado = "❌ Sistema SEM monitoramento ativo.";
+            } else {
+                mensagemMonitorado = "✅ Ambiente monitorado.";
+            }
+
+            if (risco > 100) {
+                risco = 100;
+            }
+
+            if (risco >= 0  && risco < 50 ) {
+                cor = "green";
+            } else if (risco >= 50 && risco < 80 ) {
+                cor = "orange";
+            } else {
+                cor = "red";
+                alerta = "<div class='alerta'>🚨 ALERTA: Alta chance de explosão! Uma explosão pode causar grandes perdas humanas e financeiras.</div>" 
+            }
+
+            var riscoComSecurityGas = risco - (risco * 20 / 100);
+
+            resultado.innerHTML = `
+            <b>Concentração estimada de gás no ar:</b> ${concentracao.toFixed(2)}/100%<br><br>
+            <b style="color:${cor}">Risco estimado de explosão: ${risco.toFixed(1)}/100%</b><br><br>
+            ${mensagem}<br><br>
+            ${mensagemMonitorado}<br><br>
+            ${mensagemVentilado} <br><br>
+            <b style="color:#0077cc">💡 Com o sistema <i>Security Gas</i>, o risco seria reduzido para <u>${riscoComSecurityGas.toFixed(1)}%</u>.</b>
+            `
+        }
+    }
+    </script>
+    <footer class="rodape">
+        <p>© 2025 SecurityGas. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
