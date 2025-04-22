@@ -4,70 +4,71 @@ Use securityGas;
 
 CREATE TABLE Empresa (
     idEmpresa INT PRIMARY KEY,
-    nome_empresa VARCHAR(45),
-    cnpj CHAR(14),
-    email VARCHAR(45),
-    telefone VARCHAR(20)
+    nome_empresa VARCHAR(45) NOT NULL,
+    cnpj CHAR(14) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    telefone VARCHAR(20) NOT NULL
 );
 
 CREATE TABLE Unidade (
     idUnidade INT PRIMARY KEY,
-    nome_unidade VARCHAR(45),
-    email VARCHAR(45),
-    telefone VARCHAR(20),
-    fkEmpresa INT,
+    nome_unidade VARCHAR(45) NOT NULL,
+    email VARCHAR(45) NOT NULL,
+    telefone VARCHAR(20) NOT NULL,
+    fkEmpresa INT NOT NULL,
     constraint fkUnidade_Empresa
     FOREIGN KEY (fkEmpresa) REFERENCES Empresa(idEmpresa)
 );
 
 CREATE TABLE Endereco (
     idEndereco INT PRIMARY KEY,
-    cep CHAR(9),
-    cidade VARCHAR(45),
-    estado VARCHAR(45),
-    logradouro VARCHAR(45),
-    numero VARCHAR(10),
-    fkUnidade INT,
+    cep CHAR(9) NOT NULL,
+    cidade VARCHAR(45) NOT NULL,
+    estado VARCHAR(45) NOT NULL,
+    logradouro VARCHAR(45) NOT NULL,
+    numero VARCHAR(10) NOT NULL,
+    fkUnidade INT NOT NULL,
     constraint fkEndereco_Unidade
     FOREIGN KEY (fkUnidade) REFERENCES Unidade(idUnidade)
 );
 
 CREATE TABLE Usuarios (
     idUsuario INT PRIMARY KEY,
-    nome VARCHAR(45),
-    email VARCHAR(50),
-    senha VARCHAR(45),
-    cargo VARCHAR(45),
-    fkUnidade INT,
+    nome VARCHAR(45) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(45) NOT NULL,
+	cargo VARCHAR(45) NOT NULL CHECK (cargo IN ('Gerente', 'Técnico(a)')),
+    fkUnidade INT NOT NULL,
     constraint fkUsuarios_Unidade
     FOREIGN KEY (fkUnidade) REFERENCES Unidade(idUnidade)
 );
 
 CREATE TABLE Local_instalacao (
     idLocal_instalacao INT PRIMARY KEY,
-    nome_local VARCHAR(45),
-    complemento VARCHAR(45),
-    fkUnidade INT,
+    nome_local VARCHAR(45) NOT NULL,
+    complemento VARCHAR(45) NOT NULL,
+    fkUnidade INT NOT NULL,
     constraint fkLocal_Unidade
     FOREIGN KEY (fkUnidade) REFERENCES Unidade(idUnidade)
 );
 
 CREATE TABLE Sensores (
     idSensor INT PRIMARY KEY,
-    nome_sensor VARCHAR(45),
-    statusAtivacao VARCHAR(15),
-    fkLocal_instalacao INT,
+    nome_sensor VARCHAR(45) NOT NULL,
+    statusAtivacao VARCHAR(15) NOT NULL,
+    fkLocal_instalacao INT NOT NULL,
     constraint fkSensores_Local
     FOREIGN KEY (fkLocal_instalacao) REFERENCES Local_instalacao(idLocal_instalacao)
 );
 
 CREATE TABLE Leituras_sensor (
     idLeitura INT,
-    porcentagem_captada INT,
-    data_hora DATETIME,
-    fkSensor INT,
+    porcentagem_captada INT NOT NULL,
+    data_hora DATETIME NOT NULL,
+    fkSensor INT NOT NULL,
     PRIMARY KEY (idLeitura,fkSensor),
     constraint fkLeitura_Sensor
     FOREIGN KEY (fkSensor) REFERENCES Sensores(idSensor)
 );
+
 
