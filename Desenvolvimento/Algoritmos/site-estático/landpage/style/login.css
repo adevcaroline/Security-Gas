@@ -29,6 +29,10 @@ body{
 
 }
 
+.bemvindo {
+margin-top: -135px;
+}
+
 .login .logo{
   display: flex;
   align-items: center;
@@ -85,7 +89,6 @@ body{
   width: 250px;
   height: 40px;
   background-color: var(--cor-texto-azul-mdClaro);
-  
   border-radius: 15px;
   border: none;
  

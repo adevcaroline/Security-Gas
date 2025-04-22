@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Security Gas</title>
     <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <a href="ladingpageSecurityGas.html">
+        <img class="Logo" src="./img/logo.png" alt="Logo da Security Gas" />
+    </a>
 
     <div class="login">
         <div class="logo">
@@ -17,7 +21,7 @@
 
         <div class="bemvindo">
 
-            <h1>LOGAR!</h1>
+            <h1>LOGIN</h1>
 
         </div>
 
@@ -33,9 +37,10 @@
             <h2>Senha</h2>
             <div class="div_senha" id="div_senha">
                 <input type="password" id="inp_senha" class="inpt_senha">
-                <button onmousedown="verSenha()" onmouseleave="naoVerSenha()" class="btn_senha"><img src="../assets- Security gas/olho-aberto.png" alt=""></button>
+                <button onmousedown="verSenha()" onmouseleave="naoVerSenha()" class="btn_senha"><img
+                        src="../assets- Security gas/olho-aberto.png" alt=""></button>
             </div>
-<!-- 
+            <!-- 
             <div id="div_msg">
                 <p style="color: rgb(255, 0, 0);" id="p_msg_qtdC"></p>
                 <p style="color: rgb(255, 0, 0);" id="p_msg_aro"></p>
@@ -61,7 +66,7 @@
         <p>
 
             Não tem uma conta? <a href="./cadastro.html" id="link_cadastrar">Cadastrar</a>
-            
+
 
         </p>
 
@@ -73,18 +78,18 @@
 
 <script>
 
-    function verSenha(){
-        
+    function verSenha() {
+
         senha = inp_senha.value
-        
+
         div_senha.innerHTML = `<input type="text" id="inp_senha" class="inpt_senha">
                 <button onmousedown="verSenha()" onmouseup="naoVerSenha()" class="btn_senha"><img src="../assets- Security gas/olho-fechado.png" alt=""></button>`
 
         inp_senha.value = senha
-        
+
     }
 
-    function naoVerSenha(){
+    function naoVerSenha() {
 
         senha = inp_senha.value
 
@@ -102,32 +107,32 @@
 
         // const msg = ;
 
-    //     if (senha.length < 6) {
-    //         p_msg_qtdC.innerHTML = `A senha deve ter pelo menos 6 caracteres.`;
-    //         p_msg_aro.innerHTML = ``;
-    //         p_msg_num.innerHTML = ``;
-    //         p_msg_maiusculo.innerHTML = ``;
-    //     } else if ((senha.indexOf("@") || senha.indexOf("#")) == -1) {
-    //         p_msg_aro.innerHTML = `Teve ter algum caractere especial.`;
-    //         p_msg_qtdC.innerHTML = ``;
-    //         p_msg_num.innerHTML = ``;
-    //         p_msg_maiusculo.innerHTML = ``;
-    //     } else if (senha.search(/[0-9]/) == -1) {
-    //         p_msg_num.innerHTML = `A senha deve ter pelo menos um número.`;
-    //         p_msg_qtdC.innerHTML = ``;
-    //         p_msg_aro.innerHTML = ``;
-    //         p_msg_maiusculo.innerHTML = ``;
-    //     } else if (senha.search(/[A-Z]/) == -1) {
-    //         p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
-    //         p_msg_qtdC.innerHTML = ``;
-    //         p_msg_aro.innerHTML = ``;
-    //         p_msg_num.innerHTML = ``;
-    //     } else {
-    //         div_msg.innerHTML = `<p style="color: green;" id="p_msg_aro">ok</p>`;
-    //         div_btn.innerHTML = `<a href="../Sessao_home/home.html"><button class="btn_logar">Logar</button></a>`
-    //     }
+        //     if (senha.length < 6) {
+        //         p_msg_qtdC.innerHTML = `A senha deve ter pelo menos 6 caracteres.`;
+        //         p_msg_aro.innerHTML = ``;
+        //         p_msg_num.innerHTML = ``;
+        //         p_msg_maiusculo.innerHTML = ``;
+        //     } else if ((senha.indexOf("@") || senha.indexOf("#")) == -1) {
+        //         p_msg_aro.innerHTML = `Teve ter algum caractere especial.`;
+        //         p_msg_qtdC.innerHTML = ``;
+        //         p_msg_num.innerHTML = ``;
+        //         p_msg_maiusculo.innerHTML = ``;
+        //     } else if (senha.search(/[0-9]/) == -1) {
+        //         p_msg_num.innerHTML = `A senha deve ter pelo menos um número.`;
+        //         p_msg_qtdC.innerHTML = ``;
+        //         p_msg_aro.innerHTML = ``;
+        //         p_msg_maiusculo.innerHTML = ``;
+        //     } else if (senha.search(/[A-Z]/) == -1) {
+        //         p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
+        //         p_msg_qtdC.innerHTML = ``;
+        //         p_msg_aro.innerHTML = ``;
+        //         p_msg_num.innerHTML = ``;
+        //     } else {
+        //         div_msg.innerHTML = `<p style="color: green;" id="p_msg_aro">ok</p>`;
+        //         div_btn.innerHTML = `<a href="../Sessao_home/home.html"><button class="btn_logar">Logar</button></a>`
+        //     }
 
-    // }
+        // }
 
     }
 
