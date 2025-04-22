@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
 }
 
 :root{
@@ -15,7 +16,7 @@
 html,
 body {
     margin: 10px;
-    height: 100%;
+    height: 95%;
     overflow: hidden;
     font-family: 'Segoe UI', sans-serif;
     background-color: #0B5884;
