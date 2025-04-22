@@ -62,9 +62,9 @@ CREATE TABLE Sensores (
 
 CREATE TABLE Leituras_sensor (
     idLeitura INT PRIMARY KEY auto_increment,
-    porcentagem_captada INT NOT NULL,
-    data_hora DATETIME NOT NULL,
-    fkSensor INT NOT NULL,
+    porcentagem_captada INT,
+    data_hora DATETIME,
+    fkSensor INT,
     constraint fkLeitura_Sensor
     FOREIGN KEY (fkSensor) REFERENCES Sensores(idSensor)
 );
