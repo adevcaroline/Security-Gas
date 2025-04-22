@@ -23,7 +23,7 @@ body {
 
   background-image: url('./img/backgroundHomeV2.png');
   background-repeat: no-repeat;
-  height: 900px;
+  height: 750px;
   background-size: cover;
   background-position: center;
 
@@ -79,14 +79,15 @@ body {
   border-left: 1px solid white;
 }
 
-.Autenticacao p {
+.Autenticacao a {
   color: white;
   font-weight: 500;
   cursor: pointer;
+  text-decoration: none;
   margin: 0 20px 0px 10px;
 }
 
-.Autenticacao p:hover {
+.Autenticacao a:hover {
   color: #ffffffe0;
   text-decoration: underline;
 }
@@ -97,7 +98,7 @@ body {
   flex-direction: column;
   position: relative;
   /* Necessário para posicionar a onda dentro */
-  height: 887px;
+  height: 750px;
   /* Altura total da tela */
   display: flex;
   justify-content: center;
@@ -163,15 +164,13 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 80px;
-  border-radius: 15px;
   font-size: 20px;
   text-align: center;
-  width: 60%;
-  top: 50%;
-  left: 50%;
-  transform: translate(30%, 50%);
+}
+
+.sobre__boas-vindas h2{
+  display: flex;
+  margin-top: 50px;
 }
 
 .sobre__descricao {
@@ -181,7 +180,6 @@ body {
   max-width: 800px;
   /* Limita a largura do texto para não esticar muito */
   margin: 0 auto;
-  margin-top: 10%;
   font-size: 15px;
 }
 
@@ -209,7 +207,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 40px;
-  margin-top: 40px;
+  margin-top: 20px;
   flex-wrap: wrap;
 }
 
@@ -254,7 +252,7 @@ body {
   font-size: 32px;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 20px;
+  margin-top: -150px;
 }
 
 #texto {
