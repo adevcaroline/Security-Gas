@@ -1,9 +1,8 @@
 CREATE DATABASE securityGas;
-
 Use securityGas;
 
 CREATE TABLE Empresa (
-    idEmpresa INT PRIMARY KEY,
+    idEmpresa INT PRIMARY KEY auto_increment,
     nome_empresa VARCHAR(45) NOT NULL,
     cnpj CHAR(14) NOT NULL,
     email VARCHAR(45) NOT NULL,
@@ -11,7 +10,7 @@ CREATE TABLE Empresa (
 );
 
 CREATE TABLE Unidade (
-    idUnidade INT PRIMARY KEY,
+    idUnidade INT PRIMARY KEY auto_increment,
     nome_unidade VARCHAR(45) NOT NULL,
     email VARCHAR(45) NOT NULL,
     telefone VARCHAR(20) NOT NULL,
@@ -21,7 +20,7 @@ CREATE TABLE Unidade (
 );
 
 CREATE TABLE Endereco (
-    idEndereco INT PRIMARY KEY,
+    idEndereco INT PRIMARY KEY auto_increment,
     cep CHAR(9) NOT NULL,
     cidade VARCHAR(45) NOT NULL,
     estado VARCHAR(45) NOT NULL,
@@ -33,7 +32,7 @@ CREATE TABLE Endereco (
 );
 
 CREATE TABLE Usuarios (
-    idUsuario INT PRIMARY KEY,
+    idUsuario INT PRIMARY KEY auto_increment,
     nome VARCHAR(45) NOT NULL,
     email VARCHAR(50) NOT NULL,
     senha VARCHAR(45) NOT NULL,
@@ -44,7 +43,7 @@ CREATE TABLE Usuarios (
 );
 
 CREATE TABLE Local_instalacao (
-    idLocal_instalacao INT PRIMARY KEY,
+    idLocal_instalacao INT PRIMARY KEY auto_increment,
     nome_local VARCHAR(45) NOT NULL,
     complemento VARCHAR(45) NOT NULL,
     fkUnidade INT NOT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE Local_instalacao (
 );
 
 CREATE TABLE Sensores (
-    idSensor INT PRIMARY KEY,
+    idSensor INT PRIMARY KEY auto_increment,
     nome_sensor VARCHAR(45) NOT NULL,
     statusAtivacao VARCHAR(15) NOT NULL,
     fkLocal_instalacao INT NOT NULL,
@@ -62,11 +61,10 @@ CREATE TABLE Sensores (
 );
 
 CREATE TABLE Leituras_sensor (
-    idLeitura INT,
+    idLeitura INT PRIMARY KEY auto_increment,
     porcentagem_captada INT NOT NULL,
     data_hora DATETIME NOT NULL,
     fkSensor INT NOT NULL,
-    PRIMARY KEY (idLeitura,fkSensor),
     constraint fkLeitura_Sensor
     FOREIGN KEY (fkSensor) REFERENCES Sensores(idSensor)
 );
