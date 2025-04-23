@@ -197,3 +197,9 @@ button {
 #btn_coz2{
     background-color: var(--cor-risco);
 }
+
+
+#tr_alerta, #td_alerta {
+    color: white;
+    background-color: red;
+}
