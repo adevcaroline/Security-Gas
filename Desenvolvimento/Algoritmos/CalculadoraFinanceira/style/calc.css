@@ -1,120 +1,133 @@
 
 
 
+/* Define os estilos gerais para o elemento body */
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #0B5884;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    overflow-x: hidden;  
-  }
-  
-  .logo {
-    position: relative;
-    display: flex;
-    margin-left: 47vh;
-    max-width:200px;
-  }
+  margin: 0; /* Remove a margem padrão */
+  padding: 0; /* Remove o preenchimento padrão */
+  background-color: #0B5884; /* Define a cor de fundo */
+  font-family: Arial, sans-serif; /* Define a família de fontes */
+  display: flex; /* Usa flexbox para o layout */
+  justify-content: center; /* Centraliza o conteúdo horizontalmente */
+  align-items: center; /* Centraliza o conteúdo verticalmente */
+  flex-direction: column; /* Empilha os elementos verticalmente */
+  overflow-x: hidden; /* Evita rolagem horizontal */
+}
 
-  .container {
-    margin: 40px;
-    width: 800px;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    
-  }
-  
-  h2 {
-    text-align: center;
-    color: #0B5884;
-    margin-bottom: 30px;
-    font-size: 35px;
-  }
-  
-  h3 {
-    color: #000000;
-  }
-  
-  .info {
-    background-color: #eaf2ff; 
-    border: 2px solid #0B5884; 
-    padding: 30px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    color: #003366; 
-    font-size: 17px;
-    line-height: 1.6;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .info h3 {
-    color: #002b5c; 
-    font-size: 22px;
-    margin-bottom: 15px;
-  }
-  
-  .info ul {
-    margin-top: 10px;
-    padding-left: 20px;
-  }
-  
-  label {
-    font-size: 17px;
-    font-weight: bold;
-    color: #181818;
-  }
-  
-  input, select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 20px;
-    border: 1px solid #002857;
-    border-radius: 6px;
-    font-size: 17px;
-  }
-  
-  button {
-    background-color: #0B5884;
-    color: white;
-    border: none;
-    padding: 15px 25px;
-    font-size: 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: #004f9e;
-  }
-  
-  #resultado {
-    margin-top: 30px;
-    font-size: 17px;
-    background-color: #cddeff;
-    padding: 25px;
-    border-radius: 8px;
-    border: 2px solid #002857;
-  }
-  
-  .alerta {
-    color: red;
-    font-weight: bold;
-    margin-top: 15px;
-  }
+/* Estilo para o contêiner do logo */
+.logo {
+  position: relative; /* Posiciona relativo à posição normal */
+  display: flex; /* Usa flexbox para o layout */
+  margin-left: 30vh; /* Adiciona margem à esquerda */
+  max-width: 200px; /* Define a largura máxima */
+}
 
-  .rodape{
-    color: white;
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-    padding: 20px;
-  }
-  
+/* Estilo para o contêiner principal */
+.container {
+  margin: 40px; /* Adiciona margem ao redor do contêiner */
+  width: 800px; /* Define uma largura fixa */
+  background-color: #ffffff; /* Define a cor de fundo */
+  padding: 40px; /* Adiciona preenchimento interno */
+  border-radius: 12px; /* Arredonda os cantos */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Adiciona sombra para profundidade */
+}
+
+/* Estilo para os títulos h2 */
+h2 {
+  text-align: center; /* Centraliza o texto */
+  color: #0B5884; /* Define a cor do texto */
+  margin-bottom: 30px; /* Adiciona espaço abaixo do título */
+  font-size: 35px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para os títulos h3 */
+h3 {
+  color: #000000; /* Define a cor do texto */
+}
+
+/* Estilo para caixas informativas */
+.info {
+  background-color: #eaf2ff; /* Define a cor de fundo */
+  border: 2px solid #0B5884; /* Adiciona uma borda */
+  padding: 30px; /* Adiciona preenchimento interno */
+  margin-bottom: 25px; /* Adiciona espaço abaixo da caixa */
+  border-radius: 10px; /* Arredonda os cantos */
+  color: #003366; /* Define a cor do texto */
+  font-size: 17px; /* Define o tamanho da fonte */
+  line-height: 1.6; /* Define a altura da linha para legibilidade */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Adiciona sombra para profundidade */
+}
+
+/* Estilo para títulos h3 dentro das caixas informativas */
+.info h3 {
+  color: #002b5c; /* Define a cor do texto */
+  font-size: 22px; /* Define o tamanho da fonte */
+  margin-bottom: 15px; /* Adiciona espaço abaixo do título */
+}
+
+/* Estilo para listas não ordenadas dentro das caixas informativas */
+.info ul {
+  margin-top: 10px; /* Adiciona espaço acima da lista */
+  padding-left: 20px; /* Adiciona preenchimento à esquerda */
+}
+
+/* Estilo para rótulos */
+label {
+  font-size: 17px; /* Define o tamanho da fonte */
+  font-weight: bold; /* Deixa o texto em negrito */
+  color: #181818; /* Define a cor do texto */
+}
+
+/* Estilo para campos de entrada e dropdowns */
+input, select {
+  width: 100%; /* Faz com que ocupem toda a largura */
+  padding: 10px; /* Adiciona preenchimento interno */
+  margin-top: 5px; /* Adiciona espaço acima */
+  margin-bottom: 20px; /* Adiciona espaço abaixo */
+  border: 1px solid #002857; /* Adiciona uma borda */
+  border-radius: 6px; /* Arredonda os cantos */
+  font-size: 17px; /* Define o tamanho da fonte */
+}
+
+/* Estilo para botões */
+button {
+  background-color: #0B5884; /* Define a cor de fundo */
+  color: white; /* Define a cor do texto */
+  border: none; /* Remove a borda */
+  padding: 15px 25px; /* Adiciona preenchimento interno */
+  font-size: 20px; /* Define o tamanho da fonte */
+  border-radius: 6px; /* Arredonda os cantos */
+  cursor: pointer; /* Altera o cursor para ponteiro ao passar o mouse */
+  transition: background-color 0.3s ease; /* Adiciona transição suave */
+}
+
+/* Estilo para botões ao passar o mouse */
+button:hover {
+  background-color: #004f9e; /* Altera a cor de fundo ao passar o mouse */
+}
+
+/* Estilo para a caixa de resultado */
+#resultado {
+  margin-top: 30px; /* Adiciona espaço acima */
+  font-size: 17px; /* Define o tamanho da fonte */
+  background-color: #cddeff; /* Define a cor de fundo */
+  padding: 25px; /* Adiciona preenchimento interno */
+  border-radius: 8px; /* Arredonda os cantos */
+  border: 2px solid #002857; /* Adiciona uma borda */
+}
+
+/* Estilo para mensagens de alerta */
+.alerta {
+  color: red; /* Define a cor do texto */
+  font-weight: bold; /* Deixa o texto em negrito */
+  margin-top: 15px; /* Adiciona espaço acima */
+}
+
+/* Estilo para o rodapé */
+.rodape {
+  color: white; /* Define a cor do texto */
+  width: 100%; /* Faz com que ocupe toda a largura */
+  text-align: center; /* Centraliza o texto */
+  margin-top: 40px; /* Adiciona espaço acima */
+  padding: 20px; /* Adiciona preenchimento interno */
+}
