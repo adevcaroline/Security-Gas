@@ -22,7 +22,7 @@
 
             <!-- Informações sobre as métricas do gás -->
             <p>
-                Um ambiente com gás vazando pode explodir se a concentração estiver entre <strong>1,8%</strong> (LIE) e
+                Um ambiente com gás vazando pode explodir se a concentração de ppm estiver entre <strong>1,8%</strong> (LIE) e
                 <strong>9,5%</strong> (LSE).
                 Abaixo de 1,8%, a mistura é fraca demais. Acima de 9,5%, há gás demais para explosão.
             </p>
@@ -40,6 +40,18 @@
         </div>
 
         <!-- Formulário para entrada de dados -->
+        <label for="input_patrimonio">Insira o valor do patrimônio da sua cozinha:</label> <!-- Rótulo para o input de gás -->
+        <input type="number" id="input_patrimonio"> <!-- Campo para entrada de dados -->
+
+        <label for="input_lucro">Qual o lucro mensal que o seu restaurante gera:</label> <!-- Rótulo para o input de gás -->
+        <input type="number" id="input_lucro"> <!-- Campo para entrada de dados -->
+
+        <label for="input_gasto_gas">Qual o gasto mensal com a compra de gás:</label> <!-- Rótulo para o input de gás -->
+        <input type="number" id="input_gasto_gas"> <!-- Campo para entrada de dados -->
+
+        <label for="input_kg_gas">Quantidade de gás comprado (em kg):</label> <!-- Rótulo para o input de gás -->
+        <input type="number" id="input_kg_gas"> <!-- Campo para entrada de dados -->
+
         <label for="input_gas">Quantidade de gás vazado (em gramas):</label> <!-- Rótulo para o input de gás -->
         <input type="number" id="input_gas"> <!-- Campo para entrada de dados -->
 
@@ -75,19 +87,41 @@
 <script>
     function calcularRisco() {
         // Criação de variáveis para os inputs e resultado
-        var massaGas = Number(input_gas.value); // Valor do input de gás
+        var patrimonio = Number (input_patrimonio.value);
+        var lucro = Number(input_lucro.value);
+        var conta_gas = Number(input_gasto_gas.value);
+        var gas_total_mes_kg = Number(input_kg_gas.value);
+        var gas_vazado_g = Number(input_gas.value); // Valor do input de gás
         var volume_m3 = Number(input_volume.value); // Valor do input de volume
         var ventilado = input_ventilado.value; // Valor do input de ventilação
         var monitorado = input_monitorado.value; // Valor do input de monitoramento
 
         // Verifica se os valores são válidos
-        if (massaGas <= 0 || volume_m3 <= 0) {
+        if (gas_vazado_g <= 0 || volume_m3 <= 0 || patrimonio <= 0 || lucro <= 0 || conta_gas <= 0 ) {
             resultado.innerHTML = `<b style="color:red">Por favor, insira valores válidos.</b>`; // Mensagem de erro
         } else {
+
+
+            /*
+            
+            valor gas grama = contaDeGas / (kg_gas * 1000)
+            
+            valor perdido = 
+
+            */
+
+
             // Cálculos iniciais
+            var valor_gas_grama = conta_gas / (gas_total_mes_kg * 1000) 
+            var valor_gasto_gas = valor_gas_grama * gas_vazado_g
+            var valor_perda_gas = gas_total_mes_kg - (gas_vazado_g / 1000)
+            var prejuizo_explosão = patrimonio + gas_perdidio 
+            var prejuizo_lucro_anual = lucro * 12 
+            var prejuizo_total = prejuizo_explosão + prejuizo_lucro_anual
+
             var volumeEmLitros = volume_m3 * 1000; // Converte o volume de m³ para litros
             var densidadeAr = 1.2; // Densidade do ar em g/L
-            var concentracao = (massaGas / (densidadeAr * volumeEmLitros)) * 100; // Concentração de gás em %
+            var concentracao = (gas_vazado_g / (densidadeAr * volumeEmLitros)) * 100; // Concentração de gás em %
 
             // Limites de explosividade
             var LIE = 1.8; // Limite inferior
@@ -96,16 +130,20 @@
             // Inicialização de variáveis
             var risco = 0;
             var mensagem = "";
+            var mensagem_perda_gas = `Você desperdiçou ${valor_perda_gas}kg de ${gas_total_mes_kg}kg de gás.`;
+            var mensagem_prejuizo_explosão = "Com a explosão você teria um prejuízo de ";
+            var mensagem_prejuizo_lucro_anual = "";
+            var mensagem_prejuizo_total = "";
             var mensagemVentilado = "";
             var mensagemMonitorado = "";
             var alerta = "";
             var cor = "";
 
             // Verifica a concentração de gás
-            if (concentracao >= LEL && concentracao <= UEL) {
+            if (concentracao >= LIE && concentracao <= LSE) {
                 risco = 80;
                 mensagem = "⚠️ Concentração de gás está DENTRO da faixa de explosividade.";
-            } else if (concentracao > UEL) {
+            } else if (concentracao > LSE) {
                 risco = 50;
                 mensagem = "⚠️ Concentração ALTA demais para explosão imediata, mas gera riscos de asfixia.";
             } else {
@@ -154,7 +192,9 @@
             ${mensagem}<br><br>
             ${mensagemMonitorado}<br><br>
             ${mensagemVentilado} <br><br>
-            <b style="color:#0077cc">💡 Com o sistema <i>Security Gas</i>, o risco seria reduzido para <u>${riscoComSecurityGas.toFixed(1)}%</u>.</b>
+            <b style="color:#0077cc">💡 Com o sistema <i>Security Gas</i>, o risco seria reduzido para <u> <br><br>
+             
+                ${riscoComSecurityGas.toFixed(1)}%</u>.</b>
             `;
         }
     }
