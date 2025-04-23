@@ -1,4 +1,4 @@
-  int PINO_SENSOR_MQ2 = A5;// cria a variavel e seta o pino A0 do sensor
+ int PINO_SENSOR_MQ2 = A5;// cria a variavel e seta o pino A0 do sensor
   int VALOR_MINIMO = 300;//cria uma variavel com a valor mínimo do sensor
   int VALOR_MAXIMO = 1000;//cria uma variavel com a valor máximo do sensor
   
