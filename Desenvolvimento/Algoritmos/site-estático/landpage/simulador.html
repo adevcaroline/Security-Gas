@@ -47,22 +47,22 @@
     <!-- Formulário para entrada de dados -->
     <label for="input_patrimonio">Insira o valor do patrimônio da sua cozinha:</label>
     <!-- Rótulo para o input de gás -->
-    <input type="number" id="input_patrimonio"> <!-- Campo para entrada de dados -->
+    <input value="150000" type="number" id="input_patrimonio"> <!-- Campo para entrada de dados -->
 
     <label for="input_lucro">Qual o lucro mensal que o seu restaurante gera:</label> <!-- Rótulo para o input de gás -->
-    <input type="number" id="input_lucro"> <!-- Campo para entrada de dados -->
+    <input value="20000" type="number" id="input_lucro"> <!-- Campo para entrada de dados -->
 
     <label for="input_gasto_gas">Qual o gasto mensal com a compra de gás:</label> <!-- Rótulo para o input de gás -->
-    <input type="number" id="input_gasto_gas"> <!-- Campo para entrada de dados -->
+    <input value="1200" type="number" id="input_gasto_gas"> <!-- Campo para entrada de dados -->
 
     <label for="input_kg_gas">Quantidade de gás comprado (em kg):</label> <!-- Rótulo para o input de gás -->
-    <input type="number" id="input_kg_gas"> <!-- Campo para entrada de dados -->
+    <input value="270" type="number" id="input_kg_gas"> <!-- Campo para entrada de dados -->
 
     <label for="input_gas">Quantidade de gás vazado (em gramas):</label> <!-- Rótulo para o input de gás -->
-    <input type="number" id="input_gas"> <!-- Campo para entrada de dados -->
+    <input value="1500" type="number" id="input_gas"> <!-- Campo para entrada de dados -->
 
     <label for="input_volume">Volume do ambiente (em m³):</label> <!-- Rótulo para o volume -->
-    <input type="number" id="input_volume"> <!-- Campo para entrada de dados -->
+    <input value="10" type="number" id="input_volume"> <!-- Campo para entrada de dados -->
 
     <label for="input_ventilado">Ambiente ventilado?</label> <!-- Rótulo para ventilação -->
     <select id="input_ventilado"> <!-- Campo de seleção -->
@@ -157,9 +157,16 @@
 
         var riscoComSecurityGas = risco - (risco * 20 / 100);
 
-        var mensagem_perda_gas = `Você desperdiçou <b>${(gas_vazado_g / 1000).toFixed(2)}kg</b> de <b>${gas_total_mes_kg.toFixed(2)}kg</b> de gás, o que é igual a <b>R$${valor_gasto_gas.toFixed(2)}</b>.`;
-        var mensagem_prejuizo_explosão = `Com a explosão, você teria um prejuízo total de <b>R$${prejuizo_explosao.toFixed(2)}</b>.`;
-        var mensagem_prejuizo_lucro_anual = `Você iria perder <b>R$${prejuizo_lucro_anual.toFixed(2)}</b> em relação aos <b>R$${lucro_anual.toFixed(2)}</b> que teria em um ano.`;
+        `
+        Você desperdiçou 1.50kg de 270.00kg de gás, o que é igual a R$6.67, totalizando R$80.039 em um ano.
+        Com lucro mensal de R$20000, totalizará R$240000.00 de lucro em um ano.
+        Com o risco de 50% de acontecer uma explosão, você teria um prejuízo total de R$150006.67, devido ao impacto em seu patrimônio.
+        💡 Com o sistema Security Gas, o risco de explosão seria reduzido para 40.0%.
+        `
+
+        var mensagem_perda_gas = `Você desperdiçou <b>${(gas_vazado_g / 1000).toFixed(2)}kg</b> de <b>${gas_total_mes_kg.toFixed(2)}kg</b> de gás, o que é igual a <b>R$${valor_gasto_gas.toFixed(2)}</b>, totalizando <b>R$${(valor_gasto_gas * 12).toFixed(2)}</b> ao ano.`;
+        var mensagem_prejuizo_lucro_anual = `Com <b>R$${lucro}</b> de lucro mensal, totalizando <b>R$${lucro_anual.toFixed(2)}</b> em um ano.`;
+        var mensagem_prejuizo_explosão = `Com <b>${risco}%</b> de risco de ocorrer uma explosão, você teria um prejuízo total de <b>R$${prejuizo_explosao.toFixed(2)}</b> devido ao impacto no seu patrimônio.<br><br>Em caso de explosão, caso seu restaurante fique fechado por 6 meses, você perderia <b>R$${(lucro_anual / 2).toFixed(2)}</b> no ano.`;
         var mensagem_prejuizo_total = `No total, todos esses fatores gerariam <b>R$${prejuizo_total.toFixed(2)}</b> de prejuízo.`;
 
         resultado.innerHTML = `
@@ -169,9 +176,8 @@
             ${mensagemMonitorado}<br><br>
             ${mensagemVentilado} <br><br>
             ${mensagem_perda_gas}<br><br>
-            ${mensagem_prejuizo_explosão}<br><br>
             ${mensagem_prejuizo_lucro_anual}<br><br>
-            ${mensagem_prejuizo_total}<br><br>         
+            ${mensagem_prejuizo_explosão}<br><br>
             <b style="color:#0077cc">💡 Com o sistema <i>Security Gas</i>, o risco seria reduzido para <u>${riscoComSecurityGas.toFixed(1)}%</u>.</b>
             ${alerta}
         `;

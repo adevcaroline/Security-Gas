@@ -193,11 +193,12 @@
             verificacao = 0
 
 
-            p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
+            p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
 
         } else {
 
-            p_msg_maiusculo.innerHTML = `ok`;
+            p_msg_maiusculo.innerHTML = ``;
+            // p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
             verificacao++
 
         }
