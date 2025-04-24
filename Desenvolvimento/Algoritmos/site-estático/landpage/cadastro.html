@@ -146,19 +146,19 @@
 
                 verificacao = 0
 
-                p_msg_qtdC.innerHTML = `A senha deve ter pelo menos 6 caracteres.`;
+                p_msg_qtdC.innerHTML = `<span style="color:red">A senha deve ter pelo menos 6 caracteres.</span>`;
 
 
             } else {
 
-                p_msg_qtdC.innerHTML = `ok`;
+                // p_msg_qtdC.innerHTML = `ok`;
                 verificacao++
 
             }
 
             if ( letra_especial > 0) {
 
-                p_msg_aro.innerHTML = `ok`;
+                // p_msg_aro.innerHTML = `ok`;
                 verificacao++
 
                
@@ -166,7 +166,7 @@
 
                 verificacao = 0
 
-                p_msg_aro.innerHTML = `Teve ter algum caractere especial.`;
+                p_msg_aro.innerHTML = `<span style="color:red">Teve ter algum caractere especial.</span>`;
 
 
             }
@@ -175,11 +175,11 @@
 
                 verificacao = 0
 
-                p_msg_num.innerHTML = `A senha deve ter pelo menos um número.`;
+                p_msg_num.innerHTML = `<span style="color:red">A senha deve ter pelo menos um número.</span>`;
 
             } else {
 
-                p_msg_num.innerHTML = `ok`;
+                // p_msg_num.innerHTML = `ok`;
                 verificacao++
 
             }
@@ -198,14 +198,14 @@
         } else {
 
             p_msg_maiusculo.innerHTML = ``;
-            // p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
+            // p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
             verificacao++
 
         }
 
 
         if (verificacao >= 4) {
-            div_btn.innerHTML = `<a href="./dashboard.html"><button class="btn_logar">Cadastrar</button></a>`
+            div_btn.innerHTML = `<a href="./login.html"><button class="btn_logar">Cadastrar</button></a>`
 
         }
 
