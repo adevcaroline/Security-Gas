@@ -7,7 +7,6 @@
     <title>Cadastro - Security Gas</title>
     <link rel="stylesheet" href="./style/cadastro.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
 </head>
 
 <body>
@@ -53,10 +52,11 @@
             <input type="text" id="inp_senha" oninput="verificaSenha()">
 
             <div id="div_msg">
-                <p style="color: rgb(255, 0, 0);" id="p_msg_qtdC"></p>
-                <p style="color: rgb(255, 0, 0);" id="p_msg_aro"></p>
-                <p style="color: rgb(255, 0, 0);" id="p_msg_num"></p>
-                <p style="color: rgb(255, 0, 0);" id="p_msg_maiusculo"></p>
+                <p id="p_msg"></p>
+                <p id="p_msg_qtdC"></p>
+                <p id="p_msg_aro"></p>
+                <p id="p_msg_num"></p>
+                <p id="p_msg_maiusculo"></p>
 
 
 
@@ -66,15 +66,14 @@
         </div>
 
         <div id="div_btn">
-            <a href="./dashboard.html">
-                <button class="btn_logar">Entrar</button>
-            </a>
+
+            <button class="btn_logar">Cadastrar</button>
 
         </div>
 
         <p>
 
-            Já tem uma conta? <a href="./login.html">Login</a>
+            Já tem uma conta? <a href="./login.html">Logar</a>
 
         </p>
 
@@ -87,37 +86,136 @@
 <script>
 
     function verificaSenha() {
+
+        var verificacao = 0
+
         var senha = inp_senha.value;
 
-        p_msg_aro.innerHTML = ``;
+        var letra_maiuscula = 0
 
-        // const msg = ;
+        var letra_especial = 0
 
-        if (senha.length < 6) {
-            p_msg_qtdC.innerHTML = `A senha deve ter pelo menos 6 caracteres.`;
-            p_msg_aro.innerHTML = ``;
-            p_msg_num.innerHTML = ``;
-            p_msg_maiusculo.innerHTML = ``;
-        } else if ((senha.indexOf("@") || senha.indexOf("#")) == -1) {
-            p_msg_aro.innerHTML = `Teve ter algum caractere especial.`;
-            p_msg_qtdC.innerHTML = ``;
-            p_msg_num.innerHTML = ``;
-            p_msg_maiusculo.innerHTML = ``;
-        } else if (senha.search(/[0-9]/) == -1) {
-            p_msg_num.innerHTML = `A senha deve ter pelo menos um número.`;
-            p_msg_qtdC.innerHTML = ``;
-            p_msg_aro.innerHTML = ``;
-            p_msg_maiusculo.innerHTML = ``;
-        } else if (senha.search(/[A-Z]/) == -1) {
-            p_msg_maiusculo.innerHTML = `A senha deve ter pelo menos uma letra maiúscula.`;
-            p_msg_qtdC.innerHTML = ``;
-            p_msg_aro.innerHTML = ``;
-            p_msg_num.innerHTML = ``;
-        } else {
-            div_msg.innerHTML = `<p style="color: green;" id="p_msg_aro">ok</p>`;
-            div_btn.innerHTML = `<a href="../Sessao_home/home.html"><button class="btn_logar">Entrar</button></a>`
+        var letra_numero = 0
+
+
+
+        p_msg_qtdC.innerHTML = ``
+        p_msg_aro.innerHTML = ``
+        p_msg_num.innerHTML = ``
+        p_msg_maiusculo.innerHTML = ``
+
+        div_btn.innerHTML = `<button class="btn_logar">cadastrar</button>`
+
+
+
+        console.log(senha.length)
+
+        for (var contadorL = 0; contadorL < senha.length; contadorL++) {
+
+            var letra = senha[contadorL]
+
+            console.log(letra)
+
+            if (letra !== letra.toLowerCase()) {
+
+                letra_maiuscula = 1
+
+            }
+
+            if (letra == (`@` || `#`)) {
+
+             letra_especial = 1
+
+                console.log(`tem especial `+ letra_especial )
+
+            }
+
+            if (!isNaN(letra)){
+
+                letra_numero = 1
+
+            }
         }
 
+
+            // const msg = ;
+
+            if (senha.length < 6) {
+
+                console.log(`senha pequena ` + senha)
+
+                verificacao = 0
+
+                p_msg_qtdC.innerHTML = `<span style="color:red">A senha deve ter pelo menos 6 caracteres.</span>`;
+
+
+            } else {
+
+                // p_msg_qtdC.innerHTML = `ok`;
+                verificacao++
+
+            }
+
+            if ( letra_especial > 0) {
+
+                // p_msg_aro.innerHTML = `ok`;
+                verificacao++
+
+               
+            } else {
+
+                verificacao = 0
+
+                p_msg_aro.innerHTML = `<span style="color:red">Teve ter algum caractere especial.</span>`;
+
+
+            }
+
+            if (letra_numero < 1) {
+
+                verificacao = 0
+
+                p_msg_num.innerHTML = `<span style="color:red">A senha deve ter pelo menos um número.</span>`;
+
+            } else {
+
+                // p_msg_num.innerHTML = `ok`;
+                verificacao++
+
+            }
+
+
+        
+
+        if (letra_maiuscula <= 0) {
+
+            console.log(`Senha sem letra maiuscula`)
+            verificacao = 0
+
+
+            p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
+
+        } else {
+
+            p_msg_maiusculo.innerHTML = ``;
+            // p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
+            verificacao++
+
+        }
+
+
+        if (verificacao >= 4) {
+            div_btn.innerHTML = `<a href="./login.html"><button class="btn_logar">Cadastrar</button></a>`
+
+        }
+
+
     }
+        // {
+        //     div_msg.innerHTML = `<p style="color: green;" id="p_msg_aro">ok</p>`;
+        //     div_btn.innerHTML = `<a href="../Sessao_home/home.html"><button class="btn_logar">Logar</button></a>`
+        // }
+
+    
 
 </script>
