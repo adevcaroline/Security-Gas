@@ -281,20 +281,31 @@
                     label: 'GLP',
                     data: porc,
                     borderColor: 'rgb(54, 162, 235)',
-
                     tension: 0.4,
-                    fill: false
+                    fill: true
+                },
+                {
+                    label: 'Limite Inferior De Explosividade',
+                    data: [2,2,2,2,2,2,2,2,2,2,2],
+                    borderColor: 'red',
+                    tension: 0.4,
+                },
+                {
+                    label: 'Limite Adequado',
+                    data: [1,1,1,1,1,1,1,1,1,1,1],
+                    borderColor: 'lightgreen',
+                    tension: 0.4,
                 }]
             },
             options: {
                 responsive: true,
                 plugins: {
-                    legend: { display: false }
+                    legend: { display: true }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 5
+                        max: porc+2
                     }
                 }
             }
