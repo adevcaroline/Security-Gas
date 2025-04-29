@@ -28,10 +28,6 @@
 
         <div class="inputs">
 
-            <h2>CNPJ</h2>
-            <input type="text" id="inp_cnpj">
-
-
             <h2>Email</h2>
             <input type="text" id="inp_email">
 
@@ -48,9 +44,8 @@
 
         <div id="div_btn">
             
-            <a href="./dashboard.html">
-                <button class="btn_logar" onclick="verificaSenha()">Entrar</button>
-            </a>
+            <button class="btn_logar" onclick="verificaSenha()">Entrar</button>
+            
             
 
 
@@ -93,32 +88,30 @@
     }
 
 
+    var tentativa = 0;
     function verificaSenha() {
 
-        var cnpj = inp_cnpj.value
-        var email = inp_email.value
-        var senha = inp_senha.value
+        var email = inp_email.value;
+        var senha = inp_senha.value;
+
 
         console.log(`securityg4s@gmail.com`)
         console.log(`@Securityg4s`)
 
-        if ((cnpj || email || senha) == ``){
+        if (tentativa >= 3) {
+            alert("Você já tentou 3 vezes! Tente novamente mais tarde.")
+        } else if ((email || senha) == ``) {
             alert(`preencha todos os campos`)
+        } else if ((email != `securityg4s@gmail.com`) || (senha != `@Securityg4s`)) {
+
+            alert(`Senha ou Email incorretos`);
+            tentativa++;
         }else{
-            
-            if((email != `securityg4s@gmail.com`)||(senha != `@Securityg4s`)){
-
-                alert(`Senha ou Email incorretos`)
-
-            }else{
-
-                window.open("./dashboard.html", "_blank")
-
-            }
-
-
+            window.open("./dashboard.html", "_blank")
         }
 
+
+        console.log(tentativa)
 
     }
 
