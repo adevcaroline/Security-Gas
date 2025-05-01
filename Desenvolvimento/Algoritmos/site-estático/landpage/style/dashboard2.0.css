@@ -1,0 +1,117 @@
+:root {
+    --var-cor-primaria: #0B5884;
+    --var-cor-secundaria: #ffffff;
+    --var-perigo: red;
+    --var-atencao: yellow;
+    --var-seguro: cyan;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--var-cor-primaria);
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+nav {
+    height: 100%;
+    width: 25%;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--var-cor-secundaria);
+    border-radius: 0 10px 10px 0;
+}
+
+nav .div_logo {
+
+    /* background-color: red; */
+    padding: 10px;
+    height: 15%;
+    display: flex;
+    align-items: center;
+    color: var(--var-cor-primaria);
+    font-family: inter;
+    font-size: 20px;
+    font-weight: 900;
+
+}
+
+nav .div_logo img {
+
+    width: 50px;
+    margin: 5px;
+    background-color: var(--var-cor-primaria);
+    border-radius: 100%;
+
+}
+
+nav .div_btns {
+
+    /* background-color: red; */
+
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+
+}
+
+nav .div_btns button {
+    width: 90%;
+    background-color: var(--var-cor-secundaria);
+    color: var(--var-cor-primaria);
+    border: none;
+    border-radius: 10px;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    font-family: inter;
+    font-size: 20px;
+    font-weight: 700;
+    gap: 10px;
+    padding: 5px;
+    transition: 0.5s;
+}
+
+nav .div_btns button:hover {
+    background-color: var(--var-cor-primaria);
+    color: var(--var-cor-secundaria);
+}
+
+
+nav .div_btns button span {
+    background-color: var(--var-seguro);
+    width: 20px;
+    height: 20px;
+    border-radius: 100px;
+}
+
+main{
+    /* background-color: red; */
+    width: 50%;
+    height: 100%;
+    color: var(--var-cor-primaria);
+
+}
+
+main section{
+    background-color: var(--var-cor-secundaria);
+    margin: 10px;
+    border-radius: 5px;
+    height: 35%;
+
+}
+
+main #sec_titulos{
+    height: 20%;
+    color: var(--var-cor-secundaria);
+    background-color: var(--var-cor-primaria);
+}

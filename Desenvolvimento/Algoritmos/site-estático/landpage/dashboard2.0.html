@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"> // arrumar o gráfico, coloquei apenas para deixar como base
+    </script>
+    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./style/dashboard2.0.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav>
+
+        <div class="div_logo">
+
+            <img src="https://cdn-icons-png.flaticon.com/512/1144/1144760.png" alt="" id="logo_empresa">
+
+            <h1 id="nome_empresa">Empresa XPTO</h1>
+
+        </div>
+
+        <div class="div_btns">
+            <button onclick="btn_cozinha1()"><span id="span_bola cozinha1"></span>Cozinha 1</button>
+            <button onclick="btn_cozinha2()"><span id="span_bola cozinha2"></span>Cozinha 2</button>
+            <button onclick="btn_cozinha3()"><span id="span_bola cozinha3"></span>Área externa</button>
+        </div>
+
+        <div class="historico">
+
+            <img src="" alt="" id="histrico">
+
+            <button onclick="btn_historico()">Historico</button>
+
+        </div>
+
+    </nav>
+
+    <main>
+        <section id="sec_titulos">
+            <h1 id="nome_unidade">Unidade 1</h1>
+            <p id="nome_empresa">Empresa XPTO</p>
+        </section>
+        <section id="sec_grafico">
+
+            <h1>Concentração GLP em <span id="span_ambiente"></span>:</h1>
+
+            <canvas id="glpChart"></canvas>
+
+        </section>
+
+        <section id="sec_sensor">
+
+            <div class="status-card">
+                <h4>Status por Sensor</h4>
+                <table id="id_table">
+                    <thead>
+                        <tr>
+                            <th>Local da Instalação</th>
+                            <th>Sensor</th>
+                            <th>Status do Vazamento</th>
+                            <th>Última Atualização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr_alerta">
+                            <td>Piso - A</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-alerta" id="td_alerta">Alerta</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_alerta">
+                            <td>Piso - A</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-alerta" id="td_alerta">Alerta</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr>
+                            <td>Piso - B</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-normal">Normal</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr>
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-normal">Normal</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr>
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-normal">Normal</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </section>
+
+    </main>
+
+
+    <aside id="aside_kpi">
+
+        <img src="" alt="" id="img_logo_security">
+
+        <section>
+
+            <h1>Situação Atual:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section>
+
+            <h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section>
+
+            <h1>Área com mais ocorrências no mês <span id="span_mes"></span>:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section id="sec_grafico" class="sec_glpMes">
+
+            <h1></h1>
+
+            <canvas id="glpMesChard"></canvas>
+
+        </section>
+
+
+
+
+    </aside>
+
+
+
+</body>
+
+</html>
