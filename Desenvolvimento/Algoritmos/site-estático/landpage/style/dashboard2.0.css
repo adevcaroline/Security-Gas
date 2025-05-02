@@ -9,6 +9,7 @@
 * {
     padding: 0;
     margin: 0;
+    font-family: inter;
 }
 
 body {
@@ -45,8 +46,9 @@ nav .div_logo {
 nav .div_logo img {
 
     width: 50px;
+    height: 50px;
     margin: 5px;
-    background-color: var(--var-cor-primaria);
+    background-color: var(--var-cor-secundaria);
     border-radius: 100%;
 
 }
@@ -79,7 +81,9 @@ nav .div_btns button {
     gap: 10px;
     padding: 5px;
     transition: 0.5s;
+    
 }
+
 
 nav .div_btns button:hover {
     background-color: var(--var-cor-primaria);
@@ -99,19 +103,108 @@ main{
     width: 50%;
     height: 100%;
     color: var(--var-cor-primaria);
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
 }
 
 main section{
+    width: 95%;
     background-color: var(--var-cor-secundaria);
     margin: 10px;
+    padding: 5px;
     border-radius: 5px;
     height: 35%;
-
 }
 
 main #sec_titulos{
-    height: 20%;
+    height: 15%;
     color: var(--var-cor-secundaria);
     background-color: var(--var-cor-primaria);
+    align-self: start;
+
 }
+
+main #sec_titulos h1{
+    font-size: 70px;
+    font-weight: 700;
+}
+
+main #sec_titulos p{
+    margin-left: 5px;
+    font-weight: 700;
+}
+
+main #tr_critico{
+    background-color: var(--var-perigo);
+    color: var(--var-cor-secundaria);
+}
+
+main #tr_atencao{
+    background-color: var(--var-atencao);
+    color: var(--var-cor-primaria);
+}
+
+main #sec_sensor{
+    overflow-y: scroll;
+}
+
+tr{
+    height: 40px;
+}
+
+main #id_table {
+    text-align: center;
+    width: 100%;
+}
+
+aside {
+
+    width: 25%;
+    height: 100%;
+    color: var(--var-cor-primaria);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+aside #sec_logo{
+    height: 10%;
+    background-color: var(--var-cor-primaria);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    
+}
+
+aside #sec_logo img{
+    width: 80%;
+}
+
+aside section{
+    width: 90%;
+    background-color: var(--var-cor-secundaria);
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    height: 35%;
+}
+
+aside #sec_grafico{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80%;
+    
+}
+
+/* canvas #glpChart {
+    display: block;
+    box-sizing: border-box;
+    max-height: 90%;
+    max-width: 100%;
+} */
