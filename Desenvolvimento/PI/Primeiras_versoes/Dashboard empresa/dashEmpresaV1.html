@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SecurityGas</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0b4878;
+      color: white;
+    }
+
+    .dashboard {
+      display: flex;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .sideBar {
+      background-color: white;
+      width: 250px;
+      padding: 20px;
+      color: #0B5884;
+    }
+
+    .sideBar h2 {
+      font-size: 22px;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sideBar .unidade {
+      margin: 15px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .sideBar .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .main {
+      flex: 1;
+      padding: 20px 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h1 {
+      font-size: 50px;
+      font-weight: 800;
+    }
+
+    .caixa {
+      display: flex;
+      gap: 20px;
+      margin: 20px 0;
+    }
+
+    .card {
+      background-color: white;
+      color: #0b5884;
+      padding: 16px;
+      border-radius: 12px;
+      flex: 1;
+      font-size: 18px;
+      font-weight: bold;
+      height: 100%;
+    }
+
+    .card1 {
+      box-shadow: 0 6px 0 0 #00A2FF;
+    }
+
+    .card2 {
+      box-shadow: 0 6px 0 0 red;
+    }
+
+    .card3 {
+      box-shadow: 0 6px 0 0 #00A2FF;
+    }
+
+    .resultado1 {
+      text-align: right;
+      font-size: 40px;
+      margin-top: 10px;
+    }
+
+    .resultado2 {
+      font-size: 22px;
+      color: red;
+      margin-top: 10px;
+    }
+
+    .resultado3 {
+      font-size: 20px;
+      color: #0B5884;
+      margin-top: 10px;
+    }
+
+    .grafico-card {
+      background-color: white;
+      color: #0b5884;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .grafico-card h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    canvas {
+      background-color: white;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard">
+    <div class="sideBar">
+      <h2><img src="logoEmpresa" width="30"> EMPRESA XPTO</h2>
+      <div class="unidade"><div class="dot" style="background-color: rgb(0, 255, 0);"></div> Unidade 1</div>
+      <div class="unidade"><div class="dot" style="background-color: yellow;"></div> Unidade 2</div>
+      <div class="unidade"><div class="dot" style="background-color: rgb(0, 255, 0);"></div> Unidade 3</div>
+      <div class="unidade"><div class="dot" style="background-color: red;"></div> Unidade 4</div>
+    </div>
+
+    <div class="main">
+      <div class="header">
+        <h1>EMPRESA XPTO</h1>
+        <img src="logoSecurity" alt="SecurityGas" height="40">
+      </div>
+
+      <div class="caixa">
+        <div class="card card1">
+          <div>Comparativo De ocorrencias Do Mês anterior:</div>
+          <div class="resultado1">-3</div>
+        </div>
+        <div class="card card2">
+          <div>Unidade Com Maiores Ocorrencias no mês atual:</div>
+          <div class="resultado2">Unidade 1<br>5 Ocorrencias</div>
+        </div>
+        <div class="card card3">
+          <div>Unidade com pior média de tempo de resposta:</div>
+          <div class="resultado3">Unidade XPTO<br>7min de resposta</div>
+        </div>
+      </div>
+
+      <div class="grafico-card">
+        <h3>Comparativo entre unidades mês atual</h3>
+        <canvas id="chartSG" height="120"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const ctx = document.getElementById('chartSG').getContext('2d');
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Unidade A', 'Unidade B', 'Unidade C', 'Unidade D'],
+        datasets: [
+          {
+            label: 'Alertas Ativos',
+            data: [2, 5, 3, 4],
+            backgroundColor: '#ffa500'
+          },
+          {
+            label: 'Tempo Médio de Resposta (min)',
+            data: [5, 7, 3, 6],
+            backgroundColor: '#ff4500'
+          },
+          {
+            label: 'Incidentes Evitados',
+            data: [12, 8, 15, 10],
+            backgroundColor: '#ff3366'
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            labels: {
+              color: '#000'
+            }
+          }
+        },
+        scales: {
+          x: {
+            ticks: { color: '#000' }
+          },
+          y: {
+            ticks: { color: '#000' }
+          }
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
