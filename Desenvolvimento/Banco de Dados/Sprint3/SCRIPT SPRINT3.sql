@@ -59,3 +59,34 @@ foreign key (fkAlerta) references alerta(idAlerta),
 foreign key (fkSensor) references sensor(idSensor)
 );
 
+-- Para cada ambiente, pegar a última leitura registrada.
+
+-- Mostrar o nível de gás dessa leitura.
+
+-- Mostrar o status atual do sensor daquele ambiente.
+
+-- Mostrar o nome do ambiente.
+
+CREATE VIEW vw_painelgeral AS
+SELECT
+    r.nome_restaurante AS Restaurante,
+    u.nome AS Nome_Usuario,
+    l.nome_local AS Nome_Local,
+    s.nome_sensor AS Nome_Sensor,
+    s.statusAtivacao AS Status_Sensor,
+    ls.data_hora AS Data_Hora,
+    ls.porcentagem_captada AS Porcentagem_Gas,
+    a.nivel_alerta AS Nivel_Alerta
+FROM restaurante r
+JOIN usuario u ON u.fkRestaurante = r.idRestaurante
+JOIN local_instalacao l ON l.fkRestaurante = r.idRestaurante
+JOIN sensor s ON s.fkLocal_instalacao = l.idLocal_instalacao
+JOIN leitura_sensor ls ON ls.fkSensor = s.idSensor
+LEFT JOIN alerta a ON a.idAlerta = ls.fkAlerta
+WHERE ls.data_hora = (
+    SELECT MAX(ls2.data_hora)
+    FROM leitura_sensor ls2
+    WHERE ls2.fkSensor = s.idSensor
+);
+
+select * from vw_painelgeral;
