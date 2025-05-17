@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"> // arrumar o gráfico, coloquei apenas para deixar como base
+    </script>
+    <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="./styles/dashboard2.0.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <nav id="nav_dash">
+
+        <div class="div_logo">
+
+            <img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/25/29/8a/25/logomarca.jpg" alt=""
+                id="logo_empresa">
+
+            <h1 id="nome_empresa">Empresa XPTO</h1>
+
+        </div>
+
+        <div class="div_btns">
+            <button onclick="btn_cozinha1()"><span id="span_bola cozinha1"></span>Cozinha 1</button>
+            <button onclick="btn_cozinha2()"><span id="span_bola cozinha2"></span>Cozinha 2</button>
+            <button onclick="btn_cozinha3()"><span id="span_bola cozinha3"></span>Área externa</button>
+        </div>
+
+        <div class="nav_historico">
+
+          
+
+            <button onclick="btn_historico()" id="btn_historico">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z"/></svg>
+                Historico
+            </button>
+
+        </div>
+
+    </nav>
+
+    <main id="main_historico">
+
+        <div class="parte-meio">
+            <div class="titulo">
+                <h1>Unidade XPTO</h1>
+                <h2 id="subtitulo">Empresa XPTO</h2>
+            </div>
+
+            <h2 id="h2_historico">Histórico - Ocorrências</h2>
+            <div class="historico">
+               
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - A</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - A</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - B</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - B</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - C</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - C</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - A</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - A</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - B</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - B</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - C</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <div class="linha-historico">
+                    <span class="coluna piso">Piso - C</span>
+                    <span class="coluna sensor">Sensor - 1</span>
+                    <span class="coluna data">18/04/2025 20:40</span>
+                </div>
+
+                <!-- Adicione mais linhas assim -->
+            </div>
+        </div>
+
+
+    </main>
+
+    <main id="main_dash">
+        <section id="sec_titulos">
+            <h1 id="nome_unidade">Unidade 1</h1>
+            <p id="nome_empresa">Empresa XPTO</p>
+        </section>
+        <section id="sec_grafico">
+
+            <h1>Concentração GLP em <span id="span_ambiente"></span>:</h1>
+
+            <canvas id="glpChart" width="400" height="120"></canvas>
+
+        </section>
+
+        <section id="sec_sensor">
+
+            <div class="status-card">
+                <h4>Status por Sensor</h4>
+                <table id="id_table">
+                    <thead id="cabeca_tabela">
+                        <tr>
+                            <th>Local da Instalação</th>
+                            <th>Sensor</th>
+                            <th>Status do Vazamento</th>
+                            <th>Última Atualização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr_critico">
+                            <td>Piso - A</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-critico" id="td_critico">Crítico</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_critico">
+                            <td>Piso - A</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-critico" id="td_critico">Crítico</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+
+        </section>
+
+    </main>
+
+
+    <aside id="aside_kpi">
+
+        <section id="sec_logo">
+
+            <img src="./img/logo_branca.png" alt="" id="img_logo_security">
+
+        </section>
+
+        <section>
+
+            <h1>Situação Atual:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section>
+
+            <h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section>
+
+            <h1>Área com mais ocorrências no mês <span id="span_mes"></span>:</h1>
+
+            <p></p>
+
+        </section>
+
+        <section id="sec_grafico" class="sec_glpMes">
+
+            <h1></h1>
+
+            <canvas id="vazamentoChart"></canvas>
+
+        </section>
+
+
+
+
+    </aside>
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    var porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3]
+    var max_porc = porc[0]
+
+    for (i = 0; i < porc.length; i++) {
+        if (porc[i] > max_porc) {
+            max_porc = porc[i]
+        }
+    }
+
+    function btn_cozinha1() {
+        porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3];
+
+        for (i = 0; i < porc.length; i++) {
+            if (porc[i] > max_porc) {
+                max_porc = porc[i]
+            }
+        }
+        securitygasChart.data.datasets[0].data = porc;
+        securitygasChart.update();
+
+        id_table.innerHTML = `
+            
+               <thead id="cabeca_tabela">
+                        <tr>
+                            <th>Local da Instalação</th>
+                            <th>Sensor</th>
+                            <th>Status do Vazamento</th>
+                            <th>Última Atualização</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="tr_critico">
+                            <td>Piso - A</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-critico" id="td_critico">Crítico</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_critico">
+                            <td>Piso - A</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-critico" id="td_critico">Crítico</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 1</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                        <tr id="tr_atencao">
+                            <td>Piso - B</td>
+                            <td>Sensor - 2</td>
+                            <td class="status-atencao">Atenção</td>
+                            <td>18/04/2025 20:40</td>
+                        </tr>
+                    </tbody>
+
+            `
+    }
+
+    function btn_cozinha2() {
+        porc = [1, 2.5, 1.5, 1, 2, 1.5, 1.5, 0.5, 1, 0.5];
+
+        for (i = 0; i < porc.length; i++) {
+            if (porc[i] > max_porc) {
+                max_porc = porc[i]
+            }
+        }
+
+        securitygasChart.data.datasets[0].data = porc;
+        securitygasChart.update();
+
+        id_table.innerHTML = `
+            
+            <thead>
+                            <tr>
+                                <th>Local da Instalação</th>
+                                <th>Sensor</th>
+                                <th>Status do Vazamento</th>
+                                <th>Última Atualização</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tr_ideal">
+                                <td>Piso - A</td>
+                                <td>Sensor - 1</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>20/04/2025 15:35</td>
+                            </tr>
+                            <tr id="tr_critico">
+                                <td>Piso - A</td>
+                                <td>Sensor - 2</td>
+                                <td class="status-critico" id="td_critico">Crítico</td>
+                                <td>20/04/2025 15:35</td>
+                            </tr>
+                            <tr id="tr_critico">
+                                <td>Piso - B</td>
+                                <td>Sensor - 1</td>
+                                <td class="status-critico" id="td_critico">Crítico</td>
+                                <td>20/04/2025 15:35</td>
+                            </tr>
+                            <tr id="tr_ideal">
+                                <td>Piso - B</td>
+                                <td>Sensor - 2</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>20/04/2025 15:35</td>
+                            </tr>
+                        </tbody>
+
+            `
+
+    }
+
+    function btn_cozinha3() {
+        porc = [0.5, 0.8, 1, 0.6, 0, 0.8, 1, 0.5, 0.2, 1];
+
+        for (i = 0; i < porc.length; i++) {
+            if (porc[i] > max_porc) {
+                max_porc = porc[i]
+            }
+        }
+
+        securitygasChart.data.datasets[0].data = porc;
+        securitygasChart.update();
+
+
+        id_table.innerHTML = `
+            
+            <thead>
+                            <tr>
+                                <th>Local da Instalação</th>
+                                <th>Sensor</th>
+                                <th>Status do Vazamento</th>
+                                <th>Última Atualização</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="tr_ideal">
+                                <td>Piso - A</td>
+                                <td>Sensor - 1</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>30/04/2025 09:00</td>
+                            </tr>
+                            <tr id="tr_ideal">
+                                <td>Piso - A</td>
+                                <td>Sensor - 2</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>30/04/2025 09:00</td>
+                            </tr>
+                            <tr id="tr_ideal">
+                                <td>Piso - B</td>
+                                <td>Sensor - 1</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>30/04/2025 09:00</td>
+                            </tr>
+                            <tr id="tr_ideal">
+                                <td>Piso - B</td>
+                                <td>Sensor - 2</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>30/04/2025 09:00</td>
+                            </tr>
+                            <tr id="tr_ideal">
+                                <td>Piso - B</td>
+                                <td>Sensor - 2</td>
+                                <td class="status-ideal">Ideal</td>
+                                <td>30/04/2025 09:00</td>
+                            </tr>
+                        </tbody>
+
+            `
+
+    }
+
+
+    var securitygasChart = new Chart(document.getElementById('glpChart'), {
+        type: 'line',
+        data: {
+            labels: ['12:10', '12:15', '12:20', '12:25', '12:30', '12:35', '12:40', '12:45', '12:50', '12:55'],
+            datasets: [{
+                label: 'GLP',
+                data: porc,
+                borderColor: 'rgb(54, 162, 235)',
+                tension: 0.4,
+                fill: true
+            },
+            {
+                label: 'Limite Inferior De Explosividade',
+                data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                borderColor: 'red',
+                tension: 0.4,
+            },
+            {
+                label: 'Limite Adequado',
+                data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+                borderColor: 'lightgreen',
+                tension: 0.4,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { display: true }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    const vazamentoChart = new Chart(document.getElementById('vazamentoChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Cozinha 1', 'Cozinha 2', 'Área Externa'],
+            datasets: [{
+                label: 'Ocorrências',
+                data: [12, 14, 5],
+                backgroundColor: [
+                    'rgba(54, 99, 132, 0.7)',
+                    'rgba(54, 162, 235, 0.7)',
+                    'rgba(54, 192, 192, 0.7)'
+                ],
+                borderRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: 16
+                }
+            }
+        }
+    });
+
+
+    function btn_historico() {
+
+        
+
+        if (main_historico.style.display == "flex") {
+
+            main_historico.style.display = "none"
+            main_dash.style.display = "flex"
+            nav_dash.style.borderRadius = "0 10px 10px 0"
+            
+
+
+        } else {
+
+            nav_dash.style.borderRadius = "0px"
+            main_historico.style.display = "flex"
+            main_dash.style.display = "none"
+            main_historico.classList.add("aumentar")
+
+
+        }
+
+
+    }
+
+
+</script>
