@@ -43,12 +43,8 @@
         </div>
 
         <div id="div_btn">
-            
-            <button class="btn_logar" onclick="verificaSenha()">Entrar</button>
-            
-            
 
-
+            <button class="btn_logar" onclick="autenticar()">Entrar</button>
         </div>
 
         <p>
@@ -88,31 +84,63 @@
     }
 
 
-    var tentativa = 0;
-    function verificaSenha() {
+    function autenticar() {
+        
 
-        var email = inp_email.value;
-        var senha = inp_senha.value;
+        var emailVar = inp_email.value;
+        var senhaVar = inp_senha.value;
 
-
-        console.log(`securityg4s@gmail.com`)
-        console.log(`@Securityg4s`)
-
-        if (tentativa >= 3) {
-            alert("Você já tentou 3 vezes! Tente novamente mais tarde.")
-        } else if ((email || senha) == ``) {
-            alert(`preencha todos os campos`)
-        } else if ((email != `securityg4s@gmail.com`) || (senha != `@Securityg4s`)) {
-
-            alert(`Senha ou Email incorretos`);
-            tentativa++;
-        }else{
-            window.open("./dashboard.html", "_blank")
-        }
+        if (emailVar == "" || senhaVar == "") {
+            alert(`Preencha todos os campos!`);
+            return false;
+        } 
 
 
-        console.log(tentativa)
+        fetch("/usuario/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
 
+            if (resposta.ok) {
+                console.log(resposta);
+                alert
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    // sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
+
+                    console.log("ID_USUARIO salvo no sessionStorage:", sessionStorage.ID_USUARIO);
+                    setTimeout(function () {
+                        window.location = "./home.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+                alert("Houve um erro ao tentar realizar o login!")
+                // resposta.text().then(texto => {
+                //     console.error(texto);
+                // });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
     }
+
 
 </script>
