@@ -1,10 +1,9 @@
 var usuarioModel = require("../models/usuarioModel");
-var aquarioModel = require("../models/aquarioModel");
+// var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-    var cpf = req.body.senhaServer;
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -12,7 +11,7 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha, cpf)
+        usuarioModel.autenticar(email, senha,)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -36,10 +35,10 @@ function autenticar(req, res) {
                         //                 res.status(204).json({ aquarios: [] });
                         //             }
                         //         })
-                        // } else if (resultadoAutenticar.length == 0) {
-                        //     res.status(403).send("Email e/ou senha inválido(s)");
-                        // } else {
-                        //     res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    } else if (resultadoAutenticar.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
                 }
             ).catch(
@@ -75,24 +74,35 @@ function cadastrar(req, res) {
         res.status(400).send("cnpj invalido");
     } else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!")
-    }
-    else {
-        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, fkEmpresa, cpf)
+    } else {
+        usuarioModel.validar(email)
             .then(
                 function (resultado) {
-                    res.json(resultado);
+                    var usuarioExiste = resultado[0]['COUNT(email)']
+
+                    if (usuarioExiste > 0) {
+                        res.status(403).send("Já existe um usuário com esse email!");
+                    } else {
+                        usuarioModel.cadastrar(nome, email, senha, fkEmpresa, cpf)
+                            .then(
+                                function (resultado) {
+                                    res.json(resultado);
+                                }
+                            ).catch(
+                                function (erro) {
+                                    console.log(erro);
+                                    console.log(
+                                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                                        erro.sqlMessage
+                                    );
+                                    res.status(500).json(erro.sqlMessage);
+                                }
+                            );
+                    }
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            )
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+
     }
 }
 
