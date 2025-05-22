@@ -2,198 +2,180 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cadastro - Security Gas</title>
-  <link rel="stylesheet" href="./style/cadastro.css" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Gas</title>
+  <link rel="shortcut icon" href="./img/icon.png" type="image/x-icon">
+  <link rel="stylesheet" href="./style/style.css">
 </head>
 
-<body>
+<body onload="listar()">
 
-  <a href="ladingpageSecurityGas.html">
-    <img class="Logo" src="./img/logo.png" alt="Logo da Security Gas" />
-  </a>
+  <section id="home" class="home">
+    <!-- Página completa da Home -->
+    <div class="Home">
 
-  <div class="cadastro">
-    <div class="logo">
-      <img src="../assets- Security gas/Frame 1.png" alt="" />
-    </div>
+      <!-- Navbar -->
+      <header class="Navbar">
+        <img class="Logo" src="./assets/imgs/logo branca.png" alt="Logo da Security Gas" />
 
-    <div class="bemvindo">
-      <h1>CADASTRE-SE!</h1>
-    </div>
+        <nav class="Menu">
+          <a href="#home" class="Cabeçalho">Home</a>
+          <a href="#sobre" class="Cabeçalho">Sobre</a>
+          <a href="#servicos" class="Cabeçalho">Serviços</a>
+          <a href="#contato" class="Cabeçalho">Contato</a>
+          <a href="./simulador.html" class="Cabeçalho">Simulador</a>
+        </nav>
 
-    <div class="inputs">
+        <div class="Autenticacao">
+          <a href="login.html" class="Cabeçalho">Login</a>
+          <a href="cadastro.html" class="Cabeçalho">Cadastro</a>
+        </div>
+      </header>
 
-      <!-- <h2>Selecione como deseja cadastrar</h2>
-      <select id="slct_tipo_usuario" onchange="verificarTipoUsuario()">
-        <option value="">Selecione</option>
-        <option value="empresa">Empresa</option>
-        <option value="unidade">Unidade</option>
-      </select> -->
-
-      <h2 id="h2_codigo_unidade">Código da Unidade</h2>
-      <input type="text" id="inp_codigo_unidade" />
-
-
-      <h2>CNPJ</h2>
-      <input type="text" id="inp_cnpj" />
-
-      <h2>Nome</h2>
-      <input type="text" id="inp_nome" />
-
-      <h2>Telefone</h2>
-      <input type="text" id="inp_telefone" />
-
-      <h2>Email</h2>
-      <input type="text" id="inp_email" />
-
-      <h2>Senha</h2>
-      <input type="text" id="inp_senha" oninput="verificaSenha()" />
-
-      <div id="div_msg">
-        <p id="p_msg"></p>
-        <p id="p_msg_qtdC"></p>
-        <p id="p_msg_aro"></p>
-        <p id="p_msg_num"></p>
-        <p id="p_msg_maiusculo"></p>
+      <!-- Conteúdo central da Home -->
+      <div class="Slogan">
+        <p id="seguranca">SEGURANÇA</p>
+        <p id="confiabilidade"> & CONFIABILIDADE</p>
       </div>
 
     </div>
 
-    <div id="div_btn">
-      <button class="btn_logar" onclick="cadastrar()">Cadastrar</button>
-    </div>
+  </section>
 
-    <p>Já tem uma conta? <a href="./login.html">Logar</a></p>
+  </div>
+  <div class="sobre__boas-vindas">
+    <h2>O que nos diferencia?</h2>
+
   </div>
 
+  <section id="sobre" class="sobre">
+
+    <div class="sobre__descricao">
+      <p>
+        Na correria de um restaurante, cada segundo conta — e a segurança não pode ficar pra depois. A <b>Security
+          Gas</b> surgiu pra facilitar sua rotina com tecnologia simples, inteligente e feita pra funcionar. Nossos
+        sensores monitoram o gás GLP em tempo real e te avisam antes que qualquer problema vire dor de cabeça. Sem
+        complicação. Sem susto. Do seu jeito.
+
+      </p>
+    </div>
+    <div class="sobre__valores">
+      <div class="seguranca">
+        <h3>Segurança</h3>
+        <div class="valor valor--seguranca">
+
+          <img src="./img/vectorSeguranca.svg" alt="Ícone de segurança" width="100px" />
+          <p>A realização das nossas atividades tem como foco a <b>segurança</b> dos nossos clientes</p>
+        </div>
+      </div>
+      <div class="eficiencia">
+        <h3>Eficiência</h3>
+        <div class="valor valor--eficiencia">
+          <img src="./img/vectorEficiencia.svg" alt="Ícone de eficiência" width="150px" />
+          <p>Tecnologia <b>ágil e precisa</b>, garantindo mais tempo para o que realmente importa.</p>
+        </div>
+      </div>
+      <div class="qualidade">
+        <h3>Qualidade</h3>
+        <div class="valor valor--qualidade">
+
+          <img src="./img/vectorQualidade.svg" alt="Ícone de qualidade" width="120px" />
+          <p>Priorizamos <b>serviços de alta qualidade</b>, com precisão e utilidade ao cliente.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="servicos" class="servicos">
+    <div class="servicos__introducao">
+      <h3 id="titulo">Nossos Serviços</h3>
+      <div id="texto">
+        A Security Gas realiza a monitoração de redes de gás GLP (Gás Liquefeito de Petróleo) em restaurantes
+        por
+        meio de sensores de gás que detectam caso haja algum vazamento na rede e um aviso é exibido
+        automaticamente
+        em um software integrado aos sensores, tendo como principais benefícios
+      </div>
+    </div>
+
+    <div class="servicos__lista">
+      <div class="servico servico-prevencao">
+        <h3 class="card_titulo">Prevenção de Riscos</h3>
+        <p>Segurança garantida com práticas corretas de instalação e monitoramento.</p>
+      </div>
+      <div class="servico servico-confiabilidade">
+        <h3 class="card_titulo">Maior Confiabilidade</h3>
+        <p>Soluções seguras e eficientes para fortalecer a sua confiança.</p>
+      </div>
+      <div class="servico servico-manutencao">
+        <h3 class="card_titulo">Custos de Manutenção Reduzidos</h3>
+        <p>Reduza gastos e aumente a eficiência com nossa tecnologia.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="contatenos">
+    <h2>Contate-nos</h2>
+  </div>
+  <section id="contato" class="contato">
+    <div class="card-contato">
+      <div class="formulario-contato">
+        <div>
+          <span>Nome</span>
+          <br>
+          <input id="input_nome" type="text">
+          <br><br>
+        </div>
+        <div>
+          <span>Email</span>
+          <br>
+          <input id="input_email" type="email">
+          <br><br>
+        </div>
+        <div>
+          <span>Telefone</span>
+          <br>
+          <input id="input_telefone" type="text">
+          <br><br>
+          <span id="mensagem">Mensagem</span>
+          <br>
+          <input id="input_mensagem" type="text"></input>
+        </div>
+        <div>
+          <br><br>
+        </div>
+        <button class="botao" onclick="funcao()">Enviar</button>
+      </div>
+      <div class="informacoes-contato">
+        <h3>Informações</h3>
+        <p>A equipe da Security Gas está pronta para
+          atender você com agilidade e eficiência.
+          Se precisar de mais informações sobre
+          nossos serviços, esclarecer dúvidas ou
+          solicitar suporte, basta preencher o
+          formulário ao lado. Sua mensagem será
+          recebida com toda atenção. Entre em
+          contato e conte com a Security Gas
+          e tenha mais segurança no seu restaurante.</p>
+        <div class="contatos">
+          <p><img src="./img/iconTelefone.png" class="icone"> (11) 99602-2304</p>
+          <p><img src="./img/iconEmail.png" class="icone"> contato@securitygas.com</p>
+          <p><img src="./img/iconLocal.png"> Rua Haddock Lobo, 595</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  </div>
+  <!--footer inicio-->
+  <div class="footer">
+    <span>Copyright ©2025 by SecurityGas</span>
+  </div>
+  <!--footer fim-->
+  </footer>
 </body>
 
 </html>
-
-<script>
-  // function verificarTipoUsuario() {
-  //   if (slct_tipo_usuario.value === "unidade") {
-  //     h2_codigo_unidade.style.display = "block";
-  //     inp_codigo_unidade.style.display = "block";
-  //   } else {
-  //     h2_codigo_unidade.style.display = "none";
-  //     inp_codigo_unidade.style.display = "none";
-  //   }
-  // }
-
-  // function verificaSenha() {
-  //   var verificacao = 0;
-  //   var senha = inp_senha.value;
-  //   var letra_maiuscula = 0;
-  //   var letra_especial = 0;
-  //   var letra_numero = 0;
-
-  //   p_msg_qtdC.innerHTML = ``;
-  //   p_msg_aro.innerHTML = ``;
-  //   p_msg_num.innerHTML = ``;
-  //   p_msg_maiusculo.innerHTML = ``;
-
-  //   div_btn.innerHTML = `<button class="btn_logar">Cadastrar</button>`;
-
-  //   for (var contadorL = 0; contadorL < senha.length; contadorL++) {
-  //     var letra = senha[contadorL];
-
-  //     if (letra !== letra.toLowerCase()) {
-  //       letra_maiuscula = 1;
-  //     }
-
-  //     if (letra === '@' || letra === '#') {
-  //       letra_especial = 1;
-  //     }
-
-  //     if (!isNaN(letra)) {
-  //       letra_numero = 1;
-  //     }
-  //   }
-
-  //   if (senha.length < 6) {
-  //     verificacao = 0;
-  //     p_msg_qtdC.innerHTML = `<span style="color:red">A senha deve ter pelo menos 6 caracteres.</span>`;
-  //   } else {
-  //     verificacao++;
-  //   }
-
-  //   if (letra_especial > 0) {
-  //     verificacao++;
-  //   } else {
-  //     verificacao = 0;
-  //     p_msg_aro.innerHTML = `<span style="color:red">Deve ter algum caractere especial.</span>`;
-  //   }
-
-  //   if (letra_numero < 1) {
-  //     verificacao = 0;
-  //     p_msg_num.innerHTML = `<span style="color:red">A senha deve ter pelo menos um número.</span>`;
-  //   } else {
-  //     verificacao++;
-  //   }
-
-  //   if (letra_maiuscula <= 0) {
-  //     verificacao = 0;
-  //     p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
-  //   } else {
-  //     verificacao++;
-  //   }
-
-  //   if (verificacao >= 4) {
-  //     div_btn.innerHTML = `<a href="./login.html"><button class="btn_logar">Cadastrar</button></a>`;
-  //   }
-  // }
-
-  function cadastrar() {
-    var codigoVar = inp_codigo_unidade.value
-    var cnpjVar = inp_cnpj.value
-    var nomeVar = inp_nome.value
-    var telefoneVar = inp_telefone.value
-    var emailVar = inp_email.value
-    var senhaVar = inp_senha.value
-    var idUnidadeVincular
-
-    if (
-      codigoVar == "" ||
-      cnpjVar == "" ||
-      nomeVar == "" ||
-      telefoneVar == "" ||
-      emailVar == "" ||
-      senhaVar == ""
-    ) {
-      alert("Insira dados em todos em campos")
-    }
-
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        idUnidadeVincularServer: idUnidadeVincular,
-        cnpjServer: cnpjVar,
-        nomeServer: nomeVar,
-        telefoneServer: telefoneVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar
-      }),
-      
-    })
-    .then(function(resposta) {
-      console.log("resposta: ", resposta)
-
-      if (resposta.ok) {
-        alert("Cadastro realizado com sucesso!")
-
-        setTimeout(() => {
-          window.location = "logim.html"
-        }, "2000")
-      } else {
-        alert("Erro ao cadastrar usuário!")
-      }
-    })
-  }
-</script>

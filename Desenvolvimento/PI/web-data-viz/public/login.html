@@ -29,11 +29,11 @@
         <div class="inputs">
 
             <h2>Email</h2>
-            <input type="text" id="inp_email">
+            <input type="text" id="email_input">
 
             <h2>Senha</h2>
             <div class="div_senha" id="div_senha">
-                <input type="password" id="inp_senha" class="inpt_senha">
+                <input type="password" id="senha_input" class="inpt_senha">
                 <button onmousedown="verSenha()" onmouseleave="naoVerSenha()" class="btn_senha"><img
                         src="./img/olho-aberto.png" alt=""></button>
             </div>
@@ -43,7 +43,6 @@
         </div>
 
         <div id="div_btn">
-
             <button class="btn_logar" onclick="autenticar()">Entrar</button>
         </div>
 
@@ -83,20 +82,23 @@
         inp_senha.value = senha
     }
 
-
     function autenticar() {
-        
 
-        var emailVar = inp_email.value;
-        var senhaVar = inp_senha.value;
+        var emailVar = email_input.value;
+        var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            alert(`Preencha todos os campos!`);
+            alert("Preencha todos os campos!");
             return false;
-        } 
+        } else {
+            alert("Login realizado com sucesso!")
+        }
 
 
-        fetch("/usuario/autenticar", {
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -110,29 +112,29 @@
 
             if (resposta.ok) {
                 console.log(resposta);
-                alert
 
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    // sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.idUsuario;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
-                    console.log("ID_USUARIO salvo no sessionStorage:", sessionStorage.ID_USUARIO);
                     setTimeout(function () {
-                        window.location = "./home.html";
-                    }, 1000); // apenas para exibir o loading
+                        window.location = "./dashboard/cards.html";
+                    }, 1000);
 
                 });
 
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
-                alert("Houve um erro ao tentar realizar o login!")
-                // resposta.text().then(texto => {
-                //     console.error(texto);
-                // });
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    alert("Erro no login: " + texto);
+                });
             }
 
         }).catch(function (erro) {
@@ -141,6 +143,7 @@
 
         return false;
     }
+
 
 
 </script>
