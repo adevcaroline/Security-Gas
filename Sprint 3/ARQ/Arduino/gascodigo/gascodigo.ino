@@ -1,0 +1,35 @@
+ int PINO_SENSOR_MQ2 = A5;// cria a variavel e seta o pino A0 do sensor
+  int VALOR_MINIMO = 300;//cria uma variavel com a valor mínimo do sensor
+  int VALOR_MAXIMO = 1000;//cria uma variavel com a valor máximo do sensor
+  
+  void setup() {
+    Serial.begin(9600);//velocidade de bits de transferência entre arduino e o computador
+  }
+
+void loop() {
+  int valorSensor = analogRead(PINO_SENSOR_MQ2) ;//adiciona a uma variável o valor do sensor que está sendo recebida pelo pino A-
+  float porcentagem = (((float)(valorSensor - VALOR_MINIMO) / (VALOR_MAXIMO - VALOR_MINIMO)) * 100) - 70;//calcula o percentual da variacão
+  int maximo=100;//variável sobre o maximo
+  int perigo = 2;//variável avisando perigo de passar a porcentagen
+  int minimo = 0;
+ 
+  if (porcentagem < 0) {
+    porcentagem = 0;
+  }
+  else if(porcentagem > 100) {
+    porcentagem = 100;
+  }
+  // Serial.print("Porcentagem:");
+  Serial.println(porcentagem);      
+  // Serial.println(" ");    
+  // Serial.print("maximo:");         
+  // Serial.print(maximo);        
+  // Serial.print(" ");
+  // Serial.print("minimo:");
+  // Serial.print(minimo);
+  // Serial.print(" ");
+  // Serial.print("Perigo:");
+  // Serial.println(perigo);     
+  delay(1000);
+  // put your main code here, to run repeatedly:
+}
