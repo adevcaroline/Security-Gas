@@ -1,6 +1,5 @@
 create database securitygas3;
 use securitygas3;
-
 create table restaurante(
 idRestaurante int primary key auto_increment,
 nome_restaurante varchar(45) not null,
