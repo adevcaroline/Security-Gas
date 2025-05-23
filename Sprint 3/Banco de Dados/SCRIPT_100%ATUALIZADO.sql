@@ -55,7 +55,7 @@ create table leitura_sensor(
 fkAlerta int,
 fkSensor int,
 porcentagem_captada int not null,
-data_hora datetime not null,
+data_hora DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 foreign key (fkAlerta) references alerta(idAlerta),
 foreign key (fkSensor) references sensor(idSensor)
 );
