@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuração de Ambientes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="config.css">
+</head>
+<body>
+
+  <div class="container">
+    <h2>Nova Configuração de Ambiente</h2>
+
+    <label for="nomeAmbiente">Nome do Ambiente:</label>
+    <input type="text" id="nomeAmbiente">
+
+    <div id="sensores">
+      <!-- OS Sensores vão aparecer aqui -->
+    </div>
+
+    <button onclick="adicionarSensor()">Adicionar Sensor</button>
+    <button onclick="salvarAmbiente()">Salvar Ambiente</button>
+  </div>
+
+ <script>
+  let contador = 0;
+
+  function adicionarSensor() {
+    contador++;
+
+    const divSensores = document.getElementById('sensores');
+
+    const novaDiv = document.createElement('div');
+    novaDiv.className = 'sensor';
+
+    const label = document.createElement('label');
+    label.innerText = 'Nome do Sensor ' + contador;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'sensor';
+
+    novaDiv.appendChild(label);
+    novaDiv.appendChild(input);
+    divSensores.appendChild(novaDiv);
+  }
+
+  function salvarAmbiente() {
+    const nomeAmbiente = document.getElementById('nomeAmbiente').value;
+
+    const sensores = [];
+    const inputs = document.getElementsByName('sensor');
+    for (let i = 0; i < inputs.length; i++) {
+      sensores.push({
+        nome_sensor: inputs[i].value,
+        statusAtivacao: true // status do sensor vai estar ativo
+      });
+    }
+
+    const dados = {
+      nome_local: nomeAmbiente,
+      fkRestaurante: 1, // <-- Trocar  pelo ID real do restaurante
+      sensores: sensores
+    };
+
+    console.log("Dados prontos para o banco:", dados);
+
+    // Aqui vamos enviar os dados com fetch para o backend
+    /*
+    fetch('/caminho/backend', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dados)
+    })
+    .then(res => res.json())
+    .then(resposta => {
+      alert("Ambiente salvo com sucesso!");
+    })
+    .catch(err => {
+      console.error("Erro ao salvar ambiente:", err);
+      alert("Erro ao salvar ambiente.");
+    });
+    */
+
+    // Limpando os campos
+    document.getElementById('nomeAmbiente').value = '';
+    document.getElementById('sensores').innerHTML = '';
+    contador = 0;
+  }
+</script>
+</body>
+</html>

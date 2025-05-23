@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuração de Ambientes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      color: #0B5884;
+      margin-bottom: 10px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: 500;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .sensor {
+      margin-top: 10px;
+      padding: 10px;
+      background: #f0f8ff;
+      border-radius: 10px;
+    }
+
+    button {
+      margin-top: 15px;
+      background-color: #0B5884;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background-color: #084365;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Nova Configuração de Ambiente</h2>
+
+    <label for="nomeAmbiente">Nome do Ambiente:</label>
+    <input type="text" id="nomeAmbiente">
+
+    <div id="sensores">
+      <!-- Sensores vão aparecer aqui -->
+    </div>
+
+    <button onclick="adicionarSensor()">Adicionar Sensor</button>
+    <button onclick="salvarAmbiente()">Salvar Ambiente</button>
+  </div>
+
+  <script>
+    let contador = 0;
+
+    function adicionarSensor() {
+      contador++;
+
+      const divSensores = document.getElementById('sensores');
+
+      const novaDiv = document.createElement('div');
+      novaDiv.className = 'sensor';
+
+      const label = document.createElement('label');
+      label.innerText = 'Nome do Sensor ' + contador;
+
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.name = 'sensor';
+
+      novaDiv.appendChild(label);
+      novaDiv.appendChild(input);
+      divSensores.appendChild(novaDiv);
+    }
+
+    function salvarAmbiente() {
+      const nomeAmbiente = document.getElementById('nomeAmbiente').value;
+
+      const sensores = [];
+      const inputs = document.getElementsByName('sensor');
+      for (let i = 0; i < inputs.length; i++) {
+        sensores.push(inputs[i].value);
+      }
+
+      const dados = {
+        ambiente: nomeAmbiente,
+        sensores: sensores
+      };
+
+      console.log("Dados do ambiente:", dados);
+
+      alert("Ambiente salvo com sucesso!");
+
+      // Limpa os campos
+      document.getElementById('nomeAmbiente').value = '';
+      document.getElementById('sensores').innerHTML = '';
+      contador = 0;
+    }
+  </script>
+
+</body>
+</html>
