@@ -62,13 +62,16 @@ function cadastrar(req, res) {
 
     console.log("req.body recebido:", req.body);
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+    var codigoUnidade = req.body.nomeServer;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
     var fkRestaurante = req.body.idRestauranteVincularServer;
 
     // Faça as validações dos valores
-    if (nome == undefined) {
+    if (codigoUnidade == undefined) {
+        res.status(400).send("Seu código está undefined!")
+    } else if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -80,8 +83,9 @@ function cadastrar(req, res) {
         usuarioModel.validar(email)
             .then(
                 function (resultado) {
+                    var codigoValido = resultado
                     var usuarioExiste = resultado[0]['COUNT(email)']
-
+                    if (codigoValido = codigoValido)
                     if (usuarioExiste > 0) {
                         res.status(403).send("Já existe um usuário com esse email!");
                     } else {

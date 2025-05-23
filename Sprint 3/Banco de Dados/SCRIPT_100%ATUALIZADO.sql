@@ -1,22 +1,26 @@
 create database securitygas3;
 use securitygas3;
-
 create table restaurante(
 idRestaurante int primary key auto_increment,
 nome_restaurante varchar(45) not null,
-cnpj char(14) not null,
-telefoneFixo varchar(45)
+codigo_ativacao char(6)
 );
+
+select * from restaurante;
+
+insert into restaurante (nome_restaurante, codigo_ativacao) values 
+('MC', 'ABC123');
 
 create table usuario(
 idUsuario int primary key auto_increment,
 nome varchar(45)not null,
 email varchar(50)not null,
 senha varchar(45)not null,
-celular char(11),
 fkRestaurante int,
 foreign key (fkRestaurante) references restaurante(idRestaurante)
 );
+
+select * from usuario;
 
 create table endereco(
 idEndereco int auto_increment,
