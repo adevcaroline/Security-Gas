@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro - Security Gas</title>
+  <link rel="stylesheet" href="./style/cadastro.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body onload="listar()">
+
+  <a href="index.html">
+    <img class="Logo" src="./img/logo.png" alt="Logo da Security Gas" />
+  </a>
+
+  <div class="cadastro">
+    <div class="logo">
+      <img src="../assets- Security gas/Frame 1.png" alt="" />
+    </div>
+
+    <div class="bemvindo">
+      <h1>CADASTRE-SE!</h1>
+    </div>
+
+    <div class="inputs">
+
+      <!-- <h2>Selecione como deseja cadastrar</h2>
+      <select id="slct_tipo_usuario" onchange="verificarTipoUsuario()">
+        <option value="">Selecione</option>
+        <option value="empresa">Empresa</option>
+        <option value="unidade">Unidade</option>
+      </select> -->
+
+      <h2 id="h2_codigo_unidade">Código da Unidade</h2>
+      <input type="text" id="codigo_input" />
+
+      <h2>Nome</h2>
+      <input type="text" id="nome_input" />
+
+      <h2>Email</h2>
+      <input type="text" id="email_input" />
+
+      <h2>Senha</h2>
+      <input type="text" id="senha_input" />
+
+      <!-- <div id="div_msg">
+        <p id="p_msg"></p>
+        <p id="p_msg_qtdC"></p>
+        <p id="p_msg_aro"></p>
+        <p id="p_msg_num"></p>
+        <p id="p_msg_maiusculo"></p>
+      </div> -->
+      <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+          <span id="mensagem_erro"></span>
+        </div>
+      </div>
+    </div>
+
+    <div id="div_btn">
+      <button class="btn_logar" onclick="cadastrar()">Cadastrar</button>
+    </div>
+
+    <p>Já tem uma conta? <a href="./login.html">Logar</a></p>
+  </div>
+
+</body>
+
+</html>
+
+<script>
+  // function verificarTipoUsuario() {
+  //   if (slct_tipo_usuario.value === "unidade") {
+  //     h2_codigo_unidade.style.display = "block";
+  //     inp_codigo_unidade.style.display = "block";
+  //   } else {
+  //     h2_codigo_unidade.style.display = "none";
+  //     inp_codigo_unidade.style.display = "none";
+  //   }
+  // }
+
+  // function verificaSenha() {
+  //   var verificacao = 0;
+  //   var senha = inp_senha.value;
+  //   var letra_maiuscula = 0;
+  //   var letra_especial = 0;
+  //   var letra_numero = 0;
+
+  //   p_msg_qtdC.innerHTML = ``;
+  //   p_msg_aro.innerHTML = ``;
+  //   p_msg_num.innerHTML = ``;
+  //   p_msg_maiusculo.innerHTML = ``;
+
+  //   div_btn.innerHTML = `<button class="btn_logar">Cadastrar</button>`;
+
+  //   for (var contadorL = 0; contadorL < senha.length; contadorL++) {
+  //     var letra = senha[contadorL];
+
+  //     if (letra !== letra.toLowerCase()) {
+  //       letra_maiuscula = 1;
+  //     }
+
+  //     if (letra === '@' || letra === '#') {
+  //       letra_especial = 1;
+  //     }
+
+  //     if (!isNaN(letra)) {
+  //       letra_numero = 1;
+  //     }
+  //   }
+
+  //   if (senha.length < 6) {
+  //     verificacao = 0;
+  //     p_msg_qtdC.innerHTML = `<span style="color:red">A senha deve ter pelo menos 6 caracteres.</span>`;
+  //   } else {
+  //     verificacao++;
+  //   }
+
+  //   if (letra_especial > 0) {
+  //     verificacao++;
+  //   } else {
+  //     verificacao = 0;
+  //     p_msg_aro.innerHTML = `<span style="color:red">Deve ter algum caractere especial.</span>`;
+  //   }
+
+  //   if (letra_numero < 1) {
+  //     verificacao = 0;
+  //     p_msg_num.innerHTML = `<span style="color:red">A senha deve ter pelo menos um número.</span>`;
+  //   } else {
+  //     verificacao++;
+  //   }
+
+  //   if (letra_maiuscula <= 0) {
+  //     verificacao = 0;
+  //     p_msg_maiusculo.innerHTML = `<span style="color:red">A senha deve ter pelo menos uma letra maiúscula.</span>`;
+  //   } else {
+  //     verificacao++;
+  //   }
+
+  //   if (verificacao >= 4) {
+  //     div_btn.innerHTML = `<a href="./login.html"><button class="btn_logar">Cadastrar</button></a>`;
+  //   }
+  // }
+
+  let listaRestauranteCadastradas = [];
+
+  function cadastrar() {
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var codigoVar = codigo_input.value;
+    var idRestauranteVincular
+
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      codigoVar == ""
+    ) {
+      alert("Insira dados em todos em campos")
+      return;
+    }
+
+    // for (let i = 0; i < listaRestauranteCadastradas.length; i++) {
+    //   if (listaRestauranteCadastradas[i].codigo_ativacao == codigoVar) {
+    //     idRestauranteVincular = listaRestauranteCadastradas[i].id
+    //     console.log("Código de ativação válido.");
+    //     break;
+    //   } else {
+    //     cardErro.style.display = "block";
+    //     mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
+    //     finalizarAguardar();
+    //   }
+    // }
+
+    let codigoValido = false;
+
+    for (let i = 0; i < listaRestauranteCadastradas.length; i++) {
+      if (listaRestauranteCadastradas[i].codigo_ativacao == codigoVar) {
+        idRestauranteVincular = listaRestauranteCadastradas[i].idRestaurante;
+        codigoValido = true;
+        break;
+      }
+    }
+
+    if (!codigoValido) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "Código de ativação inválido!";
+      return;
+    }
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        idRestauranteVincularServer: idRestauranteVincular
+      }),
+
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta)
+
+        if (resposta.ok) {
+          alert("Cadastro realizado com sucesso!")
+
+          setTimeout(() => {
+            window.location = "loginteste.html"
+          }, "1000")
+        } else {
+          alert("Erro ao cadastrar usuário!")
+        }
+      })
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaRestauranteCadastradas.push(empresa);
+
+            console.log("listaRestauranteCadastradas")
+            console.log(listaRestauranteCadastradas[0].codigo_ativacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+</script>
