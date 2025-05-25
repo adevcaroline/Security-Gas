@@ -5,7 +5,7 @@ const mysql = require('mysql2');
 
 // constantes para configurações
 const SERIAL_BAUD_RATE = 9600;
-const SERVIDOR_PORTA = 3333;
+const SERVIDOR_PORTA = 3300;
 
 // habilita ou desabilita a inserção de dados no banco de dados
 const HABILITAR_OPERACAO_INSERIR = true;
@@ -22,7 +22,7 @@ const serial = async (
             host: 'localhost',
             user: 'aluno',
             password: 'Sptech#2024',
-            database: 'securitygas',
+            database: 'securitygas3',
             port: 3307
         }
     ).promise();
@@ -64,7 +64,7 @@ const serial = async (
             // este insert irá inserir os dados na tabela "medida"
             await poolBancoDados.execute(
                 // 'INSERT INTO medida (sensor_analogico, sensor_digital) VALUES (?, ?)',
-                'INSERT INTO Leituras_sensor (porcentagem_captada) VALUES (?)',
+                'INSERT INTO leitura_sensor (porcentagem_captada) VALUES (?)',
                 [sensorAnalogico]
                 // [sensorAnalogico, sensorDigital]
             );

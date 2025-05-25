@@ -37,10 +37,14 @@
 
         <div class="nav_historico">
 
-          
+
 
             <button onclick="btn_historico()" id="btn_historico">
-                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentcolor"><path d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                    fill="currentcolor">
+                    <path
+                        d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z" />
+                </svg>
                 Historico
             </button>
 
@@ -58,7 +62,7 @@
 
             <h2 id="h2_historico">Histórico - Ocorrências</h2>
             <div class="historico">
-               
+
 
                 <div class="linha-historico">
                     <span class="coluna piso">Piso - A</span>
@@ -144,7 +148,7 @@
             <h1 id="nome_unidade">Unidade 1</h1>
             <p id="nome_empresa">Empresa XPTO</p>
         </section>
-        <section id="sec_grafico">
+        <!-- <section id="sec_grafico">
 
             <h1>Concentração GLP em <span id="span_ambiente"></span>:</h1>
 
@@ -204,56 +208,150 @@
 
 
 
+        </section> -->
+
+
+        <header id="header_kpi">
+
+            <!-- <section id="sec_logo">
+
+                <img src="./img/logo_branca.png" alt="" id="img_logo_security">
+
+            </section> -->
+
+            <section>
+
+                <h1>Situação Atual:</h1>
+
+                <p></p>
+
+            </section>
+
+            <section>
+
+                <h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
+
+                <p></p>
+
+            </section>
+
+            <section>
+
+                <h1>Área com mais ocorrências no mês <span id="span_mes"></span>:</h1>
+
+                <p></p>
+
+            </section>
+
+            <!-- GRÁFICO!! -->
+            <!-- <section id="sec_grafico" class="sec_glpMes">
+
+                <h1></h1>
+
+                <canvas id="vazamentoChart"></canvas>
+
+            </section> -->
+
+
+
+
+        </header>
+
+        <section id="sec_sensores">
+            <div class="div_sensores" onclick="abrirModal(sec_modal_sensor)">
+                <p>sensor1</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor2</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor3</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
+            <div class="div_sensores">
+                <p>sensor4</p>
+            </div>
         </section>
 
     </main>
 
 
-    <aside id="aside_kpi">
+    <section id="sec_modals">
 
-        <section id="sec_logo">
+        <section id="sec_modal_sensor" onclick="abrirModal(sec_modal_sensor)">
+            <section id="btn_invisivel">
+                <main class="main_modal_sensor">
+                    <div id="grafico_modal_sensor">
 
-            <img src="./img/logo_branca.png" alt="" id="img_logo_security">
+                        <section id="sec_grafico" class="sec_glpMes">
 
+                            <h1>Grafico</h1>
+
+                            <canvas id="glpChart"></canvas>
+
+                        </section>
+
+                    </div>
+                    <p>historico</p>
+                    <div id="historico_modal_sensor">
+
+                        <div class="linha-historico">
+                            <span class="coluna piso">Piso - A</span>
+                            <span class="coluna sensor">Sensor - 1</span>
+                            <span class="coluna data">18/04/2025 20:40</span>
+                        </div>
+
+                        <div class="linha-historico">
+                            <span class="coluna piso">Piso - A</span>
+                            <span class="coluna sensor">Sensor - 1</span>
+                            <span class="coluna data">18/04/2025 20:40</span>
+                        </div>
+
+                        <div class="linha-historico">
+                            <span class="coluna piso">Piso - A</span>
+                            <span class="coluna sensor">Sensor - 1</span>
+                            <span class="coluna data">18/04/2025 20:40</span>
+                        </div>
+
+                        <div class="linha-historico">
+                            <span class="coluna piso">Piso - A</span>
+                            <span class="coluna sensor">Sensor - 1</span>
+                            <span class="coluna data">18/04/2025 20:40</span>
+                        </div>
+
+                        <div class="linha-historico">
+                            <span class="coluna piso">Piso - A</span>
+                            <span class="coluna sensor">Sensor - 1</span>
+                            <span class="coluna data">18/04/2025 20:40</span>
+                        </div>
+
+
+                    </div>
+                </main>
+
+                <aside>
+                    <div class="kpis" id="kpis1">a</div>
+                    <div class="kpis" id="kpis2">b</div>
+                    <div class="kpis" id="kpis3">c</div>
+                </aside>
+            </section>
         </section>
 
-        <section>
-
-            <h1>Situação Atual:</h1>
-
-            <p></p>
-
-        </section>
-
-        <section>
-
-            <h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
-
-            <p></p>
-
-        </section>
-
-        <section>
-
-            <h1>Área com mais ocorrências no mês <span id="span_mes"></span>:</h1>
-
-            <p></p>
-
-        </section>
-
-        <section id="sec_grafico" class="sec_glpMes">
-
-            <h1></h1>
-
-            <canvas id="vazamentoChart"></canvas>
-
-        </section>
-
-
-
-
-    </aside>
-
+    </section>
 
 
 </body>
@@ -261,6 +359,30 @@
 </html>
 
 <script>
+
+    var modalAberto = false
+
+    function abrirModal(idModal) {
+
+        if (modalAberto) {
+
+            idModal.style.left = "-50%";
+            idModalAberto = false;
+
+            nav_dash.classList.remove("blur")
+            main_dash.classList.remove("blur")
+
+
+        } else {
+            idModal.style.left = "50%";
+            modalAberto = true;
+
+            nav_dash.classList.add("blur")
+            main_dash.classList.add("blur")
+
+        }
+
+    }
 
     var porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3]
     var max_porc = porc[0]
@@ -270,6 +392,7 @@
             max_porc = porc[i]
         }
     }
+
 
     function btn_cozinha1() {
         porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3];
@@ -508,14 +631,14 @@
 
     function btn_historico() {
 
-        
+
 
         if (main_historico.style.display == "flex") {
 
             main_historico.style.display = "none"
             main_dash.style.display = "flex"
             nav_dash.style.borderRadius = "0 10px 10px 0"
-            
+
 
 
         } else {
