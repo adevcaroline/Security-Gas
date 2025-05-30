@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root{
+
+    --cor-alto-risco: rgba(255, 126, 126, 0.5);
+    --cor-risco: rgb(255, 203, 126, 0.5);
+    --cor-normal: rgb(126, 190, 255, 0.5);
+    
+}
+
+html,
+body {
+    margin: 10px;
+    height: 95%;
+    overflow: hidden;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0B5884;
+    color: #0B5884;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard {
+    display: flex;
+    /* justify-content: space-between; */
+    height: 30%;
+    gap: 10px;
+    margin: 10px;
+    
+}
+/* se quiser separar essas para melhor organizacao*/
+.kpi,
+.alerta {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    /* justify-content: center; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    font-weight: bold;
+    width: 100%;
+}
+
+.kpi h1 {
+    font-size: 70px;
+    color: #003366;
+    margin: 0;
+}
+
+.alerta h1 {
+    font-size: 52px;
+    color: #003366;
+    margin: 0;
+}
+
+.alerta {
+    font-size: 1.2em;
+}
+
+.alerta span {
+    color: red;
+    font-weight: bold;
+}
+
+.select-card{
+    background-color: white;
+    width: 20%;
+
+}
+
+select {
+    padding: 20px;
+    font-size: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+.graficos {
+    display: flex;
+    /* height: 50%; */
+    width: 100%;
+}
+
+.graficos h2 {
+    padding: 0 0 30px;
+}
+
+.grafico-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 10px;
+    font-weight: bold;
+    width: 100%;
+    margin: 10px;
+}
+
+.grafico-card canvas {
+    max-height: 200px;
+}
+
+.status-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    font-weight: bold;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+
+.status-card h4 {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1em;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #e6f0fa;
+}
+
+.status-alerta {
+    color: red;
+    font-weight: bold;
+}
+
+.status-normal {
+    color: green;
+    font-weight: bold;
+}
+
+.conteiner_graficos {
+    display: flex;
+    /* height: 100%; */
+}
+
+.graficos-listas{
+    width: 80% ;
+    /* height: 100%; */
+}
+
+.select-card{
+    background-color: white;
+    /* height: 90%; */
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.botoes_ambientes{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 10px;
+}
+
+button {
+    background: var(--cor-normal);
+    border: none;
+    /* height: 100px; */
+}
+
+.select-ambiente h2{
+    padding: 10px;
+    color: #003366;
+    
+
+}
+
+#btn_coz1{
+    background-color: var(--cor-alto-risco);
+}
+
+#btn_coz2{
+    background-color: var(--cor-risco);
+}
+
+
+#tr_alerta, #td_alerta {
+    color: white;
+    background-color: red;
+}
