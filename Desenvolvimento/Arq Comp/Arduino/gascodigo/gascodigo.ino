@@ -12,6 +12,8 @@ void loop() {
   int maximo=100;//variável sobre o maximo
   int perigo = 2;//variável avisando perigo de passar a porcentagen
   int minimo = 0;
+
+  Serial.println(valorSensor);
  
   if (porcentagem < 0) {
     porcentagem = 0;

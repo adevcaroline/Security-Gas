@@ -50,7 +50,7 @@ const serial = async (
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
         console.log(data);
-         const valores = data;
+        const valores = data;
         // const sensorDigital = parseInt(valores[0]);
         const sensorAnalogico = parseFloat(valores);
 
@@ -61,18 +61,34 @@ const serial = async (
         // insere os dados no banco de dados (se habilitado)
         if (HABILITAR_OPERACAO_INSERIR) {
 
-            // este insert irá inserir os dados na tabela "medida"
-            await poolBancoDados.execute(
-                // 'INSERT INTO medida (sensor_analogico, sensor_digital) VALUES (?, ?)',
-                'INSERT INTO leitura_sensor (porcentagem_captada) VALUES (?)',
-                [sensorAnalogico]
-                // [sensorAnalogico, sensorDigital]
-            );
-            
-            // console.log("valores inseridos no banco: ", sensorAnalogico + ", " + sensorDigital);
-            console.log("valores inseridos no banco: ", sensorAnalogico);
+            // Convertendo o valor do sensor, se necessário
+            var porcentagem = Number(sensorAnalogico);
+            var idAlerta = 1; // Começa como "Normal"
+            var nivel = "";
+            var idSensor = 1
 
+            // Verificando nível de alerta com base na concentração de gás
+            if (porcentagem < 1.8) {
+                idAlerta = 1;
+                nivel = "Normal";
+            } else if (porcentagem >= 1.8 && porcentagem <= 9.0) {
+                idAlerta = 2;
+                nivel = "Atenção";
+            } else {
+                idAlerta = 3;
+                nivel = "Crítico";
+            }
+
+            // Executando o INSERT no banco com os dados
+            await poolBancoDados.execute(
+                'INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada) VALUES (?, ?, ?)',
+                [idAlerta, idSensor, porcentagem]
+            );
+
+            // Exibindo no console o resultado da inserção
+            console.log(`Valor inserido: ${porcentagem}% | Nível: ${nivel}`);
         }
+
 
     });
 
