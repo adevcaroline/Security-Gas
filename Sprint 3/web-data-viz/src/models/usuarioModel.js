@@ -29,6 +29,7 @@ function validar(email) {
     return database.executar(instrucao);
 }
 
+
 module.exports = {
     autenticar,
     cadastrar,

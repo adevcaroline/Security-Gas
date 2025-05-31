@@ -250,10 +250,16 @@
 			</header>
 
 			<section id="sec_sensores">
-				<div class="div_sensores" onclick="abrirModal(sec_modal_sensor)">
+				<div
+					class="div_sensores"
+					onclick="abrirModal(sec_modal_sensor), sensoresGrafico(1)"
+				>
 					<p>sensor1</p>
 				</div>
-				<div class="div_sensores">
+				<div
+					class="div_sensores"
+					onclick="abrirModal(sec_modal_sensor), sensoresGrafico(2)"
+				>
 					<p>sensor2</p>
 				</div>
 				<div class="div_sensores">
@@ -281,57 +287,60 @@
 		</main>
 
 		<section id="sec_modals">
-			<section id="sec_modal_sensor" onclick="abrirModal(sec_modal_sensor)">
-				<section id="btn_invisivel">
-					<main class="main_modal_sensor">
-						<div id="grafico_modal_sensor">
-							<section id="sec_grafico" class="sec_glpMes">
-								<h1>Grafico</h1>
+			<section
+				id="btn_invisivel"
+				onclick="abrirModal(sec_modal_sensor)"
+			></section>
 
-								<canvas id="glpChart" width="50" height="17"></canvas>
-							</section>
+			<section id="sec_modal_sensor">
+				<main class="main_modal_sensor">
+					<div id="grafico_modal_sensor">
+						<section id="sec_grafico" class="sec_glpMes">
+							<h1>Grafico</h1>
+
+							<canvas id="glpChart" width="50" height="17"></canvas>
+						</section>
+					</div>
+					<div id="historico_modal_sensor">
+						<p>historico</p>
+
+						<div class="linha-historico">
+							<span class="coluna piso">Piso - A</span>
+							<span class="coluna sensor">Sensor - 1</span>
+							<span class="coluna data">18/04/2025 20:40</span>
 						</div>
-						<div id="historico_modal_sensor">
-							<p>historico</p>
 
-							<div class="linha-historico">
-								<span class="coluna piso">Piso - A</span>
-								<span class="coluna sensor">Sensor - 1</span>
-								<span class="coluna data">18/04/2025 20:40</span>
-							</div>
-
-							<div class="linha-historico">
-								<span class="coluna piso">Piso - A</span>
-								<span class="coluna sensor">Sensor - 1</span>
-								<span class="coluna data">18/04/2025 20:40</span>
-							</div>
-
-							<div class="linha-historico">
-								<span class="coluna piso">Piso - A</span>
-								<span class="coluna sensor">Sensor - 1</span>
-								<span class="coluna data">18/04/2025 20:40</span>
-							</div>
-
-							<div class="linha-historico">
-								<span class="coluna piso">Piso - A</span>
-								<span class="coluna sensor">Sensor - 1</span>
-								<span class="coluna data">18/04/2025 20:40</span>
-							</div>
-
-							<div class="linha-historico">
-								<span class="coluna piso">Piso - A</span>
-								<span class="coluna sensor">Sensor - 1</span>
-								<span class="coluna data">18/04/2025 20:40</span>
-							</div>
+						<div class="linha-historico">
+							<span class="coluna piso">Piso - A</span>
+							<span class="coluna sensor">Sensor - 1</span>
+							<span class="coluna data">18/04/2025 20:40</span>
 						</div>
-					</main>
 
-					<aside>
-						<div class="kpis" id="kpis1">a</div>
-						<div class="kpis" id="kpis2">b</div>
-						<div class="kpis" id="kpis3">c</div>
-					</aside>
-				</section>
+						<div class="linha-historico">
+							<span class="coluna piso">Piso - A</span>
+							<span class="coluna sensor">Sensor - 1</span>
+							<span class="coluna data">18/04/2025 20:40</span>
+						</div>
+
+						<div class="linha-historico">
+							<span class="coluna piso">Piso - A</span>
+							<span class="coluna sensor">Sensor - 1</span>
+							<span class="coluna data">18/04/2025 20:40</span>
+						</div>
+
+						<div class="linha-historico">
+							<span class="coluna piso">Piso - A</span>
+							<span class="coluna sensor">Sensor - 1</span>
+							<span class="coluna data">18/04/2025 20:40</span>
+						</div>
+					</div>
+				</main>
+
+				<aside>
+					<div class="kpis" id="kpis1">a</div>
+					<div class="kpis" id="kpis2">b</div>
+					<div class="kpis" id="kpis3">c</div>
+				</aside>
 			</section>
 		</section>
 	</body>
@@ -343,12 +352,16 @@
 	function abrirModal(idModal) {
 		if (modalAberto) {
 			idModal.style.left = "-50%";
+			btn_invisivel.style.left = "-50%";
+
 			modalAberto = false;
 
 			nav_dash.classList.remove("blur");
 			main_dash.classList.remove("blur");
 		} else {
 			idModal.style.left = "50%";
+			btn_invisivel.style.left = "50%";
+
 			modalAberto = true;
 
 			nav_dash.classList.add("blur");
@@ -356,259 +369,331 @@
 		}
 	}
 
-	var porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3];
-	var max_porc = porc[0];
+	//var para mudar o idSensor
 
-	for (i = 0; i < porc.length; i++) {
-		if (porc[i] > max_porc) {
-			max_porc = porc[i];
-		}
+	var porc = [];
+	var data = [];
+	// var porcentagemTotal = [];
+
+	function sensoresGrafico(idSensor) {
+		var idSensor = idSensor;
+
+		fetch(`/sensores/sensoresGrafico/${idSensor}`)
+			.then((res) => res.json())
+			.then((dados) => {
+				porc = [];
+				data = [];
+
+				for (let i = dados.length - 1; i >= 0; i--) {
+					porc.push(dados[i].porcentagem_captada);
+
+					data.push(dados[i].data_hora);
+
+					// porcentagemTotal.push(dados[i].porcentagem_captada);
+
+					if (i >= 10) {
+						porc.splice(0, 1);
+						data.splice(0, 1);
+					}
+
+                }
+
+                if(window.securitygasChart){
+                    window.securitygasChart.destroy()
+                }
+
+
+				window.securitygasChart = new Chart(document.getElementById("glpChart"), {
+					type: "line",
+					data: {
+						labels: data,
+						datasets: [
+							{
+								label: "GLP",
+								data: porc,
+								borderColor: "rgb(54, 162, 235)",
+								tension: 0.4,
+								fill: true,
+							},
+							{
+								label: "Limite Inferior De Explosividade",
+								data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+								borderColor: "red",
+								tension: 0.4,
+							},
+							{
+								label: "Limite Adequado",
+								data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+								borderColor: "lightgreen",
+								tension: 0.4,
+							},
+						],
+					},
+					options: {
+						responsive: true,
+						plugins: {
+							legend: { display: true },
+						},
+						scales: {
+							y: {
+								beginAtZero: true,
+							},
+						},
+					},
+				});
+			});
+
+		// for (i = 0; i < porc.length; i++) {
+		// 	if (porc[i] > max_porc) {
+		// 		max_porc = porc[i];
+		// 	}
+		// }
 	}
 
-	function btn_cozinha1() {
-		porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3];
+	// function btn_cozinha1() {
+	// 	porc = [1.5, 1, 1.5, 0.5, 1.5, 1, 2, 3, 2.5, 3];
 
-		for (i = 0; i < porc.length; i++) {
-			if (porc[i] > max_porc) {
-				max_porc = porc[i];
-			}
-		}
-		securitygasChart.data.datasets[0].data = porc;
-		securitygasChart.update();
+	// 	for (i = 0; i < porc.length; i++) {
+	// 		if (porc[i] > max_porc) {
+	// 			max_porc = porc[i];
+	// 		}
+	// 	}
+	// 	securitygasChart.data.datasets[0].data = porc;
+	// 	securitygasChart.update();
 
-		id_table.innerHTML = `
-            
-               <thead id="cabeca_tabela">
-                        <tr>
-                            <th>Local da Instalação</th>
-                            <th>Sensor</th>
-                            <th>Status do Vazamento</th>
-                            <th>Última Atualização</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="tr_critico">
-                            <td>Piso - A</td>
-                            <td>Sensor - 1</td>
-                            <td class="status-critico" id="td_critico">Crítico</td>
-                            <td>18/04/2025 20:40</td>
-                        </tr>
-                        <tr id="tr_critico">
-                            <td>Piso - A</td>
-                            <td>Sensor - 2</td>
-                            <td class="status-critico" id="td_critico">Crítico</td>
-                            <td>18/04/2025 20:40</td>
-                        </tr>
-                        <tr id="tr_atencao">
-                            <td>Piso - B</td>
-                            <td>Sensor - 1</td>
-                            <td class="status-atencao">Atenção</td>
-                            <td>18/04/2025 20:40</td>
-                        </tr>
-                        <tr id="tr_atencao">
-                            <td>Piso - B</td>
-                            <td>Sensor - 2</td>
-                            <td class="status-atencao">Atenção</td>
-                            <td>18/04/2025 20:40</td>
-                        </tr>
-                        <tr id="tr_atencao">
-                            <td>Piso - B</td>
-                            <td>Sensor - 2</td>
-                            <td class="status-atencao">Atenção</td>
-                            <td>18/04/2025 20:40</td>
-                        </tr>
-                    </tbody>
+	// 	id_table.innerHTML = `
 
-            `;
-	}
+	// 	              <thead id="cabeca_tabela">
+	// 	                       <tr>
+	// 	                           <th>Local da Instalação</th>
+	// 	                           <th>Sensor</th>
+	// 	                           <th>Status do Vazamento</th>
+	// 	                           <th>Última Atualização</th>
+	// 	                       </tr>
+	// 	                   </thead>
+	// 	                   <tbody>
+	// 	                       <tr id="tr_critico">
+	// 	                           <td>Piso - A</td>
+	// 	                           <td>Sensor - 1</td>
+	// 	                           <td class="status-critico" id="td_critico">Crítico</td>
+	// 	                           <td>18/04/2025 20:40</td>
+	// 	                       </tr>
+	// 	                       <tr id="tr_critico">
+	// 	                           <td>Piso - A</td>
+	// 	                           <td>Sensor - 2</td>
+	// 	                           <td class="status-critico" id="td_critico">Crítico</td>
+	// 	                           <td>18/04/2025 20:40</td>
+	// 	                       </tr>
+	// 	                       <tr id="tr_atencao">
+	// 	                           <td>Piso - B</td>
+	// 	                           <td>Sensor - 1</td>
+	// 	                           <td class="status-atencao">Atenção</td>
+	// 	                           <td>18/04/2025 20:40</td>
+	// 	                       </tr>
+	// 	                       <tr id="tr_atencao">
+	// 	                           <td>Piso - B</td>
+	// 	                           <td>Sensor - 2</td>
+	// 	                           <td class="status-atencao">Atenção</td>
+	// 	                           <td>18/04/2025 20:40</td>
+	// 	                       </tr>
+	// 	                       <tr id="tr_atencao">
+	// 	                           <td>Piso - B</td>
+	// 	                           <td>Sensor - 2</td>
+	// 	                           <td class="status-atencao">Atenção</td>
+	// 	                           <td>18/04/2025 20:40</td>
+	// 	                       </tr>
+	// 	                   </tbody>
 
-	function btn_cozinha2() {
-		porc = [1, 2.5, 1.5, 1, 2, 1.5, 1.5, 0.5, 1, 0.5];
+	// 	           `;
+	// }
 
-		for (i = 0; i < porc.length; i++) {
-			if (porc[i] > max_porc) {
-				max_porc = porc[i];
-			}
-		}
+	// function btn_cozinha2() {
+	// 	porc = [1, 2.5, 1.5, 1, 2, 1.5, 1.5, 0.5, 1, 0.5];
 
-		securitygasChart.data.datasets[0].data = porc;
-		securitygasChart.update();
+	// 	for (i = 0; i < porc.length; i++) {
+	// 		if (porc[i] > max_porc) {
+	// 			max_porc = porc[i];
+	// 		}
+	// 	}
 
-		id_table.innerHTML = `
-            
-            <thead>
-                            <tr>
-                                <th>Local da Instalação</th>
-                                <th>Sensor</th>
-                                <th>Status do Vazamento</th>
-                                <th>Última Atualização</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_ideal">
-                                <td>Piso - A</td>
-                                <td>Sensor - 1</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>20/04/2025 15:35</td>
-                            </tr>
-                            <tr id="tr_critico">
-                                <td>Piso - A</td>
-                                <td>Sensor - 2</td>
-                                <td class="status-critico" id="td_critico">Crítico</td>
-                                <td>20/04/2025 15:35</td>
-                            </tr>
-                            <tr id="tr_critico">
-                                <td>Piso - B</td>
-                                <td>Sensor - 1</td>
-                                <td class="status-critico" id="td_critico">Crítico</td>
-                                <td>20/04/2025 15:35</td>
-                            </tr>
-                            <tr id="tr_ideal">
-                                <td>Piso - B</td>
-                                <td>Sensor - 2</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>20/04/2025 15:35</td>
-                            </tr>
-                        </tbody>
+	// 	securitygasChart.data.datasets[0].data = porc;
+	// 	securitygasChart.update();
 
-            `;
-	}
+	// 	id_table.innerHTML = `
 
-	function btn_cozinha3() {
-		porc = [0.5, 0.8, 1, 0.6, 0, 0.8, 1, 0.5, 0.2, 1];
+	// 	           <thead>
+	// 	                           <tr>
+	// 	                               <th>Local da Instalação</th>
+	// 	                               <th>Sensor</th>
+	// 	                               <th>Status do Vazamento</th>
+	// 	                               <th>Última Atualização</th>
+	// 	                           </tr>
+	// 	                       </thead>
+	// 	                       <tbody>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - A</td>
+	// 	                               <td>Sensor - 1</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>20/04/2025 15:35</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_critico">
+	// 	                               <td>Piso - A</td>
+	// 	                               <td>Sensor - 2</td>
+	// 	                               <td class="status-critico" id="td_critico">Crítico</td>
+	// 	                               <td>20/04/2025 15:35</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_critico">
+	// 	                               <td>Piso - B</td>
+	// 	                               <td>Sensor - 1</td>
+	// 	                               <td class="status-critico" id="td_critico">Crítico</td>
+	// 	                               <td>20/04/2025 15:35</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - B</td>
+	// 	                               <td>Sensor - 2</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>20/04/2025 15:35</td>
+	// 	                           </tr>
+	// 	                       </tbody>
 
-		for (i = 0; i < porc.length; i++) {
-			if (porc[i] > max_porc) {
-				max_porc = porc[i];
-			}
-		}
+	// 	           `;
+	// }
 
-		securitygasChart.data.datasets[0].data = porc;
-		securitygasChart.update();
+	// function btn_cozinha3() {
+	// 	porc = [0.5, 0.8, 1, 0.6, 0, 0.8, 1, 0.5, 0.2, 1];
 
-		id_table.innerHTML = `
-            
-            <thead>
-                            <tr>
-                                <th>Local da Instalação</th>
-                                <th>Sensor</th>
-                                <th>Status do Vazamento</th>
-                                <th>Última Atualização</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="tr_ideal">
-                                <td>Piso - A</td>
-                                <td>Sensor - 1</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>30/04/2025 09:00</td>
-                            </tr>
-                            <tr id="tr_ideal">
-                                <td>Piso - A</td>
-                                <td>Sensor - 2</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>30/04/2025 09:00</td>
-                            </tr>
-                            <tr id="tr_ideal">
-                                <td>Piso - B</td>
-                                <td>Sensor - 1</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>30/04/2025 09:00</td>
-                            </tr>
-                            <tr id="tr_ideal">
-                                <td>Piso - B</td>
-                                <td>Sensor - 2</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>30/04/2025 09:00</td>
-                            </tr>
-                            <tr id="tr_ideal">
-                                <td>Piso - B</td>
-                                <td>Sensor - 2</td>
-                                <td class="status-ideal">Ideal</td>
-                                <td>30/04/2025 09:00</td>
-                            </tr>
-                        </tbody>
+	// 	for (i = 0; i < porc.length; i++) {
+	// 		if (porc[i] > max_porc) {
+	// 			max_porc = porc[i];
+	// 		}
+	// 	}
 
-            `;
-	}
+	// 	securitygasChart.data.datasets[0].data = porc;
+	// 	securitygasChart.update();
 
-	var securitygasChart = new Chart(document.getElementById("glpChart"), {
-		type: "line",
-		data: {
-			labels: [
-				"12:10",
-				"12:15",
-				"12:20",
-				"12:25",
-				"12:30",
-				"12:35",
-				"12:40",
-				"12:45",
-				"12:50",
-				"12:55",
-			],
-			datasets: [
-				{
-					label: "GLP",
-					data: porc,
-					borderColor: "rgb(54, 162, 235)",
-					tension: 0.4,
-					fill: true,
-				},
-				{
-					label: "Limite Inferior De Explosividade",
-					data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-					borderColor: "red",
-					tension: 0.4,
-				},
-				{
-					label: "Limite Adequado",
-					data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-					borderColor: "lightgreen",
-					tension: 0.4,
-				},
-			],
-		},
-		options: {
-			responsive: true,
-			plugins: {
-				legend: { display: true },
-			},
-			scales: {
-				y: {
-					beginAtZero: true,
-				},
-			},
-		},
-	});
+	// 	id_table.innerHTML = `
 
-	const vazamentoChart = new Chart(document.getElementById("vazamentoChart"), {
-		type: "bar",
-		data: {
-			labels: ["Cozinha 1", "Cozinha 2", "Área Externa"],
-			datasets: [
-				{
-					label: "Ocorrências",
-					data: [12, 14, 5],
-					backgroundColor: [
-						"rgba(54, 99, 132, 0.7)",
-						"rgba(54, 162, 235, 0.7)",
-						"rgba(54, 192, 192, 0.7)",
-					],
-					borderRadius: 5,
-				},
-			],
-		},
-		options: {
-			responsive: true,
-			scales: {
-				y: {
-					beginAtZero: true,
-					max: 16,
-				},
-			},
-		},
-	});
+	// 	           <thead>
+	// 	                           <tr>
+	// 	                               <th>Local da Instalação</th>
+	// 	                               <th>Sensor</th>
+	// 	                               <th>Status do Vazamento</th>
+	// 	                               <th>Última Atualização</th>
+	// 	                           </tr>
+	// 	                       </thead>
+	// 	                       <tbody>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - A</td>
+	// 	                               <td>Sensor - 1</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>30/04/2025 09:00</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - A</td>
+	// 	                               <td>Sensor - 2</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>30/04/2025 09:00</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - B</td>
+	// 	                               <td>Sensor - 1</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>30/04/2025 09:00</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - B</td>
+	// 	                               <td>Sensor - 2</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>30/04/2025 09:00</td>
+	// 	                           </tr>
+	// 	                           <tr id="tr_ideal">
+	// 	                               <td>Piso - B</td>
+	// 	                               <td>Sensor - 2</td>
+	// 	                               <td class="status-ideal">Ideal</td>
+	// 	                               <td>30/04/2025 09:00</td>
+	// 	                           </tr>
+	// 	                       </tbody>
+
+	// 	           `;
+	// }
+
+	// var securitygasChart = new Chart(document.getElementById("glpChart"), {
+	// 	type: "line",
+	// 	data: {
+	// 		labels: [
+	// 			"12:10",
+	// 			"12:15",
+	// 			"12:20",
+	// 			"12:25",
+	// 			"12:30",
+	// 			"12:35",
+	// 			"12:40",
+	// 			"12:45",
+	// 			"12:50",
+	// 			"12:55",
+	// 		],
+	// 		datasets: [
+	// 			{
+	// 				label: "GLP",
+	// 				data: porc,
+	// 				borderColor: "rgb(54, 162, 235)",
+	// 				tension: 0.4,
+	// 				fill: true,
+	// 			},
+	// 			{
+	// 				label: "Limite Inferior De Explosividade",
+	// 				data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+	// 				borderColor: "red",
+	// 				tension: 0.4,
+	// 			},
+	// 			{
+	// 				label: "Limite Adequado",
+	// 				data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+	// 				borderColor: "lightgreen",
+	// 				tension: 0.4,
+	// 			},
+	// 		],
+	// 	},
+	// 	options: {
+	// 		responsive: true,
+	// 		plugins: {
+	// 			legend: { display: true },
+	// 		},
+	// 		scales: {
+	// 			y: {
+	// 				beginAtZero: true,
+	// 			},
+	// 		},
+	// 	},
+	// });
+
+	// const vazamentoChart = new Chart(document.getElementById("vazamentoChart"), {
+	// 	type: "bar",
+	// 	data: {
+	// 		labels: ["Cozinha 1", "Cozinha 2", "Área Externa"],
+	// 		datasets: [
+	// 			{
+	// 				label: "Ocorrências",
+	// 				data: [12, 14, 5],
+	// 				backgroundColor: [
+	// 					"rgba(54, 99, 132, 0.7)",
+	// 					"rgba(54, 162, 235, 0.7)",
+	// 					"rgba(54, 192, 192, 0.7)",
+	// 				],
+	// 				borderRadius: 5,
+	// 			},
+	// 		],
+	// 	},
+	// 	options: {
+	// 		responsive: true,
+	// 		scales: {
+	// 			y: {
+	// 				beginAtZero: true,
+	// 				max: 16,
+	// 			},
+	// 		},
+	// 	},
+	// });
 
 	function btn_historico() {
 		if (main_historico.style.display == "flex") {
