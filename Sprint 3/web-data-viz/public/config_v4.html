@@ -15,7 +15,7 @@
       <div class="box">
         <h3>Novo Ambiente</h3>
         <label for="novoAmbienteNome">Nome do Ambiente:</label>
-        <input type="text" id="novoAmbienteNome">
+        <input type="text" id="input_novoAmbienteNome">
         <button onclick="incluirAmbiente()">Incluir Ambiente</button>
       </div>
 
@@ -53,8 +53,40 @@
       </div>
     </div>
   </div>
-
   <script>
+ 
+ function incluirAmbiente() {
+  var nome = document.getElementById("input_novoAmbienteNome").value;
+  var fkRestaurante = sessionStorage.FK_RESTAURANTE;
+
+  console.log("fkRestaurante:", fkRestaurante); 
+
+  if (!nome) {
+    alert("Preencha o nome do ambiente!");
+    return;
+  }
+  if (!fkRestaurante) {
+    alert("Restaurante não identificado na sessão!");
+    return;
+  }
+
+  fetch("/ambientes/cadastrar", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ nome_local: nome, fkRestaurante: fkRestaurante })
+  })
+  .then(res => {
+    if (!res.ok) throw new Error("Erro na requisição: " + res.status);
+    return res.json();
+  })
+  .then(data => alert("Ambiente cadastrado com sucesso!"))
+  .catch(err => {
+    console.error("Erro:", err);
+    alert("Erro ao cadastrar ambiente.");
+  });
+}
+
   </script>
+
 </body>
 </html>
