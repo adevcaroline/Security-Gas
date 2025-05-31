@@ -32,11 +32,15 @@ var database = require("../database/config")
 
 function sensoresGrafico(idSensor) {
 	var instrucao = `
-    select * from leitura_sensor
-    join sensor
-    on fkSensor = idSensor
-    where fkSensor = ${idSensor}
-    order by idSensor DESC;
+
+    select * from leitura_sensor as lei
+        join sensor as sen
+        on lei.fkSensor = sen.idSensor
+        join local_instalacao as loc
+        on sen.fkLocal_instalacao = loc.idLocal_instalacao
+        where fkSensor = ${idSensor}
+        order by idSensor DESC;
+
     `;
 	return database.executar(instrucao);
 }

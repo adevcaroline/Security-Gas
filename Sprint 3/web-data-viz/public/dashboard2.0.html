@@ -296,14 +296,13 @@
 				<main class="main_modal_sensor">
 					<div id="grafico_modal_sensor">
 						<section id="sec_grafico" class="sec_glpMes">
-							<h1>Grafico</h1>
+							<h1 id="nome_sensor_modal">Grafico</h1>
 
 							<canvas id="glpChart" width="50" height="17"></canvas>
 						</section>
 					</div>
+					<p>historico</p>
 					<div id="historico_modal_sensor">
-						<p>historico</p>
-
 						<div class="linha-historico">
 							<span class="coluna piso">Piso - A</span>
 							<span class="coluna sensor">Sensor - 1</span>
@@ -377,6 +376,7 @@
 
 	function sensoresGrafico(idSensor) {
 		var idSensor = idSensor;
+        historico_modal_sensor.innerHTML = ``
 
 		fetch(`/sensores/sensoresGrafico/${idSensor}`)
 			.then((res) => res.json())
@@ -396,51 +396,64 @@
 						data.splice(0, 1);
 					}
 
-                }
+					historico_modal_sensor.innerHTML += `
+                    
+                    	<div class="linha-historico">
+							<span class="coluna piso">${dados[i].nome_local}</span>
+							<span class="coluna sensor">${dados[i].nome_sensor} </span>
+							<span class="coluna data">${dados[i].data_hora}</span>
+						</div>
 
-                if(window.securitygasChart){
-                    window.securitygasChart.destroy()
-                }
+                    `;
+				}
 
+				nome_sensor_modal.innerHTML = `${dados[0].nome_sensor}`;
 
-				window.securitygasChart = new Chart(document.getElementById("glpChart"), {
-					type: "line",
-					data: {
-						labels: data,
-						datasets: [
-							{
-								label: "GLP",
-								data: porc,
-								borderColor: "rgb(54, 162, 235)",
-								tension: 0.4,
-								fill: true,
-							},
-							{
-								label: "Limite Inferior De Explosividade",
-								data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-								borderColor: "red",
-								tension: 0.4,
-							},
-							{
-								label: "Limite Adequado",
-								data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-								borderColor: "lightgreen",
-								tension: 0.4,
-							},
-						],
-					},
-					options: {
-						responsive: true,
-						plugins: {
-							legend: { display: true },
+				if (window.securitygasChart) {
+					window.securitygasChart.destroy();
+				}
+
+				window.securitygasChart = new Chart(
+					document.getElementById("glpChart"),
+					{
+						type: "line",
+						data: {
+							labels: data,
+							datasets: [
+								{
+									label: "GLP",
+									data: porc,
+									borderColor: "rgb(54, 162, 235)",
+									tension: 0.4,
+									fill: true,
+								},
+								{
+									label: "Limite Inferior De Explosividade",
+									data: [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+									borderColor: "red",
+									tension: 0.4,
+								},
+								{
+									label: "Limite Adequado",
+									data: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+									borderColor: "lightgreen",
+									tension: 0.4,
+								},
+							],
 						},
-						scales: {
-							y: {
-								beginAtZero: true,
+						options: {
+							responsive: true,
+							plugins: {
+								legend: { display: true },
+							},
+							scales: {
+								y: {
+									beginAtZero: true,
+								},
 							},
 						},
-					},
-				});
+					}
+				);
 			});
 
 		// for (i = 0; i < porc.length; i++) {

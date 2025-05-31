@@ -292,6 +292,7 @@ button#btn_historico:hover {
 	padding: 10px;
 	border-bottom: 1px solid #0b5884;
 	width: 90%;
+  height: 100%;
 }
 
 .coluna {
@@ -388,6 +389,12 @@ section#btn_invisivel {
 	height: 100%;
 }
 
+#nome_sensor_modal{
+  width: 100%;
+  color: var(--var-cor-primaria);
+  font-size: 1.6rem;
+}
+
 #sec_modal_sensor aside {
 	width: 29%;
 	height: 100%;
@@ -406,11 +413,12 @@ section#btn_invisivel {
 
 #historico_modal_sensor {
 	width: 100%;
-	height: 40%;
+	max-height: 30%;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+  overflow-y: scroll;
 }
 
 /*Efeitos*/
