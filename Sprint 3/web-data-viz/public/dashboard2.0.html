@@ -376,7 +376,7 @@
 
 	function sensoresGrafico(idSensor) {
 		var idSensor = idSensor;
-        historico_modal_sensor.innerHTML = ``
+		historico_modal_sensor.innerHTML = ``;
 
 		fetch(`/sensores/sensoresGrafico/${idSensor}`)
 			.then((res) => res.json())
@@ -384,8 +384,16 @@
 				porc = [];
 				data = [];
 
+				let porcMaior = 0;
+
+				console.log(dados.length);
+
 				for (let i = dados.length - 1; i >= 0; i--) {
 					porc.push(dados[i].porcentagem_captada);
+
+					if (porc[i] > porcMaior) {
+						porcMaior = dados[i].porcentagem_captada;
+					}
 
 					data.push(dados[i].data_hora);
 
@@ -413,6 +421,16 @@
 					window.securitygasChart.destroy();
 				}
 
+				var corLinha = 'rgb(54, 162, 235)'
+
+				// if (porcMaior > 1) {
+                //     corLinha = 'yellow'
+				// }
+                
+                // if(porcMaior > 2){
+                //     corLinha = 'red'
+                // }
+
 				window.securitygasChart = new Chart(
 					document.getElementById("glpChart"),
 					{
@@ -423,7 +441,7 @@
 								{
 									label: "GLP",
 									data: porc,
-									borderColor: "rgb(54, 162, 235)",
+									borderColor: corLinha,
 									tension: 0.4,
 									fill: true,
 								},
