@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Configuração de Ambientes</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style/config04.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Configuração de Ambientes e Sensores</h2>
+
+    <div class="formulario">
+     
+      <div class="box">
+        <h3>Novo Ambiente</h3>
+        <label for="novoAmbienteNome">Nome do Ambiente:</label>
+        <input type="text" id="novoAmbienteNome">
+        <button onclick="incluirAmbiente()">Incluir Ambiente</button>
+      </div>
+
+      
+      <div class="box">
+        <h3>Adicionar Sensor</h3>
+        <label for="selectAmbienteAdd">Ambiente:</label>
+        <select id="selectAmbienteAdd"></select>
+
+        <label for="nomeSensor">Nome do Sensor:</label>
+        <input type="text" id="nomeSensor">
+
+        <button onclick="adicionarSensor()">Adicionar Sensor</button>
+      </div>
+    </div>
+
+    <div class="formulario">
+      <div class="box">
+        <h3>Excluir Ambiente</h3>
+        <label for="selectAmbienteExcluir">Ambiente:</label>
+        <select id="selectAmbienteExcluir"></select>
+        <button onclick="excluirAmbiente()">Excluir Ambiente</button>
+      </div>
+
+      
+      <div class="box">
+        <h3>Excluir Sensor</h3>
+        <label for="selectAmbienteSensores">Ambiente:</label>
+        <select id="selectAmbienteSensores" onchange="carregarSensoresDoAmbiente()"></select>
+
+        <label for="selectSensorExcluir">Sensor:</label>
+        <select id="selectSensorExcluir"></select>
+
+        <button onclick="excluirSensor()">Excluir Sensor</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  </script>
+</body>
+</html>
