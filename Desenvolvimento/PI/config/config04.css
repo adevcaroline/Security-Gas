@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  margin-left: 220px; 
+}
+
+.container {
+  background-color: white;
+  max-width: 800px; 
+  margin: auto;
+  padding: 20px;
+}
+
+h2 {
+  color: #0B5884;
+  margin-bottom: 10px;
+}
+
+h3 {
+  color: #0B5884;
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: 500;
+}
+
+input, select {
+  width: 90%; 
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 15px;
+  background-color: #0B5884;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+button:hover {
+  background-color: #084365;
+}
+
+.formulario {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.box {
+  flex: 1;
+  min-width: 260px;
+  background: #f0f8ff;
+  padding: 15px;
+  border-radius: 12px;
+}
