@@ -17,7 +17,7 @@
 		/>
 	</head>
 
-	<body onload="listarSensores(1)">
+	<body onload="listarSensores(1), listarAmbientes()">
 		<nav id="nav_dash">
 			<div class="div_logo">
 				<img
@@ -29,7 +29,7 @@
 				<h1 id="nome_empresa">Empresa XPTO</h1>
 			</div>
 
-			<div class="div_btns">
+			<div class="div_btns" id="div_ambientes">
 				<button onclick="listarSensores(1)">
 					<span id="span_bola cozinha1"></span>Cozinha 1
 				</button>
@@ -376,10 +376,9 @@
 		fetch(`/sensores/listarSensores/${idAmbiente}`)
 			.then((res) => res.json())
 			.then((sens) => {
-				
 				for (let i = 0; i < sens.length; i++) {
-
-					console.log(sens[0])
+					console.log(sens[0]);
+					console.log(sens[i].idSensor);
 
 					sec_sensores.innerHTML += `
 				
@@ -390,7 +389,7 @@
 							<p>${sens[i].nome_sensor}</p>
 						</div>
 
-				`
+				`;
 				}
 			});
 
@@ -404,7 +403,6 @@
 	// var porcentagemTotal = [];
 
 	function sensoresGrafico(idSensor) {
-		var idSensor = idSensor;
 		historico_modal_sensor.innerHTML = ``;
 
 		fetch(`/sensores/sensoresGrafico/${idSensor}`)
@@ -502,6 +500,32 @@
 					}
 				);
 			});
+	}
+
+	function listarAmbientes() {
+		let idRestaurante = 1;
+
+		div_ambientes.innerHTML = ``;
+
+		fetch(`/ambientes/listar/${idRestaurante}`)
+			.then((res) => res.json())
+			.then((ambi) => {
+				for (let i = 0; i < ambi.length; i++) {
+					console.log(ambi[i]);
+
+					div_ambientes.innerHTML += `
+
+						<button onclick="listarSensores(${ambi[i].idLocal_instalacao})" id="bnt_ambiente${ambi[i].idLocal_instalacao}">
+
+							<span id="span_bola ${ambi[i].nome_local}"></span>${ambi[i].nome_local}
+
+						</button>
+
+				`;
+				}
+			});
+
+		// sec_sensores.innerHTML = ``
 	}
 
 	function btn_historico() {

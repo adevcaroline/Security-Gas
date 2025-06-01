@@ -1,3 +1,4 @@
+-- drop database securitygas3;
 
 create database securitygas3;
 
@@ -44,6 +45,8 @@ fkRestaurante int,
 foreign key (fkRestaurante) references restaurante(idRestaurante)
 );
 
+select * from local_instalacao;
+
 create table sensor(
 idSensor int primary key auto_increment,
 nome_sensor varchar(45) not null,
@@ -68,6 +71,8 @@ foreign key (fkAlerta) references alerta(idAlerta),
 foreign key (fkSensor) references sensor(idSensor),
 primary key (idLeitura, fkAlerta, fkSensor)
 );
+
+select * from leitura_sensor;
 
 -- Para cada ambiente, pegar a última leitura registrada.
 
@@ -107,91 +112,143 @@ order by idLeitura desc;
 
 select * from vw_painelgeral;
 
--- Inserções na tabela restaurante
-INSERT INTO restaurante (nome_restaurante, codigo_ativacao) VALUES 
-('BK', 'XYZ789'),
-('Giraffas', 'GIR456'),
-('Habibs', 'HAB123');
 
--- Inserções na tabela usuario
-INSERT INTO usuario (nome, email, senha, fkRestaurante) VALUES
-('Carlos Silva', 'carlos@mc.com', 'mc@123', 1),
-('Fernanda Souza', 'fernanda@bk.com', 'bk@456', 2),
-('Roberto Almeida', 'roberto@giraffas.com', 'gir789', 3),
-('Amanda Lima', 'amanda@habibs.com', 'hab123', 4);
+-- Inserindo usuário
+INSERT INTO usuario (nome, email, senha, fkRestaurante) VALUES 
+('Gerente MC', 'gerente@mc.com', 'senha123', 1);
 
--- Inserções na tabela endereco
-INSERT INTO endereco (cep, cidade, estado, logradouro, numero, fkRestaurante) VALUES
-('01001-000', 'São Paulo', 'SP', 'Rua Augusta', '1500', 1),
-('20040-020', 'Rio de Janeiro', 'RJ', 'Av. Rio Branco', '100', 2),
-('30130-010', 'Belo Horizonte', 'MG', 'Av. Afonso Pena', '2000', 3),
-('05001-000', 'São Paulo', 'SP', 'Rua Francisco Cruz', '234', 4);
+-- Inserindo endereço
+INSERT INTO endereco (cep, cidade, estado, logradouro, numero, fkRestaurante) VALUES 
+('01311-000', 'São Paulo', 'SP', 'Av. Paulista', '1000', 1);
 
--- Inserções na tabela local_instalacao
-INSERT INTO local_instalacao (nome_local, fkRestaurante) VALUES
+-- Inserindo locais de instalação (3 locais)
+INSERT INTO local_instalacao (nome_local, fkRestaurante) VALUES 
 ('Cozinha Principal', 1),
-('Área de Estoque', 1),
-('Cozinha', 2),
-('Depósito', 3),
-('Sala do Gás', 4);
+('Área de Estocagem', 1),
+('Refeitório', 1);
 
--- Inserções na tabela sensor
-INSERT INTO sensor (nome_sensor, statusAtivacao, fkLocal_instalacao) VALUES
-('Sensor Cozinha A', 1, 1),
-('Sensor Estoque 1', 1, 2),
-('Sensor Forno Principal', 1, 3),
-('Sensor Depósito Frontal', 0, 4),
-('Sala Gás 01', 1, 5);
+select * from local_instalacao;
 
-select * from sensor;
+-- Inserindo alertas
+INSERT INTO alerta (nivel_alerta, mensagem) VALUES 
+('Normal', 'Níveis seguros'),
+('Alerta', 'Atenção: gás detectado'),
+('Crítico', 'EVACUAR: risco de explosão');
 
--- Inserções na tabela alerta
-INSERT INTO alerta (nivel_alerta, mensagem) VALUES
-('Normal', 'Níveis dentro do esperado'),
-('Alerta', 'Níveis acima da média'),
-('Crítico', 'EVACUAR ÁREA IMEDIATAMENTE');
+-- Inserindo sensores (2 por local = total 6 sensores)
+INSERT INTO sensor (nome_sensor, statusAtivacao, fkLocal_instalacao) VALUES 
+-- Cozinha Principal (2 sensores)
+('Sensor COZ-01', true, 1),
+('Sensor COZ-02', true, 1),
+-- Área de Estocagem (2 sensores)
+('Sensor EST-01', true, 2),
+('Sensor EST-02', true, 2),
+-- Refeitório (2 sensores)
+('Sensor REF-01', true, 3),
+('Sensor REF-02', true, 3);
 
-
-truncate table leitura_sensor;
--- Inserções na tabela leitura_sensor
+-- Leituras para todos os 6 sensores (90 leituras no total)
 INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) VALUES
-(1, 1, 1.12, '2023-11-15 10:00:00'),
-(1, 1, 1.15, '2023-11-15 10:05:00'),
-(1, 1, 0.18, '2023-11-15 10:10:00'),
-(1, 1, 1.22, '2023-11-15 10:15:00'),
-(2, 1, 1.55, '2023-11-15 10:20:00'),
-(1, 1, 0.30, '2023-11-15 10:25:00'),
-(1, 1, 0.25, '2023-11-15 10:30:00'),
-(1, 1, 1.19, '2023-11-15 10:35:00'),
-(1, 1, 0.21, '2023-11-15 10:40:00'),
-(1, 1, 1.28, '2023-11-15 10:45:00'),
-(2, 1, 0.65, '2023-11-15 10:50:00'),
-(3, 1, 1.85, '2023-11-15 10:55:00'),
-(3, 1, 1.95, '2023-11-15 11:00:00'),
-(2, 1, 0.75, '2023-11-15 11:05:00'),
-(1, 1, 0.35, '2023-11-15 11:10:00'),
-(1, 1, 1.28, '2023-11-15 11:15:00'),
-(1, 1, 0.22, '2023-11-15 11:20:00'),
-(1, 1, 1.18, '2023-11-15 11:25:00'),
-(1, 1, 1.15, '2023-11-15 11:30:00'),
-(1, 1, 0.12, '2023-11-15 11:35:00'),
-(1, 2, 2.12, "2023-11-15 10:00:00"),
-(1, 2, 2.15, "2023-11-15 10:05:00"),
-(1, 2, 1.18, "2023-11-15 10:10:00"),
-(1, 2, 2.22, "2023-11-15 10:15:00"),
-(2, 2, 1.55, "2023-11-15 10:20:00"),
-(1, 2, 2.3, "2023-11-15 10:25:00"),
-(1, 2, 1.25, "2023-11-15 10:30:00"),
-(1, 2, 2.19, "2023-11-15 10:35:00"),
-(1, 2, 2.21, "2023-11-15 10:40:00"),
-(1, 2, 1.28, "2023-11-15 10:45:00"),
-(2, 2, 1.65, "2023-11-15 10:50:00"),
-(3, 2, 2.85, "2023-11-15 10:55:00"),
-(3, 2, 1.95, "2023-11-15 11:00:00"),
-(2, 2, 1.75, "2023-11-15 11:05:00"),
-(1, 2, 1.35, "2023-11-15 11:10:00"),
-(1, 2, 1.28, "2023-11-15 11:15:00"),
-(1, 2, 0.22, "2023-11-15 11:20:00"),
-(1, 2, 1.18, "2023-11-15 11:25:00"),
-(1, 2, 1.15, "2023-11-15 11:30:00"),
-(1, 2, 0.12, "2023-11-15 11:35:00");
+-- Sensor 1 (Cozinha)
+(1, 1, 0.25, '2025-05-15 08:00:00'),
+(1, 1, 0.80, '2025-05-15 10:00:00'),
+(2, 1, 1.25, '2025-05-15 12:00:00'),
+(1, 1, 0.45, '2025-05-15 14:00:00'),
+(1, 1, 0.60, '2025-05-15 16:00:00'),
+(2, 1, 1.75, '2025-05-16 08:00:00'),
+(3, 1, 1.9, '2025-05-16 10:00:00'),
+(2, 1, 1.95, '2025-05-16 12:00:00'),
+(1, 1, 0.30, '2025-05-16 14:00:00'),
+(1, 1, 0.70, '2025-05-16 16:00:00'),
+(3, 1, 2.0, '2025-05-17 08:00:00'),
+(2, 1, 1.55, '2025-05-17 10:00:00'),
+(1, 1, 0.90, '2025-05-17 12:00:00'),
+(1, 1, 0.85, '2025-05-17 14:00:00'),
+(2, 1, 1.45, '2025-05-17 16:00:00'),
+
+-- Sensor 2 (Cozinha)
+(1, 2, 0.15, '2025-05-15 08:15:00'),
+(1, 2, 0.65, '2025-05-15 10:15:00'),
+(1, 2, 0.40, '2025-05-15 12:15:00'),
+(2, 2, 1.30, '2025-05-15 14:15:00'),
+(1, 2, 0.75, '2025-05-15 16:15:00'),
+(3, 2, 1.5, '2025-05-16 08:15:00'),
+(2, 2, 1.85, '2025-05-16 10:15:00'),
+(1, 2, 0.55, '2025-05-16 12:15:00'),
+(1, 2, 0.35, '2025-05-16 14:15:00'),
+(2, 2, 1.65, '2025-05-16 16:15:00'),
+(1, 2, 0.95, '2025-05-17 08:15:00'),
+(3, 2, 2.0, '2025-05-17 10:15:00'),
+(2, 2, 1.75, '2025-05-17 12:15:00'),
+(1, 2, 0.50, '2025-05-17 14:15:00'),
+(1, 2, 0.65, '2025-05-17 16:15:00'),
+
+-- Sensor 3 (Estocagem)
+(1, 3, 0.20, '2025-05-15 08:30:00'),
+(1, 3, 0.45, '2025-05-15 10:30:00'),
+(2, 3, 1.15, '2025-05-15 12:30:00'),
+(1, 3, 0.30, '2025-05-15 14:30:00'),
+(1, 3, 0.25, '2025-05-15 16:30:00'),
+(3, 3, 2.25, '2025-05-16 08:30:00'),
+(2, 3, 1.35, '2025-05-16 10:30:00'),
+(1, 3, 0.80, '2025-05-16 12:30:00'),
+(1, 3, 0.60, '2025-05-16 14:30:00'),
+(2, 3, 1.95, '2025-05-16 16:30:00'),
+(1, 3, 0.40, '2025-05-17 08:30:00'),
+(2, 3, 1.05, '2025-05-17 10:30:00'),
+(3, 3, 2.75, '2025-05-17 12:30:00'),
+(2, 3, 1.65, '2025-05-17 14:30:00'),
+(1, 3, 0.55, '2025-05-17 16:30:00'),
+
+-- Sensor 4 (Estocagem)
+(1, 4, 0.10, '2025-05-15 08:45:00'),
+(2, 4, 1.50, '2025-05-15 10:45:00'),
+(1, 4, 0.75, '2025-05-15 12:45:00'),
+(1, 4, 0.65, '2025-05-15 14:45:00'),
+(3, 4, 2.85, '2025-05-15 16:45:00'),
+(1, 4, 0.95, '2025-05-16 08:45:00'),
+(2, 4, 1.25, '2025-05-16 10:45:00'),
+(3, 4, 2.15, '2025-05-16 12:45:00'),
+(2, 4, 1.45, '2025-05-16 14:45:00'),
+(1, 4, 0.35, '2025-05-16 16:45:00'),
+(1, 4, 0.25, '2025-05-17 08:45:00'),
+(1, 4, 0.15, '2025-05-17 10:45:00'),
+(2, 4, 1.35, '2025-05-17 12:45:00'),
+(3, 4, 2.95, '2025-05-17 14:45:00'),
+(2, 4, 1.55, '2025-05-17 16:45:00'),
+
+-- Sensor 5 (Refeitório)
+(1, 5, 0.05, '2025-05-15 09:00:00'),
+(1, 5, 0.35, '2025-05-15 11:00:00'),
+(2, 5, 1.20, '2025-05-15 13:00:00'),
+(1, 5, 0.65, '2025-05-15 15:00:00'),
+(3, 5, 3.10, '2025-05-15 17:00:00'),
+(1, 5, 0.85, '2025-05-16 09:00:00'),
+(2, 5, 1.15, '2025-05-16 11:00:00'),
+(1, 5, 0.40, '2025-05-16 13:00:00'),
+(2, 5, 1.80, '2025-05-16 15:00:00'),
+(3, 5, 2.45, '2025-05-16 17:00:00'),
+(1, 5, 0.55, '2025-05-17 09:00:00'),
+(1, 5, 0.45, '2025-05-17 11:00:00'),
+(2, 5, 1.25, '2025-05-17 13:00:00'),
+(1, 5, 0.70, '2025-05-17 15:00:00'),
+(2, 5, 1.35, '2025-05-17 17:00:00'),
+
+-- Sensor 6 (Refeitório)
+(1, 6, 0.15, '2025-05-15 09:15:00'),
+(2, 6, 1.05, '2025-05-15 11:15:00'),
+(1, 6, 0.45, '2025-05-15 13:15:00'),
+(3, 6, 2.75, '2025-05-15 15:15:00'),
+(2, 6, 1.65, '2025-05-15 17:15:00'),
+(1, 6, 0.95, '2025-05-16 09:15:00'),
+(1, 6, 0.25, '2025-05-16 11:15:00'),
+(2, 6, 1.45, '2025-05-16 13:15:00'),
+(1, 6, 0.60, '2025-05-16 15:15:00'),
+(3, 6, 2.35, '2025-05-16 17:15:00'),
+(2, 6, 1.25, '2025-05-17 09:15:00'),
+(1, 6, 0.75, '2025-05-17 11:15:00'),
+(1, 6, 0.65, '2025-05-17 13:15:00'),
+(2, 6, 1.55, '2025-05-17 15:15:00'),
+(3, 6, 2.95, '2025-05-17 17:15:00');
+
+
