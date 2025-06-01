@@ -18,6 +18,39 @@ async function cadastrarAmbiente(req, res) {
   }
 }
 
+function excluirAmbiente(req, res) {
+    var idLocal = req.params.idLocal;
+
+    ambienteModel.excluirAmbiente(idLocal)
+        .then(resultado => {
+            res.status(200).json({ mensagem: "Ambiente excluído com sucesso!" });
+        })
+        .catch(erro => {
+            console.error("Erro ao excluir ambiente:", erro);
+            res.status(500).json({ erro: "Erro ao excluir ambiente." });
+        });
+}
+
+function listar(req, res) {
+    var fkRestaurante = req.params.fkRestaurante;
+
+    ambienteModel.listar(fkRestaurante)
+        .then(resultado => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum ambiente encontrado.");
+            }
+        })
+        .catch(erro => {
+            console.error("Erro ao listar ambientes:", erro);
+            res.status(500).json({ erro: "Erro ao listar ambientes." });
+        });
+}
+
+
 module.exports = {
-  cadastrarAmbiente
+  cadastrarAmbiente,
+  excluirAmbiente,
+  listar
 };

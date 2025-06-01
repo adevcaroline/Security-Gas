@@ -59,8 +59,6 @@
   var nome = document.getElementById("input_novoAmbienteNome").value;
   var fkRestaurante = sessionStorage.FK_RESTAURANTE;
 
-  console.log("fkRestaurante:", fkRestaurante); 
-
   if (!nome) {
     alert("Preencha o nome do ambiente!");
     return;
@@ -79,11 +77,63 @@
     if (!res.ok) throw new Error("Erro na requisição: " + res.status);
     return res.json();
   })
-  .then(data => alert("Ambiente cadastrado com sucesso!"))
+  .then(data => {
+    alert("Ambiente cadastrado com sucesso!");
+    carregarAmbientesParaExcluir(); // <-- Recarrega a lista de ambientes para exclusão
+    document.getElementById("input_novoAmbienteNome").value = ""; // limpa o campo input
+  })
   .catch(err => {
     console.error("Erro:", err);
     alert("Erro ao cadastrar ambiente.");
   });
+}
+
+
+function carregarAmbientesParaExcluir() {
+  const fkRestaurante = sessionStorage.FK_RESTAURANTE;
+
+  fetch(`/ambientes/listar/${fkRestaurante}`)
+    .then(res => res.json())
+    .then(ambientes => {
+      const select = document.getElementById("selectAmbienteExcluir");
+      select.innerHTML = ""; // limpa opções
+
+      ambientes.forEach(a => {
+        const option = document.createElement("option");
+        option.value = a.idLocal_instalacao;
+        option.textContent = a.nome_local;
+        select.appendChild(option);
+      });
+    });
+}
+window.onload = carregarAmbientesParaExcluir;
+
+function excluirAmbiente() {
+  const select = document.getElementById("selectAmbienteExcluir");
+  const idLocal = select.value;
+
+  if (!idLocal) {
+    alert("Selecione um ambiente para excluir!");
+    return;
+  }
+
+  if (!confirm("Tem certeza que deseja excluir este ambiente?")) return;
+
+  fetch(`/ambientes/excluir/${idLocal}`, {
+    method: "DELETE"
+  })
+    .then(res => {
+      if (!res.ok) throw new Error("Erro na exclusão");
+      return res.json();
+    })
+    .then(data => {
+      alert(data.mensagem);
+      carregarAmbientesParaExcluir(); // recarrega a lista
+    })
+    .catch(err => {
+      console.error("Erro ao excluir:", err);
+      alert("Erro ao excluir ambiente.");
+    });
 }
 
   </script>
