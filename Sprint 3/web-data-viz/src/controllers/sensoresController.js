@@ -20,6 +20,26 @@ function sensoresGrafico(req, res) {
 		});
 }
 
+function listarSensores(req, res) {
+	const idAmbiente = req.params.id
+
+	// console.log(idAmbiente)
+
+	sensoresModel
+		.listarSensores(idAmbiente)
+		.then(function (resposta) {
+			res.status(200).json(resposta);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			console.log(
+				"\nHouve um erro ao realizar o login! Erro: ",
+				erro.sqlMessage
+			);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
 // function cadastrar(req, res) {
 // 	console.log("req.body recebido:", req.body);
 // 	// Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -65,4 +85,5 @@ function sensoresGrafico(req, res) {
 
 module.exports = {
 	sensoresGrafico,
+	listarSensores,
 };
