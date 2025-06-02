@@ -68,9 +68,31 @@ function listarSensores(idAmbiente) {
 	return database.executar(instrucao);
 }
 
+//ADICIONAR SENSOR NOVO 
+function adicionarSensor(nome_sensor, fkLocal_instalacao) {
+    var instrucao = `
+        INSERT INTO sensor (nome_sensor, statusAtivacao, fkLocal_instalacao)
+        VALUES ('${nome_sensor}', 1, ${fkLocal_instalacao});
+    `;
+
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+//EXLUIR SENSOR
+function excluirSensor(idSensor) {
+    var instrucao = `
+        DELETE FROM sensor WHERE idSensor = ${idSensor};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
 	sensoresGrafico,
 	listarSensores,
+	adicionarSensor,
+	excluirSensor
 	// autenticar,
 	// cadastrar,
 	// validar

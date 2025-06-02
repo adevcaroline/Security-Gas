@@ -16,4 +16,12 @@ router.get("/listarSensores/:id", function (req, res) {
 //   aquarioController.cadastrar(req, res);
 // })
 
+router.post("/sensor/adicionar", function (req, res) {
+    sensoresController.adicionarSensor(req, res);
+});
+
+router.delete("/sensor/excluir/:idSensor", function (req, res) {
+    sensoresController.excluirSensor(req, res);
+});
+
 module.exports = router;

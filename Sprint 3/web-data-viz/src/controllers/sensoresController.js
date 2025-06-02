@@ -40,6 +40,7 @@ function listarSensores(req, res) {
 		});
 }
 
+
 // function cadastrar(req, res) {
 // 	console.log("req.body recebido:", req.body);
 // 	// Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -83,7 +84,48 @@ function listarSensores(req, res) {
 // 	}
 // }
 
+function adicionarSensor(req, res) {
+    const { nome_sensor, fkLocal_instalacao } = req.body;
+
+    if (!nome_sensor) {
+        return res.status(400).send("O nome do sensor está indefinido!");
+    }
+    if (!fkLocal_instalacao) {
+        return res.status(400).send("O ID do ambiente está indefinido!");
+    }
+
+    sensoresModel.adicionarSensor(nome_sensor, fkLocal_instalacao)
+        .then(function (resultado) {
+            res.status(201).json({ mensagem: "Sensor adicionado com sucesso!", resultado });
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            console.log("\nHouve um erro ao adicionar o sensor! Erro: ", erro.sqlMessage);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+// EXLUIR SENSOR
+function excluirSensor(req, res) {
+    const idSensor = req.params.idSensor;
+
+    if (!idSensor) {
+        return res.status(400).send("ID do sensor está indefinido!");
+    }
+
+    sensoresModel.excluirSensor(idSensor)
+        .then(function (resultado) {
+            res.status(200).json({ mensagem: "Sensor excluído com sucesso!", resultado });
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
 	sensoresGrafico,
 	listarSensores,
+	adicionarSensor,
+	excluirSensor
 };
