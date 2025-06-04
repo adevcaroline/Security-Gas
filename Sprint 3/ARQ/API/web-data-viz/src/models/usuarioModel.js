@@ -23,13 +23,19 @@ function cadastrar(nome, email, senha, fkRestaurante) {
 }
 
 function validar(email) {
-    var instrucao = `
+    var instrucaoSql = `
         SELECT COUNT(email) FROM usuario WHERE email = '${email}';
     `;
-    return database.executar(instrucao);
+    return database.executar(instrucaoSql);
 }
 
-function validarCodigo()
+function validarCodigo(codigo_ativacao) {
+    var instrucaoSql = `
+    SELECT codigo_ativacao FROM restaurante WHERE codigo_ativacao = '${codigo_ativacao}'
+    `;
+    return database.executar(instrucaoSql)
+
+}
 
 module.exports = {
     autenticar,

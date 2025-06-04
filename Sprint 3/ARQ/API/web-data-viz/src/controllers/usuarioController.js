@@ -62,7 +62,7 @@ function cadastrar(req, res) {
 
     console.log("req.body recebido:", req.body);
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var codigoUnidade = req.body.nomeServer;
+    var CodigoAcesso = req.body.codigoAcessoServer;
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -80,6 +80,7 @@ function cadastrar(req, res) {
     } else if (fkRestaurante == undefined) {
         res.status(400).send("Sua unidade a vincular está undefined!");
     } else {
+        usuarioModel.verificarCodigoAcesso(codigoUnidade)
         usuarioModel.validar(email)
             .then(
                 function (resultado) {

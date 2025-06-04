@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Palavras-Cruzadas</title>
+
+</head>
+
+
+<body>
+    <header>
+        <div class="container">
+            <h1>Palavras-Cruzadas</h1><br>
+            <div class="div_button">
+                <center>
+                    <button class="button" id="bt_start" onclick="start()">Começar o Jogo</button>
+                    <button class="button" style="display: none" id="bt_destroyGame" onclick="destroyGrid()">Encerrar o
+                        Jogo</button>
+                </center>
+            </div>
+            <br>
+        </div>
+    </header>
+    <article>
+        <div class="container">
+            <div style="display: none" id="div_verifiedAnswer">
+                <h3>Resposta Correta</h3>
+            </div>
+            <div id="div_game">
+                <br>
+                <div id="div_information">
+                    <h2>Intruções do Jogo</h2><br><br>
+                    <p>
+                        Clique em "Começar o Jogo" para iniciar uma partida <br><br>
+                        Perguntas serão exibidas na parte inferior do quadro <br><br>
+                        Insira a sua resposta na caixa de texto e clique em "Verificar" para conferir a sua
+                        resposta<br><br>
+                        A partida acaba quando as 16 questões forem respondidas <br><br>
+                    </p>
+                </div>
+                <br>
+                <div id="div_canvasCruzada"></div>
+                <br>
+                <div style="display: none" id="div_questions">
+                    <center>
+                        <span id="span_questionText">Vamos encontrar as esferas do dragao</span>
+                        <input type="text" id="input_answer" placeholder="Sua Reposta"><br>
+                        <button id="button_verify" onclick="verify()" class="button">Verificar</button>
+                    </center>
+
+
+                </div>
+            </div>
+        </div>
+        </div>
+    </article><br><br>
+    <footer>
+        <div class="container"><br>
+            <p>Felipe Marcos Bastos Pena<br>
+                RA: 01251021 <br>
+                1ADS-A
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

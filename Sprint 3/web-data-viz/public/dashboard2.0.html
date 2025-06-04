@@ -404,6 +404,7 @@
 
 	function sensoresGrafico(idSensor) {
 		historico_modal_sensor.innerHTML = ``;
+		
 
 		fetch(`/sensores/sensoresGrafico/${idSensor}`)
 			.then((res) => res.json())
@@ -544,3 +545,205 @@
 		}
 	}
 </script>
+
+
+
+
+<!-- <script>
+	var modalAberto = false;
+	var chartInterval; // Declare uma variável para armazenar o ID do intervalo
+
+	function abrirModal(idModal) {
+		if (modalAberto) {
+			idModal.style.left = "-50%";
+			btn_invisivel.style.left = "-50%";
+
+			modalAberto = false;
+
+			nav_dash.classList.remove("blur");
+			main_dash.classList.remove("blur");
+
+			// Limpa o intervalo quando o modal é fechado
+			clearInterval(chartInterval);
+		} else {
+			idModal.style.left = "50%";
+			btn_invisivel.style.left = "50%";
+
+			modalAberto = true;
+
+			nav_dash.classList.add("blur");
+			main_dash.classList.add("blur");
+		}
+	}
+
+	function listarSensores(idAmbiente) {
+		var idAmbiente = idAmbiente;
+
+		sec_sensores.innerHTML = ``;
+
+		fetch(`/sensores/listarSensores/${idAmbiente}`)
+			.then((res) => res.json())
+			.then((sens) => {
+				for (let i = 0; i < sens.length; i++) {
+					console.log(sens[0]);
+					console.log(sens[i].idSensor);
+
+					sec_sensores.innerHTML += `
+				
+						<div
+						class="div_sensores"	
+						onclick="abrirModal(sec_modal_sensor); sensoresGrafico(${sens[i].idSensor})" id="sensor_${sens[i].idSensor}"
+						>
+							<p>${sens[i].nome_sensor}</p>
+						</div>
+
+				`;
+				}
+			});
+
+		// sec_sensores.innerHTML = ``
+	}
+
+	var porc = [];
+	var data = [];
+
+	function sensoresGrafico(idSensor) {
+		// Limpa qualquer intervalo existente para evitar que múltiplos intervalos rodem simultaneamente
+		clearInterval(chartInterval); 
+		historico_modal_sensor.innerHTML = ``; // Limpa o histórico quando um novo sensor é selecionado
+
+		// Função para buscar e atualizar os dados do gráfico
+		const fetchAndUpdateChart = () => {
+            
+			fetch(`/sensores/sensoresGrafico/${idSensor}`)
+				.then((res) => res.json())
+				.then((dados) => {
+					porc = [];
+					data = [];
+
+					let porcMaior = 0;
+
+					// Limpa o historico_modal_sensor atual antes de anexar novos dados
+					historico_modal_sensor.innerHTML = ''; 
+
+					for (let i = dados.length - 1; i >= 0; i--) {
+						porc.push(dados[i].porcentagem_captada);
+
+						if (porc[i] > porcMaior) {
+							porcMaior = dados[i].porcentagem_captada;
+						}
+
+						data.push(dados[i].data_hora);
+
+						if (porc.length > 10) { // Mantém apenas os últimos 10 pontos de dados para o gráfico
+							porc.splice(0, 1);
+							data.splice(0, 1);
+						}
+
+						historico_modal_sensor.innerHTML += `
+							<div class="linha-historico">
+								<span class="coluna piso">${dados[i].nome_local}</span>
+								<span class="coluna sensor">${dados[i].nome_sensor} </span>
+								<span class="coluna data">${dados[i].data_hora}</span>
+							</div>
+						`;
+					}
+
+					nome_sensor_modal.innerHTML = `${dados[0].nome_sensor}`;
+
+					if (window.securitygasChart) {
+						window.securitygasChart.destroy();
+					}
+
+					var corLinha = "rgb(54, 162, 235)";
+
+					window.securitygasChart = new Chart(
+						document.getElementById("glpChart"),
+						{
+							type: "line",
+							data: {
+								labels: data,
+								datasets: [
+									{
+										label: "GLP",
+										data: porc,
+										borderColor: corLinha,
+										tension: 0.4,
+										fill: true,
+									},
+									{
+										label: "Limite Inferior De Explosividade",
+										data: Array(data.length).fill(2), // Garante que este array corresponda ao comprimento dos dados
+										borderColor: "red",
+										tension: 0.4,
+									},
+									{
+										label: "Limite Adequado",
+										data: Array(data.length).fill(1), // Garante que este array corresponda ao comprimento dos dados
+										borderColor: "lightgreen",
+										tension: 0.4,
+									},
+								],
+							},
+							options: {
+								responsive: true,
+								plugins: {
+									legend: { display: true },
+								},
+								scales: {
+									y: {
+										beginAtZero: true,
+									},
+								},
+							},
+						}
+					);
+				});
+		};
+
+		// Chama a função imediatamente para carregar os dados iniciais
+		fetchAndUpdateChart();
+
+		// Configura o intervalo para atualizar os dados a cada 5 segundos (ajuste conforme necessário)
+		chartInterval = setInterval(fetchAndUpdateChart, 5000); 
+	}
+
+	function listarAmbientes() {
+		let idRestaurante = 1;
+
+		div_ambientes.innerHTML = ``;
+
+		fetch(`/ambientes/listar/${idRestaurante}`)
+			.then((res) => res.json())
+			.then((ambi) => {
+				for (let i = 0; i < ambi.length; i++) {
+					console.log(ambi[i]);
+
+					div_ambientes.innerHTML += `
+
+						<button onclick="listarSensores(${ambi[i].idLocal_instalacao})" id="bnt_ambiente${ambi[i].idLocal_instalacao}">
+
+							<span id="span_bola ${ambi[i].nome_local}"></span>${ambi[i].nome_local}
+
+						</button>
+
+				`;
+				}
+			});
+
+		// sec_sensores.innerHTML = ``
+	}
+
+	function btn_historico() {
+		if (main_historico.style.display == "flex") {
+			main_historico.style.display = "none";
+			main_dash.style.display = "flex";
+			nav_dash.style.borderRadius = "0 10px 10px 0";
+		} else {
+			nav_dash.style.borderRadius = "0px";
+			main_historico.style.display = "flex";
+			main_dash.style.display = "none";
+			main_historico.classList.add("aumentar");
+		}
+	}
+</script> -->
