@@ -66,7 +66,7 @@ idLeitura int auto_increment,
 fkAlerta int,
 fkSensor int,
 porcentagem_captada DECIMAL(5,2) not null,
-data_hora datetime not null,
+data_hora datetime not null DEFAULT CURRENT_TIMESTAMP,
 foreign key (fkAlerta) references alerta(idAlerta),
 foreign key (fkSensor) references sensor(idSensor),
 primary key (idLeitura, fkAlerta, fkSensor)

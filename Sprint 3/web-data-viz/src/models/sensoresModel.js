@@ -37,7 +37,8 @@ function sensoresGrafico(idSensor) {
         on lei.fkSensor = sen.idSensor
         join local_instalacao as loc
         on sen.fkLocal_instalacao = loc.idLocal_instalacao
-        where fkSensor = ${idSensor};
+        where fkSensor = ${idSensor} 
+        ORDER BY lei.idLeitura DESC;
 
     `;
 	return database.executar(instrucao);
