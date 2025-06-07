@@ -22,6 +22,6 @@ void loop() {
  
   Serial.println(porcentagem);      
 
-  delay(1000);
+  delay(3000);
   
 }

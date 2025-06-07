@@ -21,7 +21,7 @@ const serial = async (
         {
             host: 'localhost',
             user: 'root',
-            password: '171409ej',
+            password: 'Camiyj10!',
             database: 'securitygas3',
             port: 3306
         }
@@ -49,7 +49,7 @@ const serial = async (
 
     // processa os dados recebidos do Arduino
     arduino.pipe(new serialport.ReadlineParser({ delimiter: '\r\n' })).on('data', async (data) => {
-        console.log(data);
+        // console.log(data);
         const valores = data;
         // const sensorDigital = parseInt(valores[0]);
         const sensorAnalogico = parseFloat(valores);
@@ -71,7 +71,7 @@ const serial = async (
             if (porcentagem < 1.8) {
                 idAlerta = 1;
                 nivel = "Normal";
-            } else if (porcentagem >= 1.8 && porcentagem <= 9.0) {
+            } else if (porcentagem >= 1.8 && porcentagem <= 2.5) {
                 idAlerta = 2;
                 nivel = "Atenção";
             } else {

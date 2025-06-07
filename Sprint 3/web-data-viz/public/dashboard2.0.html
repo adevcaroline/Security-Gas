@@ -1,156 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js">
-			// arrumar o gráfico, coloquei apenas para deixar como base
-		</script>
-		<link rel="shortcut icon" href="./img/icon.png" type="image/x-icon" />
-		<link rel="stylesheet" href="./style/dashboard2.0.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-			rel="stylesheet"
-		/>
-	</head>
 
-	<body onload="listarSensores(1), listarAmbientes()">
-		<nav id="nav_dash">
-			<div class="div_logo">
-				<img
-					src="https://media-cdn.tripadvisor.com/media/photo-m/1280/25/29/8a/25/logomarca.jpg"
-					alt=""
-					id="logo_empresa"
-				/>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js">
+		// arrumar o gráfico, coloquei apenas para deixar como base
+	</script>
+	<link rel="shortcut icon" href="./img/icon.png" type="image/x-icon" />
+	<link rel="stylesheet" href="./style/dashboard2.0.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link
+		href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+		rel="stylesheet" />
+</head>
 
-				<h1 id="nome_empresa">Empresa XPTO</h1>
+<body onload="listarSensores(1), listarAmbientes()">
+	<nav id="nav_dash">
+		<div class="div_logo">
+			<!-- <img src="https://media-cdn.tripadvisor.com/media/photo-m/1280/25/29/8a/25/logomarca.jpg" alt=""
+				id="logo_empresa" /> -->
+
+			<h1 id="nome_empresa">Empresa XPTO</h1>
+		</div>
+
+		<div class="div_btns" id="div_ambientes">
+			<button onclick="listarSensores(1)">
+				<span id="span_bola cozinha1"></span>Cozinha 1
+			</button>
+			<button onclick="listarSensores(2)">
+				<span id="span_bola cozinha2"></span>Cozinha 2
+			</button>
+			<button onclick="listarSensores(3)">
+				<span id="span_bola cozinha3"></span>Área externa
+			</button>
+		</div>
+
+
+		<div class="nav_historico">
+			<button onclick="btn_historico()" id="btn_historico">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+					fill="currentcolor">
+					<path
+						d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z" />
+				</svg>
+				Configurações
+			</button>
+		</div>
+
+
+		<div class="nav_historico">
+			<button onclick="btn_historico()" id="btn_historico">
+				<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+					fill="currentcolor">
+					<path
+						d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z" />
+				</svg>
+				Histórico
+			</button>
+		</div>
+	</nav>
+
+	<main id="main_historico">
+		<div class="parte-meio">
+			<div class="titulo">
+				<h1>Unidade XPTO</h1>
+				<h2 id="subtitulo">Empresa XPTO</h2>
 			</div>
 
-			<div class="div_btns" id="div_ambientes">
-				<button onclick="listarSensores(1)">
-					<span id="span_bola cozinha1"></span>Cozinha 1
-				</button>
-				<button onclick="listarSensores(2)">
-					<span id="span_bola cozinha2"></span>Cozinha 2
-				</button>
-				<button onclick="listarSensores(3)">
-					<span id="span_bola cozinha3"></span>Área externa
-				</button>
-			</div>
-
-			<div class="nav_historico">
-				<button onclick="btn_historico()" id="btn_historico">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						height="24px"
-						viewBox="0 -960 960 960"
-						width="24px"
-						fill="currentcolor"
-					>
-						<path
-							d="M200-200v-560 560Zm80-400h400v-80H280v80Zm0 160h190q20-24 43.5-44.5T565-520H280v80Zm0 160h122q2-21 7.5-41t13.5-39H280v80Zm-80 160q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v223q-19-8-39-13.5t-41-7.5v-202H200v560h202q2 21 7.5 41t13.5 39H200Zm520 80q-73 0-127.5-45.5T524-200h62q13 44 49.5 72t84.5 28q58 0 99-41t41-99q0-58-41-99t-99-41q-29 0-54 10.5T622-340h58v60H520v-160h60v57q27-26 63-41.5t77-15.5q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Z"
-						/>
-					</svg>
-					Historico
-				</button>
-			</div>
-		</nav>
-
-		<main id="main_historico">
-			<div class="parte-meio">
-				<div class="titulo">
-					<h1>Unidade XPTO</h1>
-					<h2 id="subtitulo">Empresa XPTO</h2>
+			<h2 id="h2_historico">Histórico - Ocorrências</h2>
+			<div class="historico">
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - A</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
 				</div>
 
-				<h2 id="h2_historico">Histórico - Ocorrências</h2>
-				<div class="historico">
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - B</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - B</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - C</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - C</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - B</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - B</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - C</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - C</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<!-- Adicione mais linhas assim -->
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - A</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
 				</div>
-			</div>
-		</main>
 
-		<main id="main_dash">
-			<section id="sec_titulos">
-				<h1 id="nome_unidade">Unidade 1</h1>
-				<p id="nome_empresa">Empresa XPTO</p>
-			</section>
-			<!-- <section id="sec_grafico">
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - B</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - B</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - C</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - C</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - A</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - A</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - B</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - B</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - C</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<div class="linha-historico">
+					<span class="coluna piso">Piso - C</span>
+					<span class="coluna sensor">Sensor - 1</span>
+					<span class="coluna data">18/04/2025 20:40</span>
+				</div>
+
+				<!-- Adicione mais linhas assim -->
+			</div>
+		</div>
+	</main>
+
+	<main id="main_dash">
+		<section id="sec_titulos">
+			<h1 id="nome_unidade">Unidade 1</h1>
+			<p id="nome_empresa">Empresa XPTO</p>
+		</section>
+		<!-- <section id="sec_grafico">
 
             <h1>Concentração GLP em <span id="span_ambiente"></span>:</h1>
 
@@ -212,140 +216,132 @@
 
         </section> -->
 
-			<header id="header_kpi">
-				<!-- <section id="sec_logo">
+		<header id="header_kpi">
+			<!-- <section id="sec_logo">
 
                 <img src="./img/logo_branca.png" alt="" id="img_logo_security">
 
             </section> -->
 
-				<section>
-					<h1>Situação Atual:</h1>
+			<section>
+				<h1>Situação Atual:</h1>
 
-					<p></p>
-				</section>
+				<p></p>
+			</section>
 
-				<section>
-					<h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
+			<section>
+				<h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
 
-					<p></p>
-				</section>
+				<p></p>
+			</section>
 
-				<section>
-					<h1>
-						Área com mais ocorrências no mês <span id="span_mes"></span>:
-					</h1>
+			<section>
+				<h1>
+					Área com mais ocorrências no mês <span id="span_mes"></span>:
+				</h1>
 
-					<p></p>
-				</section>
+				<p></p>
+			</section>
 
-				<!-- GRÁFICO!! -->
-				<!-- <section id="sec_grafico" class="sec_glpMes">
+			<!-- GRÁFICO!! -->
+			<!-- <section id="sec_grafico" class="sec_glpMes">
 
                 <h1></h1>
 
                 <canvas id="vazamentoChart"></canvas>
 
             </section> -->
-			</header>
+		</header>
 
-			<section id="sec_sensores">
-				<div
-					class="div_sensores"
-					onclick="abrirModal(sec_modal_sensor), sensoresGrafico(1)"
-				>
-					<p>sensor1</p>
-				</div>
-				<div
-					class="div_sensores"
-					onclick="abrirModal(sec_modal_sensor), sensoresGrafico(2)"
-				>
-					<p>sensor2</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor3</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-				<div class="div_sensores">
-					<p>sensor4</p>
-				</div>
-			</section>
-		</main>
-
-		<section id="sec_modals">
-			<section
-				id="btn_invisivel"
-				onclick="abrirModal(sec_modal_sensor)"
-			></section>
-
-			<section id="sec_modal_sensor">
-				<main class="main_modal_sensor">
-					<div id="grafico_modal_sensor">
-						<section id="sec_grafico" class="sec_glpMes">
-							<h1 id="nome_sensor_modal">Grafico</h1>
-
-							<canvas id="glpChart" width="50" height="17"></canvas>
-						</section>
-					</div>
-					<p>historico</p>
-					<div id="historico_modal_sensor">
-						<div class="linha-historico">
-							<span class="coluna piso">Piso - A</span>
-							<span class="coluna sensor">Sensor - 1</span>
-							<span class="coluna data">18/04/2025 20:40</span>
-						</div>
-
-						<div class="linha-historico">
-							<span class="coluna piso">Piso - A</span>
-							<span class="coluna sensor">Sensor - 1</span>
-							<span class="coluna data">18/04/2025 20:40</span>
-						</div>
-
-						<div class="linha-historico">
-							<span class="coluna piso">Piso - A</span>
-							<span class="coluna sensor">Sensor - 1</span>
-							<span class="coluna data">18/04/2025 20:40</span>
-						</div>
-
-						<div class="linha-historico">
-							<span class="coluna piso">Piso - A</span>
-							<span class="coluna sensor">Sensor - 1</span>
-							<span class="coluna data">18/04/2025 20:40</span>
-						</div>
-
-						<div class="linha-historico">
-							<span class="coluna piso">Piso - A</span>
-							<span class="coluna sensor">Sensor - 1</span>
-							<span class="coluna data">18/04/2025 20:40</span>
-						</div>
-					</div>
-				</main>
-
-				<aside>
-					<div class="kpis" id="kpis1">a</div>
-					<div class="kpis" id="kpis2">b</div>
-					<div class="kpis" id="kpis3">c</div>
-				</aside>
-			</section>
+		<section id="sec_sensores">
+			<div class="div_sensores" onclick="abrirModal(sec_modal_sensor), sensoresGrafico(1)">
+				<p>sensor1</p>
+			</div>
+			<div class="div_sensores" onclick="abrirModal(sec_modal_sensor), sensoresGrafico(2)">
+				<p>sensor2</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor3</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
+			<div class="div_sensores">
+				<p>sensor4</p>
+			</div>
 		</section>
-	</body>
+	</main>
+
+	<section id="sec_modals">
+		<section id="btn_invisivel" onclick="abrirModal(sec_modal_sensor)"></section>
+
+		<section id="sec_modal_sensor">
+			<main class="main_modal_sensor">
+				<div id="grafico_modal_sensor">
+					<section id="sec_grafico" class="sec_glpMes">
+						<h1 id="nome_sensor_modal">Grafico</h1>
+
+						<canvas id="glpChart" width="50" height="17"></canvas>
+					</section>
+				</div>
+				<h1>Histórico</h1>
+				<div id="historico_modal_sensor">
+					<div class="linha-historico">
+						<span class="coluna piso">Piso - A</span>
+						<span class="coluna sensor">Sensor - 1</span>
+						<span class="coluna data">18/04/2025 20:40</span>
+					</div>
+
+					<div class="linha-historico">
+						<span class="coluna piso">Piso - A</span>
+						<span class="coluna sensor">Sensor - 1</span>
+						<span class="coluna data">18/04/2025 20:40</span>
+					</div>
+
+					<div class="linha-historico">
+						<span class="coluna piso">Piso - A</span>
+						<span class="coluna sensor">Sensor - 1</span>
+						<span class="coluna data">18/04/2025 20:40</span>
+					</div>
+
+					<div class="linha-historico">
+						<span class="coluna piso">Piso - A</span>
+						<span class="coluna sensor">Sensor - 1</span>
+						<span class="coluna data">18/04/2025 20:40</span>
+					</div>
+
+					<div class="linha-historico">
+						<span class="coluna piso">Piso - A</span>
+						<span class="coluna sensor">Sensor - 1</span>
+						<span class="coluna data">18/04/2025 20:40</span>
+					</div>
+				</div>
+			</main>
+
+			<aside>
+				<div class="kpis" id="kpis1">Quantidade total de alertas críticos das últimas 24 horas</div>
+				<div class="kpis" id="kpis2">Quantidade total de alertas no últimos 30 dias</div>
+				<div class="kpis" id="kpis3">Situação atual do sensor</div>
+			</aside>
+		</section>
+	</section>
+</body>
+
 </html>
 
-<script>
+<!-- <script>
 	var modalAberto = false;
 
 	function abrirModal(idModal) {
@@ -430,7 +426,6 @@
 					if (i >= 10) {
 						porc.splice(0, 1);
 						data.splice(0, 1);
-
 					}
 
 					
@@ -544,14 +539,14 @@
 			main_historico.classList.add("aumentar");
 		}
 	}
-</script>
+</script> -->
 
 
 
 
-<!-- <script>
+<script>
 	var modalAberto = false;
-	var chartInterval; // Declare uma variável para armazenar o ID do intervalo
+	var chartInterval;
 
 	function abrirModal(idModal) {
 		if (modalAberto) {
@@ -563,7 +558,6 @@
 			nav_dash.classList.remove("blur");
 			main_dash.classList.remove("blur");
 
-			// Limpa o intervalo quando o modal é fechado
 			clearInterval(chartInterval);
 		} else {
 			idModal.style.left = "50%";
@@ -604,82 +598,56 @@
 		// sec_sensores.innerHTML = ``
 	}
 
-	var porc = [];
-	var data = [];
+	var modalAberto = false;
+	var chartInterval;
+	var glpChart = null;
 
 	function sensoresGrafico(idSensor) {
-		// Limpa qualquer intervalo existente para evitar que múltiplos intervalos rodem simultaneamente
-		clearInterval(chartInterval); 
-		historico_modal_sensor.innerHTML = ``; // Limpa o histórico quando um novo sensor é selecionado
+		clearInterval(chartInterval);
 
-		// Função para buscar e atualizar os dados do gráfico
-		const fetchAndUpdateChart = () => {
-            
+		const atualizarGrafico = () => {
 			fetch(`/sensores/sensoresGrafico/${idSensor}`)
-				.then((res) => res.json())
-				.then((dados) => {
-					porc = [];
-					data = [];
-
-					let porcMaior = 0;
-
-					// Limpa o historico_modal_sensor atual antes de anexar novos dados
-					historico_modal_sensor.innerHTML = ''; 
-
-					for (let i = dados.length - 1; i >= 0; i--) {
-						porc.push(dados[i].porcentagem_captada);
-
-						if (porc[i] > porcMaior) {
-							porcMaior = dados[i].porcentagem_captada;
-						}
-
-						data.push(dados[i].data_hora);
-
-						if (porc.length > 10) { // Mantém apenas os últimos 10 pontos de dados para o gráfico
-							porc.splice(0, 1);
-							data.splice(0, 1);
-						}
-
+				.then(res => res.json())
+				.then(dados => {
+					if (!dados || dados.length === 0) 
+					return;
+					dados.reverse();
+					
+					historico_modal_sensor.innerHTML = "";
+					dados.forEach((dado) => {
 						historico_modal_sensor.innerHTML += `
 							<div class="linha-historico">
-								<span class="coluna piso">${dados[i].nome_local}</span>
-								<span class="coluna sensor">${dados[i].nome_sensor} </span>
-								<span class="coluna data">${dados[i].data_hora}</span>
+								<span class="coluna piso">${dado.nome_local}</span>
+								<span class="coluna sensor">${dado.nome_sensor}</span>
+								<span class="coluna data">${dado.data_hora}</span>
 							</div>
 						`;
-					}
+					});
 
 					nome_sensor_modal.innerHTML = `${dados[0].nome_sensor}`;
 
-					if (window.securitygasChart) {
-						window.securitygasChart.destroy();
-					}
-
-					var corLinha = "rgb(54, 162, 235)";
-
-					window.securitygasChart = new Chart(
-						document.getElementById("glpChart"),
-						{
+					if (!glpChart) {
+						glpChart = new Chart(document.getElementById("glpChart"), {
 							type: "line",
 							data: {
-								labels: data,
+								labels: [],
 								datasets: [
 									{
 										label: "GLP",
-										data: porc,
-										borderColor: corLinha,
+										data: [],
+										borderColor: "rgb(54, 162, 235)",
 										tension: 0.4,
 										fill: true,
 									},
 									{
 										label: "Limite Inferior De Explosividade",
-										data: Array(data.length).fill(2), // Garante que este array corresponda ao comprimento dos dados
+										data: [],
 										borderColor: "red",
 										tension: 0.4,
 									},
 									{
 										label: "Limite Adequado",
-										data: Array(data.length).fill(1), // Garante que este array corresponda ao comprimento dos dados
+										data: [],
 										borderColor: "lightgreen",
 										tension: 0.4,
 									},
@@ -687,26 +655,38 @@
 							},
 							options: {
 								responsive: true,
-								plugins: {
-									legend: { display: true },
-								},
 								scales: {
 									y: {
 										beginAtZero: true,
 									},
 								},
 							},
+						});
+					}
+
+					dados.forEach((dado) => {
+						if (glpChart.data.labels.length === 10) {
+							glpChart.data.labels.shift();
+							glpChart.data.datasets[0].data.shift();
+							glpChart.data.datasets[1].data.shift();
+							glpChart.data.datasets[2].data.shift();
 						}
-					);
-				});
+
+						glpChart.data.labels.push(dado.data_hora);
+						glpChart.data.datasets[0].data.push(parseFloat(dado.porcentagem_captada));
+						glpChart.data.datasets[1].data.push(2);
+						glpChart.data.datasets[2].data.push(1);
+					});
+
+					glpChart.update();
+				})
+				.catch(err => console.error("Erro ao buscar dados:", err));
 		};
 
-		// Chama a função imediatamente para carregar os dados iniciais
-		fetchAndUpdateChart();
-
-		// Configura o intervalo para atualizar os dados a cada 5 segundos (ajuste conforme necessário)
-		chartInterval = setInterval(fetchAndUpdateChart, 5000); 
+		atualizarGrafico();
+		chartInterval = setInterval(atualizarGrafico, 5000);
 	}
+
 
 	function listarAmbientes() {
 		let idRestaurante = 1;
@@ -746,4 +726,53 @@
 			main_historico.classList.add("aumentar");
 		}
 	}
-</script> -->
+
+	function carregarKPIs() {
+		const idRestaurante = 1; // Substitua pelo ID real do restaurante
+
+		const mesAtual = new Date().toLocaleString('pt-BR', { month: 'long' });
+		document.querySelectorAll("#span_mes").forEach(span => {
+			span.innerText = mesAtual;
+		});
+
+		fetch(`/kpi/situacao-atual/${idRestaurante}`)
+			.then(res => res.json())
+			.then(dado => {
+				document.querySelectorAll("#header_kpi section")[0].querySelector("p").innerText = dado.mensagem;
+			})
+			.catch(erro => {
+				console.error("Erro ao carregar situação atual:", erro);
+				document.querySelectorAll("#header_kpi section")[0].querySelector("p").innerText = "Erro ao carregar dados";
+			});
+
+		fetch(`/kpi/ocorrencias-mes/${idRestaurante}`)
+			.then(res => res.json())
+			.then(dado => {
+				document.querySelectorAll("#header_kpi section")[1].querySelector("p").innerText =
+					`${dado.total} ocorrência(s) crítica(s)`;
+			})
+			.catch(erro => {
+				console.error("Erro ao carregar ocorrências do mês:", erro);
+				document.querySelectorAll("#header_kpi section")[1].querySelector("p").innerText = "Erro ao carregar dados";
+			});
+
+		fetch(`/kpi/sensor-critico/${idRestaurante}`)
+			.then(res => res.json())
+			.then(dado => {
+				document.querySelectorAll("#header_kpi section")[2].querySelector("p").innerText = dado.sensor;
+			})
+			.catch(erro => {
+				console.error("Erro ao carregar sensor crítico:", erro);
+				document.querySelectorAll("#header_kpi section")[2].querySelector("p").innerText = "Erro ao carregar dados";
+			});
+	}
+
+	window.onload = () => {
+		carregarKPIs();
+		listarSensores(1);
+		listarAmbientes();
+
+		setInterval(carregarKPIs, 30000);
+	};
+	
+</script>
