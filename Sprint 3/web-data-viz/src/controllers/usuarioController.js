@@ -24,7 +24,8 @@ function autenticar(req, res) {
                             idUsuario: resultadoAutenticar[0].idUsuario,
                             nome: resultadoAutenticar[0].nome,
                             email: resultadoAutenticar[0].email,
-                             fkRestaurante: resultadoAutenticar[0].fkRestaurante
+                            fkRestaurante: resultadoAutenticar[0].fkRestaurante,
+                            nome_restaurante: resultadoAutenticar[0].nome_restaurante
                         });
 
                     } else if (resultadoAutenticar.length == 0) {

@@ -13,4 +13,8 @@ router.get("/listar/:fkRestaurante", function (req, res) {
     ambienteController.listar(req, res);
 });
 
+router.get("/historico/:idLocalInstalacao", function (req, res) {
+    ambienteController.carregarHistorico(req, res);
+});
+
 module.exports = router;

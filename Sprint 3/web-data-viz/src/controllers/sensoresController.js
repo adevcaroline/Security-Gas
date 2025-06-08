@@ -12,7 +12,7 @@ function sensoresGrafico(req, res) {
 		})
 		.catch(function (erro) {
 			console.log(erro);
-			console.log(
+			console.log( 
 				"\nHouve um erro ao realizar o login! Erro: ",
 				erro.sqlMessage
 			);

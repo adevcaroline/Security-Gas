@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <title>Configuração de Ambientes</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./style/config04.css">
 </head>
+
 <body>
   <div class="container">
     <h2>Configuração de Ambientes e Sensores</h2>
 
     <div class="formulario">
-     
+
       <div class="box">
         <h3>Novo Ambiente</h3>
         <label for="novoAmbienteNome">Nome do Ambiente:</label>
@@ -19,7 +21,7 @@
         <button onclick="incluirAmbiente()">Incluir Ambiente</button>
       </div>
 
-      
+
       <div class="box">
         <h3>Adicionar Sensor</h3>
         <label for="selectAmbienteAdd">Ambiente:</label>
@@ -40,7 +42,7 @@
         <button onclick="excluirAmbiente()">Excluir Ambiente</button>
       </div>
 
-      
+
       <div class="box">
         <h3>Excluir Sensor</h3>
         <label for="selectAmbienteSensores">Ambiente:</label>
@@ -53,223 +55,228 @@
       </div>
     </div>
   </div>
-<script>
-function incluirAmbiente() {
-  var nome = document.getElementById("input_novoAmbienteNome").value;
-  var fkRestaurante = sessionStorage.FK_RESTAURANTE;
+  <script>
+    function incluirAmbiente() {
+      var nome = document.getElementById("input_novoAmbienteNome").value;
+      var fkRestaurante = sessionStorage.FK_RESTAURANTE;
 
-  if (!nome) {
-    alert("Preencha o nome do ambiente!");
-    return;
-  }
-  if (!fkRestaurante) {
-    alert("Restaurante não identificado na sessão!");
-    return;
-  }
-
-  fetch("/ambientes/cadastrar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nome_local: nome, fkRestaurante: fkRestaurante })
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Erro na requisição: " + res.status);
-    return res.json();
-  })
-  .then(data => {
-    alert("Ambiente cadastrado com sucesso!");
-    carregarAmbientesParaExcluir();
-    document.getElementById("input_novoAmbienteNome").value = "";
-  })
-  .catch(err => {
-    console.error("Erro:", err);
-    alert("Erro ao cadastrar ambiente.");
-  });
-}
-
-function carregarAmbientesParaExcluir() {
-  const fkRestaurante = sessionStorage.FK_RESTAURANTE;
-
-  fetch(`/ambientes/listar/${fkRestaurante}`)
-    .then(res => res.json())
-    .then(ambientes => {
-      const select = document.getElementById("selectAmbienteExcluir");
-      select.innerHTML = "";
-
-      ambientes.forEach(a => {
-        const option = document.createElement("option");
-        option.value = a.idLocal_instalacao;
-        option.textContent = a.nome_local;
-        select.appendChild(option);
-      });
-    });
-}
-
-function excluirAmbiente() {
-  const select = document.getElementById("selectAmbienteExcluir");
-  const idLocal = select.value;
-
-  if (!idLocal) {
-    alert("Selecione um ambiente para excluir!");
-    return;
-  }
-
-  if (!confirm("Tem certeza que deseja excluir este ambiente?")) return;
-
-  fetch(`/ambientes/excluir/${idLocal}`, {
-    method: "DELETE"
-  })
-    .then(res => {
-      if (!res.ok) throw new Error("Erro na exclusão");
-      return res.json();
-    })
-    .then(data => {
-      alert(data.mensagem);
-      carregarAmbientesParaExcluir();
-    })
-    .catch(err => {
-      console.error("Erro ao excluir:", err);
-      alert("Erro ao excluir ambiente.");
-    });
-}
-
-function carregarAmbientesParaAdicionarSensor() {
-  const fkRestaurante = sessionStorage.FK_RESTAURANTE;
-
-  fetch(`/ambientes/listar/${fkRestaurante}`)
-    .then(res => res.json())
-    .then(ambientes => {
-      const select = document.getElementById("selectAmbienteAdd");
-      select.innerHTML = "";
-
-      ambientes.forEach(ambiente => {
-        const option = document.createElement("option");
-        option.value = ambiente.idLocal_instalacao;
-        option.textContent = ambiente.nome_local;
-        select.appendChild(option);
-      });
-    })
-    .catch(err => {
-      console.error("Erro ao carregar ambientes:", err);
-      alert("Erro ao carregar ambientes!");
-    });
-}
-
-function adicionarSensor() {
-  const nome = document.getElementById("nomeSensor").value;
-  const ambienteId = document.getElementById("selectAmbienteAdd").value;
-
-  if (!nome || !ambienteId) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  fetch("/sensores/sensor/adicionar", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ nome_sensor: nome, fkLocal_instalacao: ambienteId })
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Erro ao adicionar sensor.");
-    return res.json();
-  })
-  .then(data => {
-    alert(data.mensagem);
-    document.getElementById("nomeSensor").value = "";
-  })
-  .catch(err => {
-    console.error("Erro:", err);
-    alert("Erro ao adicionar sensor.");
-  });
-}
-
-function carregarAmbientesParaExcluirSensor() {
-  const fkRestaurante = sessionStorage.FK_RESTAURANTE;
-
-  fetch(`/ambientes/listar/${fkRestaurante}`)
-    .then(res => res.json())
-    .then(ambientes => {
-      const select = document.getElementById("selectAmbienteSensores");
-      select.innerHTML = "";
-
-      ambientes.forEach(ambiente => {
-        const option = document.createElement("option");
-        option.value = ambiente.idLocal_instalacao;
-        option.textContent = ambiente.nome_local;
-        select.appendChild(option);
-      });
-
-      if (ambientes.length > 0) {
-        carregarSensoresDoAmbiente();
+      if (!nome) {
+        alert("Preencha o nome do ambiente!");
+        return;
       }
-    })
-    .catch(err => {
-      console.error("Erro ao carregar ambientes:", err);
-      alert("Erro ao carregar ambientes para excluir sensor!");
-    });
-}
+      if (!fkRestaurante) {
+        alert("Restaurante não identificado na sessão!");
+        return;
+      }
 
-function carregarSensoresDoAmbiente() {
-  const idAmbiente = document.getElementById("selectAmbienteSensores").value;
+      fetch("/ambientes/cadastrar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome_local: nome, fkRestaurante: fkRestaurante })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Erro na requisição: " + res.status);
+          return res.json();
+        })
+        .then(data => {
+          alert("Ambiente cadastrado com sucesso!");
+          carregarAmbientesParaExcluir();
+          window.location.reload();
+          document.getElementById("input_novoAmbienteNome").value = "";
+        })
+        .catch(err => {
+          console.error("Erro:", err);
+          alert("Erro ao cadastrar ambiente.");
+        });
+    }
 
-  if (!idAmbiente) {
-    document.getElementById("selectSensorExcluir").innerHTML = "";
-    return;
-  }
+    function carregarAmbientesParaExcluir() {
+      const fkRestaurante = sessionStorage.FK_RESTAURANTE;
 
-  fetch(`/sensores/listarSensores/${idAmbiente}`)
-    .then(res => res.json())
-    .then(sensores => {
-      const select = document.getElementById("selectSensorExcluir");
-      select.innerHTML = "";
+      fetch(`/ambientes/listar/${fkRestaurante}`)
+        .then(res => res.json())
+        .then(ambientes => {
+          const select = document.getElementById("selectAmbienteExcluir");
+          select.innerHTML = "";
 
-      sensores.forEach(sensor => {
-        const option = document.createElement("option");
-        option.value = sensor.idSensor;
-        option.textContent = sensor.nome_sensor;
-        select.appendChild(option);
-      });
-    })
-    .catch(err => {
-      console.error("Erro ao carregar sensores:", err);
-      alert("Erro ao carregar sensores!");
-    });
-}
+          ambientes.forEach(a => {
+            const option = document.createElement("option");
+            option.value = a.idLocal_instalacao;
+            option.textContent = a.nome_local;
+            select.appendChild(option);
+          });
+        });
+    }
 
-function excluirSensor() {
-  const idSensor = document.getElementById("selectSensorExcluir").value;
+    function excluirAmbiente() {
+      const select = document.getElementById("selectAmbienteExcluir");
+      const idLocal = select.value;
 
-  if (!idSensor) {
-    alert("Selecione um sensor para excluir!");
-    return;
-  }
+      if (!idLocal) {
+        alert("Selecione um ambiente para excluir!");
+        return;
+      }
 
-  if (!confirm("Tem certeza que deseja excluir este sensor?")) return;
+      if (!confirm("Tem certeza que deseja excluir este ambiente?")) return;
 
-  fetch(`/sensores/sensor/excluir/${idSensor}`, {
-    method: "DELETE"
-  })
-  .then(res => {
-    if (!res.ok) throw new Error("Erro na exclusão");
-    return res.json();
-  })
-  .then(data => {
-    alert(data.mensagem);
-    carregarSensoresDoAmbiente();
-  })
-  .catch(err => {
-    console.error("Erro ao excluir:", err);
-    alert("Erro ao excluir sensor.");
-  });
-}
+      fetch(`/ambientes/excluir/${idLocal}`, {
+        method: "DELETE"
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Erro na exclusão");
+          return res.json();
+        })
+        .then(data => {
+          alert(data.mensagem);
+          carregarAmbientesParaExcluir();
+          window.location.reload();
+        })
+        .catch(err => {
+          console.error("Erro ao excluir:", err);
+          alert("Erro ao excluir ambiente.");
+        });
+    }
 
-window.onload = function() {
-  carregarAmbientesParaExcluir();
-  carregarAmbientesParaAdicionarSensor();
-  carregarAmbientesParaExcluirSensor();
-};
-</script>
+    function carregarAmbientesParaAdicionarSensor() {
+      const fkRestaurante = sessionStorage.FK_RESTAURANTE;
+
+      fetch(`/ambientes/listar/${fkRestaurante}`)
+        .then(res => res.json())
+        .then(ambientes => {
+          const select = document.getElementById("selectAmbienteAdd");
+          select.innerHTML = "";
+
+          ambientes.forEach(ambiente => {
+            const option = document.createElement("option");
+            option.value = ambiente.idLocal_instalacao;
+            option.textContent = ambiente.nome_local;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => {
+          console.error("Erro ao carregar ambientes:", err);
+          alert("Erro ao carregar ambientes!");
+        });
+    }
+
+    function adicionarSensor() {
+      const nome = document.getElementById("nomeSensor").value;
+      const ambienteId = document.getElementById("selectAmbienteAdd").value;
+
+      if (!nome || !ambienteId) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      fetch("/sensores/sensor/adicionar", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nome_sensor: nome, fkLocal_instalacao: ambienteId })
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Erro ao adicionar sensor.");
+          return res.json();
+        })
+        .then(data => {
+          alert(data.mensagem);
+          window.location.reload();
+          document.getElementById("nomeSensor").value = "";
+        })
+        .catch(err => {
+          console.error("Erro:", err);
+          alert("Erro ao adicionar sensor.");
+        });
+    }
+
+    function carregarAmbientesParaExcluirSensor() {
+      const fkRestaurante = sessionStorage.FK_RESTAURANTE;
+
+      fetch(`/ambientes/listar/${fkRestaurante}`)
+        .then(res => res.json())
+        .then(ambientes => {
+          const select = document.getElementById("selectAmbienteSensores");
+          select.innerHTML = "";
+
+          ambientes.forEach(ambiente => {
+            const option = document.createElement("option");
+            option.value = ambiente.idLocal_instalacao;
+            option.textContent = ambiente.nome_local;
+            select.appendChild(option);
+          });
+
+          if (ambientes.length > 0) {
+            carregarSensoresDoAmbiente();
+          }
+        })
+        .catch(err => {
+          console.error("Erro ao carregar ambientes:", err);
+          alert("Erro ao carregar ambientes para excluir sensor!");
+        });
+    }
+
+    function carregarSensoresDoAmbiente() {
+      const idAmbiente = document.getElementById("selectAmbienteSensores").value;
+
+      if (!idAmbiente) {
+        document.getElementById("selectSensorExcluir").innerHTML = "";
+        return;
+      }
+
+      fetch(`/sensores/listarSensores/${idAmbiente}`)
+        .then(res => res.json())
+        .then(sensores => {
+          const select = document.getElementById("selectSensorExcluir");
+          select.innerHTML = "";
+
+          sensores.forEach(sensor => {
+            const option = document.createElement("option");
+            option.value = sensor.idSensor;
+            option.textContent = sensor.nome_sensor;
+            select.appendChild(option);
+          });
+        })
+        .catch(err => {
+          console.error("Erro ao carregar sensores:", err);
+          alert("Erro ao carregar sensores!");
+        });
+    }
+
+    function excluirSensor() {
+      const idSensor = document.getElementById("selectSensorExcluir").value;
+
+      if (!idSensor) {
+        alert("Selecione um sensor para excluir!");
+        return;
+      }
+
+      if (!confirm("Tem certeza que deseja excluir este sensor?")) return;
+
+      fetch(`/sensores/sensor/excluir/${idSensor}`, {
+        method: "DELETE"
+      })
+        .then(res => {
+          if (!res.ok) throw new Error("Erro na exclusão");
+          return res.json();
+        })
+        .then(data => {
+          alert(data.mensagem);
+          carregarSensoresDoAmbiente();
+          window.location.reload();
+        })
+        .catch(err => {
+          console.error("Erro ao excluir:", err);
+          alert("Erro ao excluir sensor.");
+        });
+    }
+
+    window.onload = function () {
+      carregarAmbientesParaExcluir();
+      carregarAmbientesParaAdicionarSensor();
+      carregarAmbientesParaExcluirSensor();
+    };
+  </script>
 
 
 </body>
+
 </html>

@@ -48,9 +48,27 @@ function listar(req, res) {
         });
 }
 
+function carregarHistorico(req, res){
+    var idLocalInstalacao = req.params.idLocalInstalacao;
+    console.log("Dados recebidos:", req.body);
+
+    ambienteModel.carregarHistorico(idLocalInstalacao)
+      .then(resultado => {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum ambiente selecionado.");
+            }
+        })
+        .catch(erro => {
+            console.error("Erro ao mostrar histórico:", erro);
+            res.status(500).json({ erro: "Erro ao mostrar histórico." });
+        });
+}
 
 module.exports = {
   cadastrarAmbiente,
   excluirAmbiente,
-  listar
+  listar,
+  carregarHistorico
 };
