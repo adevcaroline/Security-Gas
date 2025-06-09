@@ -133,6 +133,24 @@ INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) 
 (1, 1, 0.85, '2025-05-17 14:00:00'),
 (2, 1, 1.45, '2025-05-17 16:00:00');
 
+-- MES 6
+INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) VALUES
+-- Sensor 1 (Cozinha)
+(1, 1, 0.25, '2025-06-06 08:00:00'),
+(1, 1, 0.80, '2025-06-06 10:00:00'),
+(2, 1, 1.25, '2025-06-06 12:00:00'),
+(1, 1, 0.45, '2025-06-06 14:00:00'),
+(1, 1, 0.60, '2025-06-06 16:00:00'),
+(2, 1, 1.75, '2025-06-06 08:00:00'),
+(3, 1, 1.9, '2025-06-07 10:00:00'),
+(2, 1, 1.95, '2025-06-07 12:00:00'),
+(1, 1, 0.30, '2025-06-08 14:00:00'),
+(1, 1, 0.70, '2025-06-08 16:00:00'),
+(3, 1, 2.0, '2025-06-08 08:00:00'),
+(2, 1, 1.55, '2025-06-08 10:00:00'),
+(1, 1, 0.90, '2025-06-08 12:00:00'),
+(1, 1, 0.85, '2025-06-08 14:00:00'),
+(2, 1, 1.45, '2025-06-08 16:00:00');
 
 -- Sensor 3 (CadaVez) - Local 2
 INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) VALUES
@@ -148,6 +166,23 @@ INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) 
 (1, 3, 0.60, '2025-05-16 16:00:00');
 
 -- Sensor 4 (Alto) - Local 2
+INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) VALUES
+(1, 4, 0.30, '2025-05-15 08:00:00'),
+(2, 4, 1.10, '2025-05-15 10:00:00'),
+(3, 4, 2.10, '2025-05-15 12:00:00'),
+(2, 4, 1.65, '2025-05-15 14:00:00'),
+(1, 4, 0.55, '2025-05-15 16:00:00'),
+(1, 4, 0.40, '2025-05-16 08:00:00'),
+(2, 4, 1.45, '2025-05-16 10:00:00'),
+(3, 4, 2.20, '2025-05-16 12:00:00'),
+(2, 4, 1.70, '2025-05-16 14:00:00'),
+(1, 4, 0.90, '2025-05-16 16:00:00');
+select * from local_instalacao join sensor on local_instalacao.idLocal_instalacao = sensor.fkLocal_instalacao;
+
+
+
+
+-- Sensor 4 (Alto) - Teste4
 INSERT INTO leitura_sensor (fkAlerta, fkSensor, porcentagem_captada, data_hora) VALUES
 (1, 4, 0.30, '2025-05-15 08:00:00'),
 (2, 4, 1.10, '2025-05-15 10:00:00'),
@@ -188,4 +223,14 @@ SELECT
         where idLocal_instalacao = 2;
         
         SELECT idUsuario, nome, email, fkRestaurante, nome_restaurante FROM usuario join restaurante on usuario.fkRestaurante = restaurante.idRestaurante WHERE email = 'ana.mioki@sptech' AND senha = 'Senha123@';
-        
+
+    SELECT 
+            COUNT(*) AS total_criticos_mes
+        FROM leitura_sensor ls
+        JOIN sensor s ON ls.fkSensor = s.idSensor
+        JOIN local_instalacao li ON s.fkLocal_instalacao = li.idLocal_instalacao
+        JOIN alerta a ON ls.fkAlerta = a.idAlerta
+        WHERE a.nivel_alerta = 'Crítico'
+        AND li.fkRestaurante = 1
+        AND MONTH(ls.data_hora) = MONTH(CURRENT_DATE())
+        AND YEAR(ls.data_hora) = YEAR(CURRENT_DATE());
