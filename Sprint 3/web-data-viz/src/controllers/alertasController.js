@@ -1,7 +1,7 @@
-const alertaModel = require('../models/alertaModel');
+const alertasModel = require('../models/alertasModel');
 
 function listarAlertasSensores(req, res) {
-    sensoresModel.listarUltimasLeiturasTodosSensores()
+    alertasModel.listarAlertasSensores()
         .then(resultado => {
             res.status(200).json(resultado);
         })

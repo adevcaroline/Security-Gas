@@ -337,6 +337,7 @@
 			</aside>
 		</section>
 	</section>
+	<div id="alerta-container"></div>
 </body>
 
 </html>
@@ -777,7 +778,7 @@
 		// mudar 
 		// const idRestaurante = 1; 
 		let idRestaurante = sessionStorage.getItem("FK_RESTAURANTE");
-		
+
 
 		const mesAtual = new Date().toLocaleString('pt-BR', { month: 'long' });
 		document.querySelectorAll("#span_mes").forEach(span => {
@@ -821,7 +822,7 @@
 		const idLocalInstalacao = sessionStorage.getItem("idLocal");
 		fetch(`/ambientes/historico/${idLocalInstalacao}`)
 			// .then((res) => res.json())
-			
+
 			.then(async (res) => {
 				console.log("ID Local da sessão:", idLocalInstalacao);
 				if (!res.ok) {
@@ -870,8 +871,10 @@
 		carregarKPIs();
 		listarSensores(1);
 		listarAmbientes();
+		listarAlertasSensores();
 
 		setInterval(carregarKPIs, 30000);
+		setInterval(listarAlertasSensores, 15000);
 	};
 
 	window.addEventListener('load', () => {
@@ -886,31 +889,77 @@
 	});
 
 	//LOGICA DO ALERTA
-// 	function verificarAlertasAutomaticamente() {
-//   fetch("/sensores/alertas")
-//     .then(res => res.json())
-//     .then(sensores => {
-//       sensores.forEach(sensor => {
-//         const porcentagem = sensor.porcentagem_captada;
-//         const nomeSensor = sensor.nome_sensor;
-//         const nomeAmbiente = sensor.nome_local;
+function mostrarAlerta(mensagem, tipo = "normal") {
+  const container = document.getElementById("alerta-container");
+  const div = document.createElement("div");
 
-//         if (porcentagem > 1 && porcentagem <= 2) {
-//           alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
-//         } else if (porcentagem > 2) {
-//           alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
-//         }
-//       });
-//     })
-//     .catch(err => {
-//       console.error("Erro ao buscar alertas de sensores:", err);
-//     });
+  div.classList.add("alerta-mensagem");
+  if (tipo === "critico") {
+    div.classList.add("alerta-critico");
+  } else {
+    div.classList.add("alerta-normal");
+  }
+
+  div.textContent = mensagem;
+  container.appendChild(div);
+
+  setTimeout(() => {
+    div.remove();
+  }, 5000); // desaparece após 5 segundos
+}
+
+function listarAlertasSensores() {
+  fetch("/alertas/sensores")
+    .then(res => {
+      if (!res.ok) throw new Error("Erro na resposta do servidor");
+      return res.json();
+    })
+    .then(sensores => {
+      sensores.forEach(sensor => {
+        const porcentagem = sensor.porcentagem_captada;
+        const nomeSensor = sensor.nome_sensor;
+        const nomeAmbiente = sensor.nome_local;
+
+        if (porcentagem > 1.8 && porcentagem <= 2) {
+          mostrarAlerta(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`, "normal");
+        } else if (porcentagem > 2) {
+          mostrarAlerta(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`, "critico");
+        }
+      });
+    })
+    .catch(err => {
+      console.error("Erro ao buscar alertas de sensores:", err);
+    });
+}
+
+
+
+
+// function listarAlertasSensores() {
+// 	fetch("/alertas/sensores")
+// 		.then(res => res.json())
+// 		.then(sensores => {
+// 			sensores.forEach(sensor => {
+// 				const porcentagem = sensor.porcentagem_captada;
+// 				const nomeSensor = sensor.nome_sensor;
+// 				const nomeAmbiente = sensor.nome_local;
+
+// 				if (porcentagem > 1.8 && porcentagem <= 2) {
+// 					alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
+// 				} else if (porcentagem > 2) {
+// 					alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
+// 				}
+// 			});
+// 		})
+// 		.catch(err => {
+// 			console.error("Erro ao buscar alertas de sensores:", err);
+// 		});
 // }
 
-// // Verifica a cada 10 segundos 
-// setInterval(verificarAlertasAutomaticamente, 5000);
+	// Verifica a cada 10 segundos 
+	// setInterval(verificarAlertasAutomaticamente, 5000);
 
-// // Ou chama uma vez ao carregar
-// window.onload = verificarAlertasAutomaticamente;
+	// Ou chama uma vez ao carregar
+	// window.onload = verificarAlertasAutomaticamente;
 
 </script>

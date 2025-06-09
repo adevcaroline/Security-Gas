@@ -1,6 +1,8 @@
 var database = require("../database/config")
 
-function listarUltimasLeiturasTodosSensores() {
+// function listarUltimasLeiturasTodosSensores() {
+function listarAlertasSensores() {
+    
     const instrucao = `
         SELECT 
             s.idSensor,
@@ -20,5 +22,5 @@ function listarUltimasLeiturasTodosSensores() {
 }
 
 module.exports = {
-    listarUltimasLeiturasTodosSensores 
+    listarAlertasSensores 
 };

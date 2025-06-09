@@ -24,6 +24,7 @@ var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 var sensoresRouter = require("./src/routes/sensores");
 var ambientesRouter = require("./src/routes/ambientes");
+var alertasRouter = require("./src/routes/alertas");
 
 
 app.use(express.json());
@@ -41,6 +42,7 @@ app.use("/empresas", empresasRouter);
 app.use("/sensores", sensoresRouter);
 app.use("/ambientes", ambientesRouter); 
 app.use("/kpi", kpiRouter);
+app.use("/alertas", alertasRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
