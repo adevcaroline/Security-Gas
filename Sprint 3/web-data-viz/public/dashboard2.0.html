@@ -809,23 +809,27 @@
 					// kpiStatus.style.color = "var(--var-atencao)"
 					// kpis1.style.boxShadow = "0px 7px 0 1px var(--var-atencao)"
 
-					
+
 					kpiStatus.style.color = "var(--var-cor-primaria)"
 					kpis1.style.boxShadow = "0px 0px 10px 3px var(--var-atencao)"
 					kpis1.style.border = "solid 5px var(--var-atencao)"
-				
+					kpis1.style.backgroundColor = "white"
+
+
 				} else
 					if (dados[0].nivel_alerta == "Normal") {
-				
+
 						kpis1.style.color = "var(--var-cor-primaria)"
 						kpis1.style.boxShadow = "0px 7px 0 1px var(--var-seguro)"
+						kpis1.style.backgroundColor = "white"
+
 
 					} else {
-				
+
 						kpis1.style.color = "white"
 						kpis1.style.boxShadow = "0px 7px 0 1px var(--var-perigo)"
 						kpis1.style.backgroundColor = "var(--var-perigo)"
-						
+
 
 					}
 
