@@ -31,21 +31,33 @@ var database = require("../database/config");
 
 function sensoresGrafico(idSensor) {
 	var instrucao = `
-
-    select * from leitura_sensor as lei
-        join sensor as sen
-        on lei.fkSensor = sen.idSensor
-        join local_instalacao as loc
-        on sen.fkLocal_instalacao = loc.idLocal_instalacao
-        where fkSensor = ${idSensor} 
-        ORDER BY lei.idLeitura DESC LIMIT 10;
+SELECT 
+    lei.idLeitura,
+    lei.fkAlerta,
+    lei.fkSensor,
+    lei.porcentagem_captada,
+    DATE_FORMAT(lei.data_hora, '%d/%m/%Y %h:%m:%s') as data_hora,
+    sen.idSensor,
+    sen.nome_sensor,
+    sen.statusAtivacao,
+    sen.fkLocal_instalacao,
+    loc.idLocal_instalacao,
+    loc.nome_local,
+    loc.fkRestaurante
+FROM leitura_sensor AS lei
+INNER JOIN sensor AS sen
+    ON lei.fkSensor = sen.idSensor
+INNER JOIN local_instalacao AS loc
+    ON sen.fkLocal_instalacao = loc.idLocal_instalacao
+WHERE lei.fkSensor = ${idSensor} 
+ORDER BY lei.idLeitura DESC 
+LIMIT 10;
 
     `;
 	return database.executar(instrucao);
 }
 
 function listarSensores(idAmbiente) {
-    
 	var instrucao = `
 
 	    select * from sensor as s
@@ -55,45 +67,44 @@ function listarSensores(idAmbiente) {
 
 	`;
 
-
 	// var instrucao = `
 
-    //     select * from leitura_sensor as ls
-    //     join sensor as s
-    //     on s.idSensor = ls.fkSensor
-    //     join local_instalacao as li
-    //     on li.idLocal_instalacao = s.fkLocal_instalacao
-    //     where li.idLocal_instalacao = ${idAmbiente};
+	//     select * from leitura_sensor as ls
+	//     join sensor as s
+	//     on s.idSensor = ls.fkSensor
+	//     join local_instalacao as li
+	//     on li.idLocal_instalacao = s.fkLocal_instalacao
+	//     where li.idLocal_instalacao = ${idAmbiente};
 
-    // `;
+	// `;
 	return database.executar(instrucao);
 }
 
-//ADICIONAR SENSOR NOVO 
+//ADICIONAR SENSOR NOVO
 function adicionarSensor(nome_sensor, fkLocal_instalacao) {
-    var instrucao = `
+	var instrucao = `
         INSERT INTO sensor (nome_sensor, statusAtivacao, fkLocal_instalacao)
         VALUES ('${nome_sensor}', 1, ${fkLocal_instalacao});
     `;
 
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+	console.log("Executando a instrução SQL: \n" + instrucao);
+	return database.executar(instrucao);
 }
 
 //EXLUIR SENSOR
 function excluirSensor(idSensor) {
-    var instrucao = `
+	var instrucao = `
         DELETE FROM sensor WHERE idSensor = ${idSensor};
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+	console.log("Executando a instrução SQL: \n" + instrucao);
+	return database.executar(instrucao);
 }
 
 module.exports = {
 	sensoresGrafico,
 	listarSensores,
 	adicionarSensor,
-	excluirSensor
+	excluirSensor,
 	// autenticar,
 	// cadastrar,
 	// validar

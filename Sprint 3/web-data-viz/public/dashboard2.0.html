@@ -705,11 +705,37 @@
 										beginAtZero: true,
 									},
 								},
+								animation: {
+									animateScale: true,
+									animateRotate: true
+								}
 							},
 						});
 					}
 
+					var tamanhoData = glpChart.data.datasets[0].data.length
+
+					// for (let i = 0; i < 1; i++) {
+
+					// 	glpChart.data.labels.push(i+1);
+					// 	glpChart.data.datasets[0].data.push((Math.random() * 1 + 1));
+					// 	glpChart.data.datasets[1].data.push(2);
+					// 	glpChart.data.datasets[2].data.push(1);
+
+					// 	if (glpChart.data.labels.length === 10) {
+					// 		glpChart.data.labels.shift();
+					// 		glpChart.data.datasets[0].data.shift();
+					// 		glpChart.data.datasets[1].data.shift();
+					// 		glpChart.data.datasets[2].data.shift();
+					// 	}
+
+
+					// }
+
+
+
 					dados.forEach((dado) => {
+
 						if (glpChart.data.labels.length === 10) {
 							glpChart.data.labels.shift();
 							glpChart.data.datasets[0].data.shift();
@@ -717,13 +743,22 @@
 							glpChart.data.datasets[2].data.shift();
 						}
 
+
 						glpChart.data.labels.push(dado.data_hora);
 						glpChart.data.datasets[0].data.push(parseFloat(dado.porcentagem_captada));
 						glpChart.data.datasets[1].data.push(2);
 						glpChart.data.datasets[2].data.push(1);
+
 					});
 
-					glpChart.update();
+					if(glpChart.data.datasets[0].data.length > tamanhoData){
+
+						glpChart.update('none');
+						
+					}
+					
+					
+
 				})
 				.catch(err => console.error("Erro ao buscar dados:", err));
 		};
@@ -889,74 +924,74 @@
 	});
 
 	//LOGICA DO ALERTA
-function mostrarAlerta(mensagem, tipo = "normal") {
-  const container = document.getElementById("alerta-container");
-  const div = document.createElement("div");
+	function mostrarAlerta(mensagem, tipo = "normal") {
+		const container = document.getElementById("alerta-container");
+		const div = document.createElement("div");
 
-  div.classList.add("alerta-mensagem");
-  if (tipo === "critico") {
-    div.classList.add("alerta-critico");
-  } else {
-    div.classList.add("alerta-normal");
-  }
+		div.classList.add("alerta-mensagem");
+		if (tipo === "critico") {
+			div.classList.add("alerta-critico");
+		} else {
+			div.classList.add("alerta-normal");
+		}
 
-  div.textContent = mensagem;
-  container.appendChild(div);
+		div.textContent = mensagem;
+		container.appendChild(div);
 
-  setTimeout(() => {
-    div.remove();
-  }, 5000); // desaparece após 5 segundos
-}
+		setTimeout(() => {
+			div.remove();
+		}, 5000); // desaparece após 5 segundos
+	}
 
-function listarAlertasSensores() {
-  fetch("/alertas/sensores")
-    .then(res => {
-      if (!res.ok) throw new Error("Erro na resposta do servidor");
-      return res.json();
-    })
-    .then(sensores => {
-      sensores.forEach(sensor => {
-        const porcentagem = sensor.porcentagem_captada;
-        const nomeSensor = sensor.nome_sensor;
-        const nomeAmbiente = sensor.nome_local;
+	function listarAlertasSensores() {
+		fetch("/alertas/sensores")
+			.then(res => {
+				if (!res.ok) throw new Error("Erro na resposta do servidor");
+				return res.json();
+			})
+			.then(sensores => {
+				sensores.forEach(sensor => {
+					const porcentagem = sensor.porcentagem_captada;
+					const nomeSensor = sensor.nome_sensor;
+					const nomeAmbiente = sensor.nome_local;
 
-        if (porcentagem > 1.8 && porcentagem <= 2) {
-          mostrarAlerta(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`, "normal");
-        } else if (porcentagem > 2) {
-          mostrarAlerta(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`, "critico");
-        }
-      });
-    })
-    .catch(err => {
-      console.error("Erro ao buscar alertas de sensores:", err);
-    });
-}
-
-
+					if (porcentagem > 1.8 && porcentagem <= 2) {
+						mostrarAlerta(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`, "normal");
+					} else if (porcentagem > 2) {
+						mostrarAlerta(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`, "critico");
+					}
+				});
+			})
+			.catch(err => {
+				console.error("Erro ao buscar alertas de sensores:", err);
+			});
+	}
 
 
-// function listarAlertasSensores() {
-// 	fetch("/alertas/sensores")
-// 		.then(res => res.json())
-// 		.then(sensores => {
-// 			sensores.forEach(sensor => {
-// 				const porcentagem = sensor.porcentagem_captada;
-// 				const nomeSensor = sensor.nome_sensor;
-// 				const nomeAmbiente = sensor.nome_local;
 
-// 				if (porcentagem > 1.8 && porcentagem <= 2) {
-// 					alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
-// 				} else if (porcentagem > 2) {
-// 					alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
-// 				}
-// 			});
-// 		})
-// 		.catch(err => {
-// 			console.error("Erro ao buscar alertas de sensores:", err);
-// 		});
-// }
 
-	// Verifica a cada 10 segundos 
+	// function listarAlertasSensores() {
+	// 	fetch("/alertas/sensores")
+	// 		.then(res => res.json())
+	// 		.then(sensores => {
+	// 			sensores.forEach(sensor => {
+	// 				const porcentagem = sensor.porcentagem_captada;
+	// 				const nomeSensor = sensor.nome_sensor;
+	// 				const nomeAmbiente = sensor.nome_local;
+
+	// 				if (porcentagem > 1.8 && porcentagem <= 2) {
+	// 					alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
+	// 				} else if (porcentagem > 2) {
+	// 					alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
+	// 				}
+	// 			});
+	// 		})
+	// 		.catch(err => {
+	// 			console.error("Erro ao buscar alertas de sensores:", err);
+	// 		});
+	// }
+
+	// Verifica a cada 10 segundos
 	// setInterval(verificarAlertasAutomaticamente, 5000);
 
 	// Ou chama uma vez ao carregar
