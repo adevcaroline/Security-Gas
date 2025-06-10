@@ -20,10 +20,10 @@ const serial = async (
     let poolBancoDados = mysql.createPool(
         {
             host: 'localhost',
-            user: 'root',
-            password: 'Camiyj10!',
+            user: 'aluno',
+            password: 'Sptech#2024',
             database: 'securitygas3',
-            port: 3306
+            port: 3307
         }
     ).promise();
 
@@ -68,10 +68,10 @@ const serial = async (
             var idSensor = 1
 
             // Verificando nível de alerta com base na concentração de gás
-            if (porcentagem < 1.8) {
+            if (porcentagem < 1) {
                 idAlerta = 1;
                 nivel = "Normal";
-            } else if (porcentagem >= 1.8 && porcentagem <= 2.5) {
+            } else if (porcentagem >= 1 && porcentagem <= 2) {
                 idAlerta = 2;
                 nivel = "Atenção";
             } else {
