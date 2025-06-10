@@ -296,7 +296,7 @@
 						<canvas id="glpChart" width="50" height="17"></canvas>
 					</section>
 				</div>
-				<h1>Histórico</h1>
+				<h1 class="tituloHistorico">Histórico</h1>
 				<div id="historico_modal_sensor">
 					<div class="linha-historico">
 						<span class="coluna piso">Piso - A</span>
@@ -331,9 +331,24 @@
 			</main>
 
 			<aside>
-				<div class="kpis" id="kpis1">Quantidade total de alertas críticos das últimas 24 horas</div>
-				<div class="kpis" id="kpis2">Quantidade total de alertas no últimos 30 dias</div>
-				<div class="kpis" id="kpis3">Situação atual do sensor</div>
+				<div class="kpis" id="kpis1">
+
+					<p>Situação atual do sensor:</p>
+					<h1 id="kpiStatus">ALERTA</h1>
+
+				</div>
+				<div class="kpis" id="kpis2">
+
+					<p>Quantidade total de alertas críticos das últimas 24 horas:</p>
+					<h1 id="kpiCritico">7</h1>
+
+				</div>
+				<div class="kpis" id="kpis3">
+
+					<p>Quantidade total de alertas no últimos 30 dias:</p>
+					<h1 id="kpi30dias">10</h1>
+
+				</div>
 			</aside>
 		</section>
 	</section>
@@ -631,7 +646,7 @@
 				
 						<div
 						class="div_sensores"	
-						onclick="abrirModal(sec_modal_sensor); sensoresGrafico(${sens[i].idSensor})" id="sensor_${sens[i].idSensor}"
+						onclick="abrirModal(sec_modal_sensor); sensoresGrafico(${sens[i].idSensor}); kpisSensor(${sens[i].idSensor})" id="sensor_${sens[i].idSensor}"
 						>
 							<p>${sens[i].nome_sensor}</p>
 						</div>
@@ -751,13 +766,16 @@
 
 					});
 
-					if(glpChart.data.datasets[0].data.length > tamanhoData){
+
+
+					if (glpChart.data.datasets[0].data.length > tamanhoData) {
 
 						glpChart.update('none');
-						
+						kpisSensor(idSensor)
+
 					}
-					
-					
+
+
 
 				})
 				.catch(err => console.error("Erro ao buscar dados:", err));
@@ -765,6 +783,89 @@
 
 		atualizarGrafico();
 		chartInterval = setInterval(atualizarGrafico, 5000);
+	}
+
+	function kpisSensor(idSensor) {
+
+		fetch(`/kpi/kpisStatus/${idSensor}`)
+			.then(res => res.json())
+			.then(dados => {
+
+				console.log(dados[0])
+
+				kpiStatus.textContent = `${dados[0].nivel_alerta}`
+
+				if (dados[0].nivel_alerta == "Alerta") {
+
+
+					// kpis1.style.color = "var(--var-cor-primaria)"
+					// kpis1.style.boxShadow = "0px 7px 0 1px var(--var-atencao)"
+					// kpis1.style.backgroundColor = "var(--var-atencao)"
+
+					// kpis1.style.color = "white"
+					// kpis1.style.boxShadow = "0px 7px 0 1px var(--var-atencao)"
+					// kpis1.style.backgroundColor = "var(--var-atencao)"
+
+					// kpiStatus.style.color = "var(--var-atencao)"
+					// kpis1.style.boxShadow = "0px 7px 0 1px var(--var-atencao)"
+
+					
+					kpiStatus.style.color = "var(--var-cor-primaria)"
+					kpis1.style.boxShadow = "0px 0px 10px 3px var(--var-atencao)"
+					kpis1.style.border = "solid 5px var(--var-atencao)"
+				
+				} else
+					if (dados[0].nivel_alerta == "Normal") {
+				
+						kpis1.style.color = "var(--var-cor-primaria)"
+						kpis1.style.boxShadow = "0px 7px 0 1px var(--var-seguro)"
+
+					} else {
+				
+						kpis1.style.color = "white"
+						kpis1.style.boxShadow = "0px 7px 0 1px var(--var-perigo)"
+						kpis1.style.backgroundColor = "var(--var-perigo)"
+						
+
+					}
+
+			})
+			.catch(() => {
+
+				console.log('deu ruim')
+
+			})
+
+		fetch(`/kpi/kpisCritico24/${idSensor}`)
+			.then(res => res.json())
+			.then(dados => {
+
+
+				kpiCritico.textContent = `${dados[0].total_alertas_criticos}`
+
+
+			})
+			.catch(() => {
+
+				console.log('deu ruim')
+
+			})
+
+		fetch(`/kpi/alertas30dias/${idSensor}`)
+			.then(res => res.json())
+			.then(dados => {
+
+
+				kpi30dias.textContent = `${dados[0].total_alertas}`
+
+
+			})
+			.catch(() => {
+
+				console.log('deu ruim')
+
+			})
+
 	}
 
 
