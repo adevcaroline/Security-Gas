@@ -12,6 +12,10 @@ router.get("/listarSensores/:id", function (req, res) {
     sensoresController.listarSensores(req, res);
 });
 
+router.get("/corSensor/:idSensor", function (req, res) {
+    sensoresController.corSensor(req, res);
+});
+
 // router.post("/cadastrar", function (req, res) {
 //   aquarioController.cadastrar(req, res);
 // })

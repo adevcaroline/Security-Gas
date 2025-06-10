@@ -41,6 +41,27 @@ function listarSensores(req, res) {
 }
 
 
+function corSensor(req, res) {
+	const idSensor = req.params.idSensor;
+
+	console.log(idSensor);
+
+	sensoresModel
+		.corSensor(idSensor)
+		.then(function (resposta) {
+			res.status(200).json(resposta);
+		})
+		.catch(function (erro) {
+			console.log(erro);
+			console.log(
+				"\nHouve um erro ao realizar o login! Erro: ",
+				erro.sqlMessage
+			);
+			res.status(500).json(erro.sqlMessage);
+		});
+}
+
+
 // function cadastrar(req, res) {
 // 	console.log("req.body recebido:", req.body);
 // 	// Crie uma variável que vá recuperar os valores do arquivo cadastro.html
@@ -127,5 +148,6 @@ module.exports = {
 	sensoresGrafico,
 	listarSensores,
 	adicionarSensor,
-	excluirSensor
+	excluirSensor,
+	corSensor
 };

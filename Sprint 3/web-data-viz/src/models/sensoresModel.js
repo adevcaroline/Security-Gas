@@ -80,6 +80,19 @@ function listarSensores(idAmbiente) {
 	return database.executar(instrucao);
 }
 
+function corSensor(idSensor) {
+	var instrucao = `
+		select fkAlerta as leitura from leitura_sensor
+		where fkSensor = ${idSensor}
+		order by idLeitura desc
+		limit 1;                                    	
+    `;
+
+	console.log("Executando a instrução SQL: \n" + instrucao);
+	return database.executar(instrucao);
+}
+
+
 //ADICIONAR SENSOR NOVO
 function adicionarSensor(nome_sensor, fkLocal_instalacao) {
 	var instrucao = `
@@ -105,6 +118,7 @@ module.exports = {
 	listarSensores,
 	adicionarSensor,
 	excluirSensor,
+	corSensor,
 	// autenticar,
 	// cadastrar,
 	// validar
