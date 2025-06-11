@@ -887,39 +887,10 @@
 
 				}
 
-
+				setInterval(listarSensores(ambienteAtual), 3000);
 			})
 
 	}
 
-
-
-
-	// function listarAlertasSensores() {
-	// 	fetch("/alertas/sensores")
-	// 		.then(res => res.json())
-	// 		.then(sensores => {
-	// 			sensores.forEach(sensor => {
-	// 				const porcentagem = sensor.porcentagem_captada;
-	// 				const nomeSensor = sensor.nome_sensor;
-	// 				const nomeAmbiente = sensor.nome_local;
-
-	// 				if (porcentagem > 1.8 && porcentagem <= 2) {
-	// 					alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
-	// 				} else if (porcentagem > 2) {
-	// 					alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
-	// 				}
-	// 			});
-	// 		})
-	// 		.catch(err => {
-	// 			console.error("Erro ao buscar alertas de sensores:", err);
-	// 		});
-	// }
-
-	// Verifica a cada 10 segundos
-	// setInterval(verificarAlertasAutomaticamente, 5000);
-
-	// Ou chama uma vez ao carregar
-	// window.onload = verificarAlertasAutomaticamente;
 
 </script>
