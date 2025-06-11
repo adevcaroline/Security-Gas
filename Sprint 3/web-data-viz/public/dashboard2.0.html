@@ -17,7 +17,7 @@
 		rel="stylesheet" />
 </head>
 
-<body onload="listarSensores(1), listarAmbientes()">
+<body>
 	<nav id="nav_dash">
 		<div class="div_logo">
 			<img src="" alt=""
@@ -792,15 +792,16 @@
 
 
 	window.onload = () => {
-		carregarKPIs();
-		listarAmbientes();
-		listarAmbientes(1);
-		listarAlertasSensores();
+	carregarKPIs();
+	listarAmbientes();
+	setTimeout(() => listarSensores(1), 500); // espera ambiente carregar
+	listarAlertasSensores();
 
-		setInterval(carregarKPIs, 30000);
-		setInterval(listarAlertasSensores, 15000);
-		setInterval(listarSensores(ambienteAtual), 15000);
-	};
+	setInterval(carregarKPIs, 30000);
+	setInterval(listarAlertasSensores, 15000);
+	setInterval(() => listarSensores(ambienteAtual), 15000); // CORRETO
+};
+
 
 	window.addEventListener('load', () => {
 		const nomeRestaurante = sessionStorage.getItem("NOME_RESTAURANTE"); //FUNCIONA?
@@ -887,7 +888,7 @@
 
 				}
 
-				setInterval(listarSensores(ambienteAtual), 3000);
+				// setInterval(listarSensores(ambienteAtual), 3000);
 			})
 
 	}
