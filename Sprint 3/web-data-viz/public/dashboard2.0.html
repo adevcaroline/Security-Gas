@@ -796,10 +796,13 @@
 		listarAmbientes();
 		// listarAmbientes(1);
 		listarAlertasSensores();
+		// listarSensores();
 
 		setInterval(carregarKPIs, 30000);
 		setInterval(listarAlertasSensores, 15000);
-		setInterval(listarSensores(ambienteAtual), 15000);
+		setInterval(() => listarSensores(ambienteAtual), 2000);
+		// console.log("o id do sensor", idSensor)
+		// setInterval(() => corSensor(idSensor), 2000);
 	};
 
 	window.addEventListener('load', () => {
@@ -830,7 +833,7 @@
 
 		setTimeout(() => {
 			div.remove();
-		}, 10000); // desaparece após 5 segundos
+		}, 2000); // desaparece após 2 segundos
 	}
 
 	function listarAlertasSensores() {
