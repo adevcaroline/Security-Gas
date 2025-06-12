@@ -17,13 +17,11 @@
 		rel="stylesheet" />
 </head>
 
-<body>
+<body onload="listarSensores(1), listarAmbientes()">
 	<nav id="nav_dash">
 		<div class="div_logo">
-			<img src="" alt=""
+			<img src="./assets/logo/LOGO AZUL.png" alt=""
 				id="logo_empresa" />
-
-			<h1 id="nome_empresa" class="Restaurante">Empresa XPTO</h1>
 		</div>
 
 		<div class="div_btns" id="div_ambientes">
@@ -792,16 +790,15 @@
 
 
 	window.onload = () => {
-	carregarKPIs();
-	listarAmbientes();
-	setTimeout(() => listarSensores(1), 500); // espera ambiente carregar
-	listarAlertasSensores();
+		carregarKPIs();
+		listarAmbientes();
+		listarAmbientes(1);
+		listarAlertasSensores();
 
-	setInterval(carregarKPIs, 30000);
-	setInterval(listarAlertasSensores, 15000);
-	setInterval(() => listarSensores(ambienteAtual), 15000); // CORRETO
-};
-
+		setInterval(carregarKPIs, 30000);
+		setInterval(listarAlertasSensores, 15000);
+		setInterval(listarSensores(ambienteAtual), 15000);
+	};
 
 	window.addEventListener('load', () => {
 		const nomeRestaurante = sessionStorage.getItem("NOME_RESTAURANTE"); //FUNCIONA?
@@ -888,10 +885,39 @@
 
 				}
 
-				// setInterval(listarSensores(ambienteAtual), 3000);
+
 			})
 
 	}
 
+
+
+
+	// function listarAlertasSensores() {
+	// 	fetch("/alertas/sensores")
+	// 		.then(res => res.json())
+	// 		.then(sensores => {
+	// 			sensores.forEach(sensor => {
+	// 				const porcentagem = sensor.porcentagem_captada;
+	// 				const nomeSensor = sensor.nome_sensor;
+	// 				const nomeAmbiente = sensor.nome_local;
+
+	// 				if (porcentagem > 1.8 && porcentagem <= 2) {
+	// 					alert(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`);
+	// 				} else if (porcentagem > 2) {
+	// 					alert(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`);
+	// 				}
+	// 			});
+	// 		})
+	// 		.catch(err => {
+	// 			console.error("Erro ao buscar alertas de sensores:", err);
+	// 		});
+	// }
+
+	// Verifica a cada 10 segundos
+	// setInterval(verificarAlertasAutomaticamente, 5000);
+
+	// Ou chama uma vez ao carregar
+	// window.onload = verificarAlertasAutomaticamente;
 
 </script>
