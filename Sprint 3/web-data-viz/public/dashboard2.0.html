@@ -17,7 +17,8 @@
 		rel="stylesheet" />
 </head>
 
-<body onload="listarSensores(1), listarAmbientes()">
+<body> 
+	<!-- onload="listarSensores(1), listarAmbientes()"> -->
 	<nav id="nav_dash">
 		<div class="div_logo">
 			<img src="./assets/logo/LOGO AZUL.png" alt=""
@@ -771,7 +772,8 @@
 						month: '2-digit',
 						year: 'numeric',
 						hour: '2-digit',
-						minute: '2-digit'
+						minute: '2-digit',
+						second: '2-digit'
 					});
 					historico.innerHTML += `
           				<div class="linha-historico">
@@ -792,7 +794,7 @@
 	window.onload = () => {
 		carregarKPIs();
 		listarAmbientes();
-		listarAmbientes(1);
+		// listarAmbientes(1);
 		listarAlertasSensores();
 
 		setInterval(carregarKPIs, 30000);
