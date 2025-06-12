@@ -828,7 +828,7 @@
 
 		setTimeout(() => {
 			div.remove();
-		}, 5000); // desaparece após 5 segundos
+		}, 10000); // desaparece após 5 segundos
 	}
 
 	function listarAlertasSensores() {
@@ -843,7 +843,7 @@
 					const nomeSensor = sensor.nome_sensor;
 					const nomeAmbiente = sensor.nome_local;
 
-					if (porcentagem > 1.8 && porcentagem <= 2) {
+					if (porcentagem > 1 && porcentagem <= 2) {
 						mostrarAlerta(`⚠️ Alerta: Ambiente "${nomeAmbiente}" sensor "${nomeSensor}" em vazamento de gás`, "normal");
 					} else if (porcentagem > 2) {
 						mostrarAlerta(`🚨 Alerta Crítico: Ambiente "${nomeAmbiente}" Sensor: "${nomeSensor}" em vazamento de gás`, "critico");
