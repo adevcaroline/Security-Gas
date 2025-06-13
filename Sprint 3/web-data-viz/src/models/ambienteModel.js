@@ -30,18 +30,16 @@ function excluirAmbiente(idLocal) {
 // }
 
 function listar(fkRestaurante) {
+
     var instrucaoSql = `
-    SELECT *
-    FROM local_instalacao li
-    join sensor s
-    on idLocal_instalacao = fkLocal_instalacao
-    join leitura_sensor ls
-    on idSensor = fkSensor
-    WHERE fkRestaurante = ${fkRestaurante}
-	order by ls.idLeitura desc
-    limit 1;`;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    SELECT idLocal_instalacao, nome_local
+    FROM local_instalacao
+    WHERE fkRestaurante = ${fkRestaurante};
+`;
+
+   console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
+
 }
 
 function carregarHistorico(idLocalInstalacao) {
