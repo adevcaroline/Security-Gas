@@ -17,12 +17,11 @@
 		rel="stylesheet" />
 </head>
 
-<body> 
+<body>
 	<!-- onload="listarSensores(1), listarAmbientes()"> -->
 	<nav id="nav_dash">
 		<div class="div_logo">
-			<img src="./assets/logo/LOGO AZUL.png" alt=""
-				id="logo_empresa" />
+			<img src="./assets/logo/LOGO AZUL.png" alt="" id="logo_empresa" />
 		</div>
 
 		<div class="div_btns" id="div_ambientes">
@@ -246,19 +245,19 @@
 
             </section> -->
 
-			<section>
+			<section id="sec_situacao">
 				<h1>Situação Atual:</h1>
 
 				<p></p>
 			</section>
 
-			<section>
+			<section id="sec_ocorrencias">
 				<h1>Ocorrências graves no mês <span id="span_mes"></span>:</h1>
 
 				<p></p>
 			</section>
 
-			<section>
+			<section id="sec_area_ocorrencias">
 				<h1>
 					Área com mais ocorrências no mês <span id="span_mes"></span>:
 				</h1>
@@ -277,7 +276,7 @@
 		</header>
 
 		<section id="sec_sensores">
-			<div class="div_sensores" onclick="abrirModal(sec_modal_sensor), sensoresGrafico(1)">
+			<!-- <div class="div_sensores" onclick="abrirModal(sec_modal_sensor), sensoresGrafico(1)">
 				<p>sensor1</p>
 			</div>
 			<div class="div_sensores" onclick="abrirModal(sec_modal_sensor), sensoresGrafico(2)">
@@ -303,7 +302,7 @@
 			</div>
 			<div class="div_sensores">
 				<p>sensor4</p>
-			</div>
+			</div> -->
 		</section>
 	</main>
 
@@ -321,35 +320,7 @@
 				</div>
 				<h1 class="tituloHistorico">Histórico</h1>
 				<div id="historico_modal_sensor">
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
 
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
-
-					<div class="linha-historico">
-						<span class="coluna piso">Piso - A</span>
-						<span class="coluna sensor">Sensor - 1</span>
-						<span class="coluna data">18/04/2025 20:40</span>
-					</div>
 				</div>
 			</main>
 
@@ -499,7 +470,7 @@
 									{
 										label: "Limite Adequado",
 										data: [],
-										borderColor: "lightgreen",
+										borderColor: "yellow",
 										tension: 0.4,
 									},
 								],
@@ -672,13 +643,16 @@
 
 						<button onclick="listarSensores(${ambi[i].idLocal_instalacao})" id="bnt_ambiente${ambi[i].idLocal_instalacao}">
 
-							<span id="span_bola ${ambi[i].nome_local}"></span>${ambi[i].nome_local}
+							<span id="span_bola ${ambi[i].nome_local}" class="status_${ambi[i].fkAlerta}"></span>${ambi[i].nome_local}
 
 						</button>
 
-				`;
+				`
+
 				}
 			});
+
+
 
 		// sec_sensores.innerHTML = ``
 	}
